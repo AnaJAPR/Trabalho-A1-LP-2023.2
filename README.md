@@ -11,3 +11,6 @@ Reportagem de avião:
 
 IGC indice de universidades: 
 [https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-de-qualidade-da-educacao-superior](url)
+
+Dados da Avaliação Nacional de Alfabetização (ANA)
+[https://dados.gov.br/dados/conjuntos-dados/inep-microdados-da-ana](url)
