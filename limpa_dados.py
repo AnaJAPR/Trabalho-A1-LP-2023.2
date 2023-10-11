@@ -1,7 +1,6 @@
 import pandas as pd
 
 df = pd.read_csv("IGC_2021.csv")
-df.fillna(value="-", inplace=True)
 
 # As linhas de indice 2012 e 2013 não contém dados, logo são removidas
 df.drop(index=[2012, 2013], inplace = True)
@@ -13,9 +12,11 @@ for column in df.columns:
             df.drop(columns=column, inplace=True)
 
 def remove_colunas_sem_dado(df):
+
+    df_sem_vazios = df.fillna(value="-")
     
     for column in df.columns:
-        dicionario_value_counts = df[column].value_counts().to_dict()
+        dicionario_value_counts = df_sem_vazios[column].value_counts().to_dict()
         
         for key in dicionario_value_counts.keys():
             if key == "-":
@@ -27,5 +28,13 @@ def remove_colunas_sem_dado(df):
                     df.drop(columns=column, inplace=True)
     return df
 
+remove_colunas_sem_dado(df)
 
+def trata_celulas_vazias(df):
+   
+    # Para esta parte do tratamento, a função vai tratar separadamente as células vazias nas colunas numericas das nas não-numericas
+    # Apenas a coluna "Sigla da IES*" não é númerica
+    df.fillna(value=0, inplace=True)
+    df["Sigla da IES*"].replace(0, "-", inplace=True)
+    return df
 
