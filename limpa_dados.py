@@ -1,4 +1,5 @@
 import pandas as pd
+import doctest
 
 df = pd.read_csv("IGC_2021.csv")
 
@@ -13,7 +14,7 @@ for column in df.columns:
 
 def remove_colunas_sem_dado(df):
     """
-        Parameters
+    Parameters
     ----------
     df : pandas.core.frame.DataFrame
 
@@ -28,10 +29,10 @@ def remove_colunas_sem_dado(df):
     try:
         # Testando se foi passado corretamente um DataFrame como parâmetro
         if type(df) != pd.core.frame.DataFrame:
-            raise ValueError
+            raise TypeError
     
-    except ValueError:
-        print("ValueError: A função só pode receber DataFrame!")
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
     
     else:
         df_sem_vazios = df.fillna(value="-")
@@ -55,13 +56,14 @@ def remove_colunas_sem_dado(df):
 
 def trata_celulas_vazias(df):
     """
-        Parameters
+    Parameters
     ----------
     df : pandas.core.frame.DataFrame
 
-        DESCRIPTION. A função preenche as células vazias do DataFrame: as células vázias de colunas numéricas são preenchidas com 0*;
-        as células vazias de colunas não-numéricas são preenchidas com "-".
-        *Colunas que possuem apenas (0,1, NA) passaram a ter (False, True, "Sem informações") 
+        DESCRIPTION. A função preenche as células vazias do DataFrame:
+        As células vazias de colunas não-numéricas são preenchidas com "-";
+        Colunas que tem características de booleano, ou seja, possuem apenas (0,1, NA) passaram a ter (False, True, "Sem informações");
+        As células vázias das demais colunas numéricas são preenchidas com 0. 
         
     Returns
     -------
@@ -71,10 +73,10 @@ def trata_celulas_vazias(df):
     try:
         # Testando se foi passado corretamente um DataFrame como parâmetro
         if type(df) != pd.core.frame.DataFrame:
-            raise ValueError
+            raise TypeError
     
-    except ValueError:
-        print("ValueError: A função só pode receber DataFrame!")
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
     
     else:
         # Para esta parte do tratamento, a função vai tratar separadamente as células vazias nas colunas numericas das nas não-numericas
@@ -83,7 +85,7 @@ def trata_celulas_vazias(df):
 
         for coluna in colunas_nao_num:
             df[coluna].fillna(value="-", inplace=True) #Preenche os valores nulos das colunas não-numéricas por "-"
-        
+         
         # Nesse passo a função vai conferir se há coluna com características de booleano (0,1)
         df2 = df.fillna(value=0)
 
@@ -104,3 +106,7 @@ def trata_celulas_vazias(df):
     
     finally:
         return df
+
+if __name__ == "__main__":
+    doctest.testfile("doctest-trata_celulas_vazias.txt", verbose=True)
+    doctest.testfile("doctest-remove_colunas_sem_dado.txt", verbose=True)

@@ -1,0 +1,55 @@
+    """
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+
+        DESCRIPTION. A função confere se há, no DataFrame, alguma coluna onde mais da metade de suas linhas são vazias e, 
+        se sim, remove essas colunas.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna o DataFrame sem as colunas com "muitas células vazias".
+    
+    >>> from limpa_dados import remove_colunas_sem_dado, df
+    
+    Teste 1: A função é usada corretamente e retorna o df sem a coluna com "muitas células vazias"
+    >>> remove_colunas_sem_dado(df)
+                                           Nome da IES*   Ano  Código da IES*  ... Conceito Médio do doutorado IGC (Contínuo) IGC (Faixa)
+    0               UNIVERSIDADE FEDERAL DE MATO GROSSO  2021             1.0  ...                       4.668          3.328           4
+    1                          UNIVERSIDADE DE BRASÍLIA  2021             2.0  ...                       4.770          3.988           5
+    2                   UNIVERSIDADE FEDERAL DE SERGIPE  2021             3.0  ...                       4.648          3.480           4
+    3                  UNIVERSIDADE FEDERAL DO AMAZONAS  2021             4.0  ...                       4.474          3.111           4
+    4                     UNIVERSIDADE FEDERAL DO PIAUÍ  2021             5.0  ...                       4.640          3.170           4
+    ...                                             ...   ...             ...  ...                         ...            ...         ...
+    2007                UNIVERSIDADE FEDERAL DE CATALÃO  2021         25274.0  ...                       4.500          3.615           4
+    2008  UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO  2021         25275.0  ...                       0.000          3.314           4
+    2009      UNIVERSIDADE FEDERAL DO DELTA DO PARNAIBA  2021         25277.0  ...                       4.500          3.295           4
+    2010                  UNIVERSIDADE FEDERAL DE JATAÍ  2021         25282.0  ...                       4.500          3.346           4
+    2011           Universidade Federal de Rondonópolis  2021         25352.0  ...                       0.000          2.814           3
+    <BLANKLINE>
+    [2012 rows x 16 columns]
+
+    Teste 2: 
+    >>> remove_colunas_sem_dado("Tio Rafa")
+    TypeError: A função só pode receber DataFrame!
+    'Tio Rafa'
+
+    Teste 3
+    >>> remove_colunas_sem_dado(42)
+    TypeError: A função só pode receber DataFrame!
+    42
+
+    Teste 4
+    >>> remove_colunas_sem_dado()
+    Traceback (most recent call last):
+    ...
+    TypeError: remove_colunas_sem_dado() missing 1 required positional argument: 'df'
+    
+    Teste 5
+    >>> remove_colunas_sem_dado(["eu", "adoro", "a", "EMAp"])
+    TypeError: A função só pode receber DataFrame!
+    ['eu', 'adoro', 'a', 'EMAp']
+
+    
+    """
