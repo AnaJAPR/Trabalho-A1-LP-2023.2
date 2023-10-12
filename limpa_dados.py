@@ -108,5 +108,5 @@ def trata_celulas_vazias(df):
         return df
 
 if __name__ == "__main__":
-    doctest.testfile("doctest-trata_celulas_vazias.txt", verbose=True)
-    doctest.testfile("doctest-remove_colunas_sem_dado.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
