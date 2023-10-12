@@ -12,29 +12,95 @@ for column in df.columns:
             df.drop(columns=column, inplace=True)
 
 def remove_colunas_sem_dado(df):
+    """
+        Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
 
-    df_sem_vazios = df.fillna(value="-")
-    
-    for column in df.columns:
-        dicionario_value_counts = df_sem_vazios[column].value_counts().to_dict()
+        DESCRIPTION. A função confere se há, no DataFrame, alguma coluna onde mais da metade de suas linhas são vazias e, 
+        se sim, remove essas colunas.
         
-        for key in dicionario_value_counts.keys():
-            if key == "-":
-                
-                num_vazios_da_coluna = dicionario_value_counts[key]
-                metade_linhas_df = df.shape[0] / 2
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna o DataFrame sem as colunas com "muitas células vazias".
+    """
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if type(df) != pd.core.frame.DataFrame:
+            raise ValueError
+    
+    except ValueError:
+        print("ValueError: A função só pode receber DataFrame!")
+    
+    else:
+        df_sem_vazios = df.fillna(value="-")
+        
+        for column in df.columns:
+            # Cria um dicionário com os valores e quantas vezes eles aparecem na coluna
+            dicionario_value_counts = df_sem_vazios[column].value_counts().to_dict()
+            
+            for key in dicionario_value_counts.keys():
+                # Confere a quantidade de células vazias na coluna
+                if key == "-":
+                    num_vazios_da_coluna = dicionario_value_counts[key]
+                    metade_linhas_df = df.shape[0] / 2
 
-                if num_vazios_da_coluna > metade_linhas_df:
-                    df.drop(columns=column, inplace=True)
-    return df
-
-remove_colunas_sem_dado(df)
+                    if num_vazios_da_coluna > metade_linhas_df:
+                        # Remove as colunas com mais da metade das células vazias
+                        df.drop(columns=column, inplace=True)
+    
+    finally:
+        return df
 
 def trata_celulas_vazias(df):
-   
-    # Para esta parte do tratamento, a função vai tratar separadamente as células vazias nas colunas numericas das nas não-numericas
-    # Apenas a coluna "Sigla da IES*" não é númerica
-    df.fillna(value=0, inplace=True)
-    df["Sigla da IES*"].replace(0, "-", inplace=True)
-    return df
+    """
+        Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
 
+        DESCRIPTION. A função preenche as células vazias do DataFrame: as células vázias de colunas numéricas são preenchidas com 0*;
+        as células vazias de colunas não-numéricas são preenchidas com "-".
+        *Colunas que possuem apenas (0,1, NA) passaram a ter (False, True, "Sem informações") 
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna o DataFrame sem células vazias.
+    """
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if type(df) != pd.core.frame.DataFrame:
+            raise ValueError
+    
+    except ValueError:
+        print("ValueError: A função só pode receber DataFrame!")
+    
+    else:
+        # Para esta parte do tratamento, a função vai tratar separadamente as células vazias nas colunas numericas das nas não-numericas
+        
+        colunas_nao_num = df.select_dtypes(exclude="number").columns
+
+        for coluna in colunas_nao_num:
+            df[coluna].fillna(value="-", inplace=True) #Preenche os valores nulos das colunas não-numéricas por "-"
+        
+        # Nesse passo a função vai conferir se há coluna com características de booleano (0,1)
+        df2 = df.fillna(value=0)
+
+        for coluna in df.columns:
+            lista_unicos_da_coluna = df2[coluna].unique().tolist()
+            
+            if lista_unicos_da_coluna.sort() == [0, 1]:
+                df2[coluna].astype(bool)
+            
+            #Troca os valores (0, 1, NA) por (False, True, "Sem informações") 
+            if df2[coluna].dtype == bool:
+                df[coluna].replace(1, True, inplace=True)
+                df[coluna].replace(0, False, inplace=True)
+                df[coluna].fillna(value="Sem informações", inplace=True)
+        
+        # Por fim retorna o DataFrame com as células vazias preenchidas com 0 nas colunas que restam(numéricas)
+        df.fillna(value=0, inplace=True)
+    
+    finally:
+        return df
