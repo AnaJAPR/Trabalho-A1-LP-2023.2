@@ -160,60 +160,79 @@ def corrige_nomes_df(df):
     finally:    
         return df
     
-def medias_grad_mest_dout(df:pd.core.frame.DataFrame, lista_colunas:list, filtro:str):
+def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice:str):
     """
     Parameters
     ----------
     df : pandas.core.frame.DataFrame
-        Recebe o DataFrame limpo
+        Recebe o DataFrame
     lista_colunas : list
         Recebe uma lista com exatamente os nomes de 3 colunas nunéricas do DataFrame
     filtro : str
         Uma string de um nome de uma coluna não-numérica
-        DESCRIPTION. A fazer...
+
+        DESCRIPTION. A função recebe um DataFrame e garante que ele esteja tratado (executando a função corrige_nomes_df) e retorna
+        um DataFrame com a coluna escolhida em "indice" como indice, colunas com a media dos dados não nulos das escolhidas
+        em "lista_colunas" por cada registro do "indice".
         
     Returns
     -------
     pandas.core.frame.DataFrame
-        Retorna um DataFrame com index=filtro, colunas=lista_colunas e os dados vão ser as 
-        médias das colunas escolhidas do DataFrame original.
+        Retorna um DataFrame com index=indice, colunas=lista_colunas e os dados vão ser as 
+        médias dos dados não nulos das colunas escolhidas do DataFrame original.
     """
     try:
         # Testando se foi passado corretamente um DataFrame como parâmetro
-        if not type(df) == pd.core.frame.DataFrame or not type(lista_colunas) == list or not type(filtro) == str:
+        if not type(df) == pd.core.frame.DataFrame or not type(lista_colunas) == list or not type(indice) == str:
             raise TypeError
-    
+        # Testando se lista_colunas foi passado com o n° correto de elementos
+        if not len(lista_colunas) == 3:
+            raise ValueError("A lista deve conter 3 elementos!")
+        # Garantindo que o df esteja tratado
+        df = corrige_nomes_df(df)
+        
+        for elemento in lista_colunas:
+            if elemento not in df.columns:
+                print(df.columns)
+                raise ValueError(f"O nome da coluna foi escrito errado em {elemento}!")
+        
+        if indice not in df.columns:
+            raise ValueError("O nome escolhido para filtro não é o nome de uma coluna do DataFrame!")
+        
     except TypeError:
-        print("TypeError: A função tem que receber um Dataframe, uma lista! e uma string")
-    
-    df_filtrado = df[[filtro, lista_colunas[0], lista_colunas[1], lista_colunas[2]]]
+        print("TypeError: A função tem que receber um Dataframe, uma lista e uma string!")
 
-    # Retirando os 0, pois não serão úteis para esta análise
-    df_filtrado = df_filtrado[df_filtrado[lista_colunas[0]] > 0]
-    df_filtrado = df_filtrado[df_filtrado[lista_colunas[1]] > 0]
-    df_filtrado = df_filtrado[df_filtrado[lista_colunas[2]] > 0]
+    else:
+        df_filtrado = df[[indice, lista_colunas[0], lista_colunas[1], lista_colunas[2]]]
 
-    lista_uf = df_filtrado[filtro].unique().tolist()
-    dic_medias = dict()
+        # Retirando os 0, pois não serão úteis para esta análise
+        df_filtrado = df_filtrado[df_filtrado[lista_colunas[0]] > 0]
+        df_filtrado = df_filtrado[df_filtrado[lista_colunas[1]] > 0]
+        df_filtrado = df_filtrado[df_filtrado[lista_colunas[2]] > 0]
 
-    for uf in lista_uf:
+        lista_registros = df_filtrado[indice].unique().tolist()
+        
+        dic_medias = dict()
+        for registro in lista_registros:
+            
+            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[0]].mean()
+            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[1]].mean()
+            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[2]].mean()
 
-        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[0]].mean()
-        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[1]].mean()
-        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[2]].mean()
+            medias = [media_registro, media_registro, media_registro]
+            dic_medias[registro] = medias
 
-        medias = [media_uf, media_uf, media_uf]
-        dic_medias[uf] = medias
+        colunas = ["Média " + lista_colunas[0], "Média " + lista_colunas[1], "Média " + lista_colunas[2]]
+        dados = list()
+        
+        for valor in dic_medias.values():
+            dados.append(valor)
 
-    colunas = ["Média Grad", "Média Mest", "Média Dout"]
-    dados = list()
-    
-    for valor in dic_medias.values():
-        dados.append(valor)
+        df_medias = pd.DataFrame(dados, index=dic_medias.keys(), columns=colunas)
 
-    df_medias = pd.DataFrame(dados, index=dic_medias.keys(), columns=colunas)
+        return df_medias
 
-    return df_medias
+# print(media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Sigla da UF"))
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
