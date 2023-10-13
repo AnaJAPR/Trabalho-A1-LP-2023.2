@@ -6,12 +6,6 @@ df = pd.read_csv("IGC_2021.csv")
 # As linhas de indice 2012 e 2013 não contém dados, logo são removidas
 df.drop(index=[2012, 2013], inplace = True)
 
-# Corrigindo os nomes das colunas
-for column in df.columns:
-        if column[0] == " ":
-            df[column[1:]] = df[column]
-            df.drop(columns=column, inplace=True)
-
 def remove_colunas_sem_dado(df):
     """
     Parameters
@@ -106,7 +100,67 @@ def trata_celulas_vazias(df):
     
     finally:
         return df
+    
+def corrige_nomes_df(df):
+    """
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+
+        DESCRIPTION. A função vai utilizar o tratamento feito pelas funções remove_colunas_sem_dado e trata_celulas_vazias.
+        Com o DataFrame tratado, ela vai corrigir os nomes nele: nas células e colunas.
+        No nome das colunas: remove o espaço antes do nome(se houver); remove o * no fim do nome(se houver).
+        Nos nomes nas células: garante que as colunas que possuem siglas, possuam apenas letras maiúsculas; Mantém um padrão
+        de escrita com a primeira letra maiúscula e as demais mínusculas em cada palavra.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna o DataFrame com os nomes corrigidos.
+
+    """
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if type(df) != pd.core.frame.DataFrame:
+            raise TypeError
+    
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
+    
+    else:
+        # Já utilizando o tratamento das demais funções desse módulo
+        df = trata_celulas_vazias(remove_colunas_sem_dado(df))
+        
+        # Corrigindo os nomes das colunas
+
+        # Esse for retira o espaço no início do nome da coluna (se houver)
+        for column in df.columns:
+                if column[0] == " ":
+                    df[column[1:]] = df[column]
+                    df.drop(columns=column, inplace=True)
+        
+        # Esse for retira o * do final do nome da coluna (se houver)
+        for new_name_column in df.columns:
+                if new_name_column[-1] == "*":
+                    nome_sem_asterisco = new_name_column.replace("*", "")
+                    df[nome_sem_asterisco] = df[new_name_column]
+                    df.drop(columns=new_name_column, inplace=True)
+
+        # Corrigindo strings
+        colunas_str = df.select_dtypes(exclude="number").columns
+
+        for coluna in colunas_str:
+            for string in df[coluna]:
+                
+                if string == string.upper():# Garantindo que as siglas se mantenham com letras maiúsculas
+                    df[coluna] = df[coluna].str.upper()
+                else:
+                    df[coluna] = df[coluna].str.title()# Padronizando a escrita dos elementos das demais colunas com strings
+    
+    finally:    
+        return df
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-corrige_nomes_df.txt", verbose=True)
