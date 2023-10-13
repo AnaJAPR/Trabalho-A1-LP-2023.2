@@ -159,6 +159,61 @@ def corrige_nomes_df(df):
     
     finally:    
         return df
+    
+def medias_grad_mest_dout(df:pd.core.frame.DataFrame, lista_colunas:list, filtro:str):
+    """
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+        Recebe o DataFrame limpo
+    lista_colunas : list
+        Recebe uma lista com exatamente os nomes de 3 colunas nunéricas do DataFrame
+    filtro : str
+        Uma string de um nome de uma coluna não-numérica
+        DESCRIPTION. A fazer...
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame com index=filtro, colunas=lista_colunas e os dados vão ser as 
+        médias das colunas escolhidas do DataFrame original.
+    """
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if not type(df) == pd.core.frame.DataFrame or not type(lista_colunas) == list or not type(filtro) == str:
+            raise TypeError
+    
+    except TypeError:
+        print("TypeError: A função tem que receber um Dataframe, uma lista! e uma string")
+    
+    df_filtrado = df[[filtro, lista_colunas[0], lista_colunas[1], lista_colunas[2]]]
+
+    # Retirando os 0, pois não serão úteis para esta análise
+    df_filtrado = df_filtrado[df_filtrado[lista_colunas[0]] > 0]
+    df_filtrado = df_filtrado[df_filtrado[lista_colunas[1]] > 0]
+    df_filtrado = df_filtrado[df_filtrado[lista_colunas[2]] > 0]
+
+    lista_uf = df_filtrado[filtro].unique().tolist()
+    dic_medias = dict()
+
+    for uf in lista_uf:
+
+        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[0]].mean()
+        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[1]].mean()
+        media_uf = df_filtrado[df_filtrado[filtro] == uf][lista_colunas[2]].mean()
+
+        medias = [media_uf, media_uf, media_uf]
+        dic_medias[uf] = medias
+
+    colunas = ["Média Grad", "Média Mest", "Média Dout"]
+    dados = list()
+    
+    for valor in dic_medias.values():
+        dados.append(valor)
+
+    df_medias = pd.DataFrame(dados, index=dic_medias.keys(), columns=colunas)
+
+    return df_medias
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
