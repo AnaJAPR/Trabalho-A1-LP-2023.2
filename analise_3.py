@@ -2,7 +2,7 @@ import limpa_dados as lp
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = lp.df
+df = lp.corrige_nomes_df(lp.df)
 
 # Análise "Instituições de Ensino por UF"
 sigla_uf = df["Sigla da UF"]
