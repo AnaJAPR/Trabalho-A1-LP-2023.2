@@ -103,6 +103,21 @@ def trata_celulas_vazias(df):
     
 def corrige_nomes_df(df):
     """
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+
+        DESCRIPTION. A função vai utilizar o tratamento feito pelas funções remove_colunas_sem_dado e trata_celulas_vazias.
+        Com o DataFrame tratado, ela vai corrigir os nomes nele: nas células e colunas.
+        No nome das colunas: remove o espaço antes do nome(se houver); remove o * no fim do nome(se houver).
+        Nos nomes nas células: garante que as colunas que possuem siglas, possuam apenas letras maiúsculas; Mantém um padrão
+        de escrita com a primeira letra maiúscula e as demais mínusculas em cada palavra.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna o DataFrame com os nomes corrigidos.
+
     """
     try:
         # Testando se foi passado corretamente um DataFrame como parâmetro
@@ -140,10 +155,12 @@ def corrige_nomes_df(df):
                 if string == string.upper():# Garantindo que as siglas se mantenham com letras maiúsculas
                     df[coluna] = df[coluna].str.upper()
                 else:
-                    df[coluna] = df[coluna].str.title()# Padronizando a escrita dos elementos das demais colunnas com strings
-        
+                    df[coluna] = df[coluna].str.title()# Padronizando a escrita dos elementos das demais colunas com strings
+    
+    finally:    
         return df
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-corrige_nomes_df.txt", verbose=True)
