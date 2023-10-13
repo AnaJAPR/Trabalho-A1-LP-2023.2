@@ -15,18 +15,18 @@
     
     Teste 1: A função é usada corretamente e retorna o df sem a coluna com "muitas células vazias"
     >>> remove_colunas_sem_dado(df)
-                                           Nome da IES*   Ano  Código da IES*  ... Conceito Médio do doutorado IGC (Contínuo) IGC (Faixa)
-    0               UNIVERSIDADE FEDERAL DE MATO GROSSO  2021             1.0  ...                       4.668          3.328           4
-    1                          UNIVERSIDADE DE BRASÍLIA  2021             2.0  ...                       4.770          3.988           5
-    2                   UNIVERSIDADE FEDERAL DE SERGIPE  2021             3.0  ...                       4.648          3.480           4
-    3                  UNIVERSIDADE FEDERAL DO AMAZONAS  2021             4.0  ...                       4.474          3.111           4
-    4                     UNIVERSIDADE FEDERAL DO PIAUÍ  2021             5.0  ...                       4.640          3.170           4
-    ...                                             ...   ...             ...  ...                         ...            ...         ...
-    2007                UNIVERSIDADE FEDERAL DE CATALÃO  2021         25274.0  ...                       4.500          3.615           4
-    2008  UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO  2021         25275.0  ...                       0.000          3.314           4
-    2009      UNIVERSIDADE FEDERAL DO DELTA DO PARNAIBA  2021         25277.0  ...                       4.500          3.295           4
-    2010                  UNIVERSIDADE FEDERAL DE JATAÍ  2021         25282.0  ...                       4.500          3.346           4
-    2011           Universidade Federal de Rondonópolis  2021         25352.0  ...                       0.000          2.814           3
+           Ano   Código da IES*                                   Nome da IES*  ...  Conceito Médio do doutorado  IGC (Contínuo)  IGC (Faixa)
+    0     2021              1.0            UNIVERSIDADE FEDERAL DE MATO GROSSO  ...                        4.668           3.328            4
+    1     2021              2.0                       UNIVERSIDADE DE BRASÍLIA  ...                        4.770           3.988            5
+    2     2021              3.0                UNIVERSIDADE FEDERAL DE SERGIPE  ...                        4.648           3.480            4
+    3     2021              4.0               UNIVERSIDADE FEDERAL DO AMAZONAS  ...                        4.474           3.111            4
+    4     2021              5.0                  UNIVERSIDADE FEDERAL DO PIAUÍ  ...                        4.640           3.170            4
+    ...    ...              ...                                            ...  ...                          ...             ...          ...
+    2007  2021          25274.0                UNIVERSIDADE FEDERAL DE CATALÃO  ...                        4.500           3.615            4
+    2008  2021          25275.0  UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO  ...                        0.000           3.314            4
+    2009  2021          25277.0      UNIVERSIDADE FEDERAL DO DELTA DO PARNAIBA  ...                        4.500           3.295            4
+    2010  2021          25282.0                  UNIVERSIDADE FEDERAL DE JATAÍ  ...                        4.500           3.346            4
+    2011  2021          25352.0           Universidade Federal de Rondonópolis  ...                        0.000           2.814            3
     <BLANKLINE>
     [2012 rows x 16 columns]
 
