@@ -71,4 +71,5 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
 # mestrado_conceito_medio_min = df_mestrado["Conceito Médio de Mestrado"].min()
 # print("Conceito Médio de Mestrado Mínimo: ", mestrado_conceito_medio_min, end="\n")
 
-doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
+if __name__ == "__main__":
+    doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
