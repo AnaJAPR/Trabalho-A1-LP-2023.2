@@ -1,0 +1,96 @@
+"""
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+        Recebe um DataFrame.
+    colunas : list
+        Recebe uma lista de colunas pertencentes ao DataFrame.
+
+        DESCRIPTION. A função tem como objetivo selecionar um determinado conjunto de
+        colunas de um DataFrame e remover todas as linhas tais que a primeira coluna
+        possua valor igual a 0 ou nulo.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame contendo as 3 colunas passadas. Em caso de erro, o DataFrame
+        passado como argumento será retornado sem nenhuma alteração.
+
+    >>> from analise_3 import selecionar_colunas_eliminando_nulos, df
+
+    Teste 1:
+    >>> selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"])
+          Beta (Proporção de Mestrado - Equivalente)  Conceito Médio de Mestrado
+    0                                          0.134                       4.272
+    1                                          0.230                       4.582
+    2                                          0.126                       4.262
+    3                                          0.107                       4.246
+    4                                          0.120                       4.317
+    ...                                          ...                         ...
+    1958                                       0.590                       4.103
+    1968                                       0.458                       4.219
+    2007                                       0.271                       4.224
+    2009                                       0.244                       4.096
+    2010                                       0.190                       4.237
+    <BLANKLINE>
+    [328 rows x 2 columns]
+
+    Teste 2:
+    >>> selecionar_colunas_eliminando_nulos("Não sou um df", ["Coluna 1", "Coluna 2"])
+    Um ou mais argumentos passados não corresponde ao tipo solicitado.
+    'Não sou um df'
+
+    Teste 3:
+    >>> selecionar_colunas_eliminando_nulos(df, 2)
+    Um ou mais argumentos passados não corresponde ao tipo solicitado.
+           Ano Categoria Administrativa  ... Sigla da IES  Organização Acadêmica
+    0     2021          Pública Federal  ...         UFMT           Universidade
+    1     2021          Pública Federal  ...          UNB           Universidade
+    2     2021          Pública Federal  ...          UFS           Universidade
+    3     2021          Pública Federal  ...         UFAM           Universidade
+    4     2021          Pública Federal  ...         UFPI           Universidade
+    ...    ...                      ...  ...          ...                    ...
+    2007  2021          Pública Federal  ...        UFCAT           Universidade
+    2008  2021          Pública Federal  ...        UFAPE           Universidade
+    2009  2021          Pública Federal  ...       UFDPAR           Universidade
+    2010  2021          Pública Federal  ...          UFJ           Universidade
+    2011  2021          Pública Federal  ...          UFR           Universidade
+    <BLANKLINE>
+    [2012 rows x 16 columns]
+
+    Teste 4:
+    >>> selecionar_colunas_eliminando_nulos(df, ["a", "b"])
+    Uma ou mais colunas passadas não estão presentes no DataFrame.
+           Ano Categoria Administrativa  ... Sigla da IES  Organização Acadêmica
+    0     2021          Pública Federal  ...         UFMT           Universidade
+    1     2021          Pública Federal  ...          UNB           Universidade
+    2     2021          Pública Federal  ...          UFS           Universidade
+    3     2021          Pública Federal  ...         UFAM           Universidade
+    4     2021          Pública Federal  ...         UFPI           Universidade
+    ...    ...                      ...  ...          ...                    ...
+    2007  2021          Pública Federal  ...        UFCAT           Universidade
+    2008  2021          Pública Federal  ...        UFAPE           Universidade
+    2009  2021          Pública Federal  ...       UFDPAR           Universidade
+    2010  2021          Pública Federal  ...          UFJ           Universidade
+    2011  2021          Pública Federal  ...          UFR           Universidade
+    <BLANKLINE>
+    [2012 rows x 16 columns]
+
+    Teste 5:
+    >>> selecionar_colunas_eliminando_nulos(df, ["Gama (Proporção de Doutorandos – Equivalente)", "Conceito Médio do doutorado"])
+          Gama (Proporção de Doutorandos – Equivalente)  Conceito Médio do doutorado
+    0                                             0.084                        4.668
+    1                                             0.246                        4.770
+    2                                             0.093                        4.648
+    3                                             0.054                        4.474
+    4                                             0.072                        4.640
+    ...                                             ...                          ...
+    1958                                          0.229                        4.500
+    1968                                          0.104                        4.500
+    2007                                          0.090                        4.500
+    2009                                          0.045                        4.500
+    2010                                          0.061                        4.500
+    <BLANKLINE>
+    [218 rows x 2 columns]
+
+    """
