@@ -193,11 +193,10 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
         
         for elemento in lista_colunas:
             if elemento not in df.columns:
-                print(df.columns)
-                raise ValueError(f"O nome da coluna foi escrito errado em {elemento}!")
+                raise ValueError(f"O nome da coluna foi escrito errado em '{elemento}'!")
         
         if indice not in df.columns:
-            raise ValueError("O nome escolhido para filtro não é o nome de uma coluna do DataFrame!")
+            raise ValueError("O nome escolhido para indice não é o nome de uma coluna do DataFrame!")
         
     except TypeError:
         print("TypeError: A função tem que receber um Dataframe, uma lista e uma string!")
@@ -232,9 +231,8 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
 
         return df_medias
 
-# print(media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Sigla da UF"))
-
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-corrige_nomes_df.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)

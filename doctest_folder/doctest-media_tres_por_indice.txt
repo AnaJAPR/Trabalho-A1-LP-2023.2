@@ -1,0 +1,92 @@
+    """
+    Parameters
+    ----------
+    df : pandas.core.frame.DataFrame
+        Recebe o DataFrame
+    lista_colunas : list
+        Recebe uma lista com exatamente os nomes de 3 colunas nunéricas do DataFrame
+    filtro : str
+        Uma string de um nome de uma coluna não-numérica
+
+        DESCRIPTION. A função recebe um DataFrame e garante que ele esteja tratado (executando a função corrige_nomes_df) e retorna
+        um DataFrame com a coluna escolhida em "indice" como indice, colunas com a media dos dados não nulos das escolhidas
+        em "lista_colunas" por cada registro do "indice".
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame com index=indice, colunas=lista_colunas e os dados vão ser as 
+        médias dos dados não nulos das colunas escolhidas do DataFrame original.
+    
+    >>> from limpa_dados import media_tres_por_indice, df
+    
+    Teste 1: A função é usada corretamente e retorna o df com as médias dos conceitos médios por estado
+    >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Sigla da UF")
+        Média Conceito Médio de Graduação  Média Conceito Médio de Mestrado  Média Conceito Médio do doutorado
+    MT                           4.556000                          4.556000                           4.556000
+    DF                           4.755000                          4.755000                           4.755000
+    SE                           4.816500                          4.816500                           4.816500
+    AM                           4.458500                          4.458500                           4.458500
+    PI                           4.546667                          4.546667                           4.546667
+    MG                           4.656000                          4.656000                           4.656000
+    SP                           4.616902                          4.616902                           4.616902
+    PR                           4.632150                          4.632150                           4.632150
+    PE                           4.610500                          4.610500                           4.610500
+    RS                           4.701909                          4.701909                           4.701909
+    RJ                           4.718667                          4.718667                           4.718667
+    BA                           4.538000                          4.538000                           4.538000
+    CE                           4.629000                          4.629000                           4.629000
+    SC                           4.684727                          4.684727                           4.684727
+    GO                           4.650571                          4.650571                           4.650571
+    RN                           4.616800                          4.616800                           4.616800
+    PA                           4.583000                          4.583000                           4.583000
+    MS                           4.627800                          4.627800                           4.627800
+    MA                           4.581333                          4.581333                           4.581333
+    AC                           4.500000                          4.500000                           4.500000
+    PB                           4.575667                          4.575667                           4.575667
+    ES                           4.712500                          4.712500                           4.712500
+    AL                           4.470000                          4.470000                           4.470000
+    RO                           4.500000                          4.500000                           4.500000
+    RR                           4.500000                          4.500000                           4.500000
+    AP                           4.500000                          4.500000                           4.500000
+    TO                           4.583000                          4.583000                           4.583000
+
+
+    Teste 2 
+    >>> media_tres_por_indice(df)
+    Traceback (most recent call last):
+    ...
+    TypeError: media_tres_por_indice() missing 2 required positional arguments: 'lista_colunas' and 'indice'
+
+    Teste 3
+    >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado"], "Sigla da UF")
+    Traceback (most recent call last):
+    ...
+    ValueError: A lista deve conter 3 elementos!
+
+    Teste 4
+    >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "UF")
+    Traceback (most recent call last):
+    ...
+    ValueError: O nome escolhido para indice não é o nome de uma coluna do DataFrame!
+    
+    Teste 5
+    >>> media_tres_por_indice(df, ["eu", "adoro", "a EMAp"], "Sigla da UF")
+    Traceback (most recent call last):
+    ...
+    ValueError: O nome da coluna foi escrito errado em 'eu'!
+
+    Teste 6
+    >>> media_tres_por_indice(df, "Eu adoro a EMap", "Sigla da UF") 
+    TypeError: A função tem que receber um Dataframe, uma lista e uma string!
+
+    Teste 7
+    >>> media_tres_por_indice(42,  ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Sigla da UF") 
+    TypeError: A função tem que receber um Dataframe, uma lista e uma string!
+
+    Teste 8
+    >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], ["Eu", "adoro", "a", "EMap"])
+    TypeError: A função tem que receber um Dataframe, uma lista e uma string!
+    
+ 
+    """

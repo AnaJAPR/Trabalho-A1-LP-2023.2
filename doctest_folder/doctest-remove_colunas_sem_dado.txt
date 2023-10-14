@@ -30,7 +30,7 @@
     <BLANKLINE>
     [2012 rows x 16 columns]
 
-    Teste 2: 
+    Teste 2
     >>> remove_colunas_sem_dado("Tio Rafa")
     TypeError: A função só pode receber DataFrame!
     'Tio Rafa'
