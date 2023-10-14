@@ -21,5 +21,13 @@ print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrad
 
 
 # Desenvolvimento de Gráficos
-plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], notch=True)
-plt.show()
+def grafico_1():
+    bplot = plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], patch_artist=True)
+    for box in bplot['boxes']:
+        box.set(facecolor='blue')
+    plt.title("BoxPlot - Conceito Médio de Mestrado")
+    plt.xlabel("Mestrado")
+    plt.ylabel("Conceito Médio")
+    plt.show()
+
+grafico_1()

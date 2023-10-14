@@ -6,6 +6,22 @@ import matplotlib.pyplot as plt
 df = lp.corrige_nomes_df(lp.df)
 
 def analise_1_ana(df):
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+    
+        DESCRIPTION. A função verifica quais são os valores únicos da coluna "Organização Acadêmica" e, então, 
+        faz um dicionário com a frequência de ocorrência de cada IGC faixa para cada "organização Acadêmica".
+        
+    Returns
+    -------
+    dict
+        Retorna um dicionário cujas chaves são valores únicos de "Organização Acadêmica" e cujos valores são dicionários
+        os quais apresentam dados de IGC faixa como chave e a frequência de ocorrência destes para sua respectiva 
+        organização acadêmica como valores.
+    """
+    
     # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
     valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
 
@@ -25,7 +41,24 @@ def analise_1_ana(df):
     return dicionario_final
 
 def analise_ana_2(dicionario_final):
-    # Criando dicionário onde as chvaves serão valores únicos de "Organização Acadêmica" e os valores serão a média de IGC Faixa para cada org_acad
+    """
+    Parameters
+    ----------
+    dicionario_final: dict
+    
+        DESCRIPTION. A função itera sobre os elementos do dicionario_final, assumindo que este é o mesmo dicionário retornado pela
+        função analise_1_ana, ou seja, assumimos que os valores desse dicionário são dicionários também, cujas chaves são valores,
+        em sua maioria, números em formato string. Então, a função procura a média de IGC Faixa por Organização Acadêmica, fazendo 
+        o produto das chaves (após transformá-las em int) pelas seus valores (frequência de ocorrência de cada) e dividindo pela
+        soma das contagens.
+    
+    Returns
+    -------
+    dict
+        Retorna um dicionário cujas chaves são os valores únicos de "Organização Acadêmica" e cujos valores são a média de IGC faixa
+        referente a cada chave.
+    """
+    
     media_por_org_acad = {}
 
     # Itera sobre chaves e valores de dicionario_final (o que a função analise_1_ana retorna a partir do df limpo)
@@ -33,19 +66,23 @@ def analise_ana_2(dicionario_final):
         total_contagens = sum(contagens.values())
         soma = 0
         
+        # Itera sobre os elementos dos dicionários que são valores de dicionario_final
         for chave, contagem in contagens.items():
             try:
                 chave_numerica = int(chave)
                 soma += chave_numerica * contagem
+            # se não tiver como transformar em int, continua lendo o código
             except ValueError:
                 continue
-            
+        # Para garantir que não vai ter divisões por zero, o if analise se o número de contagens é positivo.
         if total_contagens > 0:
             media = soma/total_contagens
         else:
             media = 0
         
+        # Adicionando as chaves e os valores do dicionário media_por_org_acad
         media_por_org_acad[org_acad] = media
+        # Deixando as médias com até três casas decimais
         media_arredondada = {chave: round(valor, 3) for chave, valor in media_por_org_acad.items()}
         
     return media_arredondada
