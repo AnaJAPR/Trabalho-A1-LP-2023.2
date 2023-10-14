@@ -67,12 +67,12 @@ def cria_plot_1_ana(dicionario_contagem):
     for org_acad in df.index:
         igc_faixas = df.columns
         frequencias = df.loc[org_acad].values
-        ax.scatter(igc_faixas, frequencias, label=org_acad, marker="o")
+        ax.plot(igc_faixas, frequencias, label=org_acad, marker="o")
 
     ax.set_xlabel("IGC (Faixa)")
     ax.set_ylabel("Frequência de Ocorrência")
     ax.set_title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica")
-    ax.legend()
+    ax.legend(loc="upper left", fontsize = 7)
     plt.show()
     
 dicionario_contagem = analise_1_ana(df)
