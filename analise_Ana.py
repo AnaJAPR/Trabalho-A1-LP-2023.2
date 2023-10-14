@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Definindo o df limpo. Usei apenas uma função de lp porque ela já possui as outras dentro dela
 df = lp.corrige_nomes_df(lp.df)
 
-def analise_ana(df):
+def analise_1_ana(df):
     # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
     valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
 
@@ -26,15 +26,28 @@ def analise_ana(df):
     
     return dicionario_final
 
-# print(analise_ana(df))
+def analise_ana_2(dicionario_final):
+    media_por_org_acad = {}
     
+    for org_acad, contagens in dicionario_final.items():
+        total_contagens = sum(contagens.values())
+        soma = 0
+        
+        for chave, contagem in contagens.items():
+            try:
+                chave_numerica = int(chave)
+                soma += chave_numerica * contagem
+            except ValueError:
+                continue
+            
+        if total_contagens > 0:
+            media = soma/total_contagens
+        else:
+            media = 0
+        
+        media_por_org_acad[org_acad] = media
+        media_arredondada = {chave: round(valor, 3) for chave, valor in media_por_org_acad.items()}
+        
+    return media_arredondada
 
-# #Rascunhos em andamento
-# for chave,valor in dicionario_final.items():
-#     for value in valor:
-#         faixa = int(faixa)
-#         lista_produto_faixa_frequencia = list()
-#         produto_faixa_frequencia = faixa * frequencia
-#         lista_produto_faixa_frequencia.append(produto_faixa_frequencia)
-#         média_faixa_por_org_acad = sum(lista_produto_faixa_frequencia)/len(lista_produto_faixa_frequencia)
-#         print(média_faixa_por_org_acad)
+# print(analise_ana_2(analise_1_ana(df)))
