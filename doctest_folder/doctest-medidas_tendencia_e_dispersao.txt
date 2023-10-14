@@ -15,7 +15,7 @@
         Retorna um dicionário contendo a medida resumo ou de dispersão como chave e o
         seu valor como valor.
 
-    >>> from analise_3 import medidas_tendencia_e_dispersao, df
+    >>> from func_analises import medidas_tendencia_e_dispersao, df
 
     Teste 1:
     >>> medidas_tendencia_e_dispersao(df, "Conceito Médio de Graduação")
