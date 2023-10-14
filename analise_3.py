@@ -18,3 +18,8 @@ print(df_mestrado, end="\n")
 
 # Medidas de tendência central e dispersão
 print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
+
+
+# Desenvolvimento de Gráficos
+plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], notch=True)
+plt.show()

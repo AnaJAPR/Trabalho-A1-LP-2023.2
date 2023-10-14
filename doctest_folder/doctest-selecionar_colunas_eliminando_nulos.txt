@@ -43,36 +43,36 @@
     Teste 3:
     >>> selecionar_colunas_eliminando_nulos(df, 2)
     Um ou mais argumentos passados não corresponde ao tipo solicitado.
-           Ano Categoria Administrativa  ... Sigla da IES  Organização Acadêmica
-    0     2021          Pública Federal  ...         UFMT           Universidade
-    1     2021          Pública Federal  ...          UNB           Universidade
-    2     2021          Pública Federal  ...          UFS           Universidade
-    3     2021          Pública Federal  ...         UFAM           Universidade
-    4     2021          Pública Federal  ...         UFPI           Universidade
-    ...    ...                      ...  ...          ...                    ...
-    2007  2021          Pública Federal  ...        UFCAT           Universidade
-    2008  2021          Pública Federal  ...        UFAPE           Universidade
-    2009  2021          Pública Federal  ...       UFDPAR           Universidade
-    2010  2021          Pública Federal  ...          UFJ           Universidade
-    2011  2021          Pública Federal  ...          UFR           Universidade
+           Ano Categoria Administrativa Sigla da UF  ...  Código da IES  Sigla da IES  Organização Acadêmica
+    0     2021          Pública Federal          MT  ...            1.0          UFMT           Universidade
+    1     2021          Pública Federal          DF  ...            2.0           UNB           Universidade
+    2     2021          Pública Federal          SE  ...            3.0           UFS           Universidade
+    3     2021          Pública Federal          AM  ...            4.0          UFAM           Universidade
+    4     2021          Pública Federal          PI  ...            5.0          UFPI           Universidade
+    ...    ...                      ...         ...  ...            ...           ...                    ...
+    2007  2021          Pública Federal          GO  ...        25274.0         UFCAT           Universidade
+    2008  2021          Pública Federal          PE  ...        25275.0         UFAPE           Universidade
+    2009  2021          Pública Federal          PI  ...        25277.0        UFDPAR           Universidade
+    2010  2021          Pública Federal          GO  ...        25282.0           UFJ           Universidade
+    2011  2021          Pública Federal          MT  ...        25352.0           UFR           Universidade
     <BLANKLINE>
     [2012 rows x 16 columns]
 
     Teste 4:
     >>> selecionar_colunas_eliminando_nulos(df, ["a", "b"])
     Uma ou mais colunas passadas não estão presentes no DataFrame.
-           Ano Categoria Administrativa  ... Sigla da IES  Organização Acadêmica
-    0     2021          Pública Federal  ...         UFMT           Universidade
-    1     2021          Pública Federal  ...          UNB           Universidade
-    2     2021          Pública Federal  ...          UFS           Universidade
-    3     2021          Pública Federal  ...         UFAM           Universidade
-    4     2021          Pública Federal  ...         UFPI           Universidade
-    ...    ...                      ...  ...          ...                    ...
-    2007  2021          Pública Federal  ...        UFCAT           Universidade
-    2008  2021          Pública Federal  ...        UFAPE           Universidade
-    2009  2021          Pública Federal  ...       UFDPAR           Universidade
-    2010  2021          Pública Federal  ...          UFJ           Universidade
-    2011  2021          Pública Federal  ...          UFR           Universidade
+           Ano Categoria Administrativa Sigla da UF  ...  Código da IES  Sigla da IES  Organização Acadêmica
+    0     2021          Pública Federal          MT  ...            1.0          UFMT           Universidade
+    1     2021          Pública Federal          DF  ...            2.0           UNB           Universidade
+    2     2021          Pública Federal          SE  ...            3.0           UFS           Universidade
+    3     2021          Pública Federal          AM  ...            4.0          UFAM           Universidade
+    4     2021          Pública Federal          PI  ...            5.0          UFPI           Universidade
+    ...    ...                      ...         ...  ...            ...           ...                    ...
+    2007  2021          Pública Federal          GO  ...        25274.0         UFCAT           Universidade
+    2008  2021          Pública Federal          PE  ...        25275.0         UFAPE           Universidade
+    2009  2021          Pública Federal          PI  ...        25277.0        UFDPAR           Universidade
+    2010  2021          Pública Federal          GO  ...        25282.0           UFJ           Universidade
+    2011  2021          Pública Federal          MT  ...        25352.0           UFR           Universidade
     <BLANKLINE>
     [2012 rows x 16 columns]
 
