@@ -44,7 +44,7 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
     finally:
         return new_df
 
-def medidas_tendencia_e_dispersão(df, coluna):
+def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
     """
     Parameters
     ----------
@@ -69,9 +69,9 @@ def medidas_tendencia_e_dispersão(df, coluna):
         if type(coluna) != str:
             raise TypeError("O argumento passado não é uma string.")
         if not coluna in df.columns:
-            raise NameError("A coluna passada não está presente no DataFrame")
+            raise NameError("A coluna passada não está presente no DataFrame.")
         if not pd.api.types.is_numeric_dtype(df[coluna]):
-            raise ValueError("A coluna passada não é numérica")
+            raise ValueError("A coluna passada não é numérica.")
     except TypeError as erro:
         return str(erro)
     except NameError as erro:
@@ -103,7 +103,8 @@ df_mestrado = selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mes
 print(df_mestrado, end="\n")
 
 # Medidas de tendência central e dispersão
-print(medidas_tendencia_e_dispersão(df_mestrado, "Conceito Médio de Mestrado"))
+print(medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
