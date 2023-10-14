@@ -228,6 +228,20 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
 
         df_medias = pd.DataFrame(dados, index=sorted(dic_medias.keys()), columns=colunas)
 
+        # Caso aconteça algum erro de aparecer valores NaN no df final:
+        for coluna in df_medias:
+            for index in lista_registros:#Pegando os indices do df_medias
+                    
+                    # Substituindo os NaN por "-" para facillitar o tratamento
+                    df_medias.fillna("-", inplace=True)
+                    if df_medias[coluna].loc[index] == "-":# Localizando onde estaria o NaN
+
+                        if coluna == "Média " + lista_colunas[0] or coluna == "Média " + lista_colunas[1] or coluna == "Média " + lista_colunas[2]:
+                            nome_coluna = coluna[6:]# Pegando o nome da coluna no df original
+
+                        # Executando novamente o que ocorre no for que calcula as médias
+                        df_medias[coluna].loc[index] = df_filtrado3[df_filtrado3[indice] == index][nome_coluna].mean()
+
         return df_medias
 
 if __name__ == "__main__":

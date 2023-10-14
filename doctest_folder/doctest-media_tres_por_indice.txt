@@ -87,5 +87,4 @@
     >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], ["Eu", "adoro", "a", "EMap"])
     TypeError: A função tem que receber um Dataframe, uma lista e uma string!
     
- 
     """
