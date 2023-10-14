@@ -205,20 +205,19 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
         df_filtrado = df[[indice, lista_colunas[0], lista_colunas[1], lista_colunas[2]]]
 
         # Retirando os 0, pois não serão úteis para esta análise
-        df_filtrado = df_filtrado[df_filtrado[lista_colunas[0]] > 0]
-        df_filtrado = df_filtrado[df_filtrado[lista_colunas[1]] > 0]
-        df_filtrado = df_filtrado[df_filtrado[lista_colunas[2]] > 0]
+        df_filtrado1 = df_filtrado[df_filtrado[lista_colunas[0]] > 0]
+        df_filtrado2 = df_filtrado[df_filtrado[lista_colunas[1]] > 0]
+        df_filtrado3 = df_filtrado[df_filtrado[lista_colunas[2]] > 0]
 
         lista_registros = df_filtrado[indice].unique().tolist()
         
         dic_medias = dict()
         for registro in lista_registros:
             
-            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[0]].mean()
-            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[1]].mean()
-            media_registro = df_filtrado[df_filtrado[indice] == registro][lista_colunas[2]].mean()
-
-            medias = [media_registro, media_registro, media_registro]
+            media_registro_1 = df_filtrado1[df_filtrado1[indice] == registro][lista_colunas[0]].mean()
+            media_registro_2 = df_filtrado2[df_filtrado2[indice] == registro][lista_colunas[1]].mean()
+            media_registro_3 = df_filtrado3[df_filtrado3[indice] == registro][lista_colunas[2]].mean()
+            medias = [media_registro_1, media_registro_2, media_registro_3]
             dic_medias[registro] = medias
 
         colunas = ["Média " + lista_colunas[0], "Média " + lista_colunas[1], "Média " + lista_colunas[2]]
@@ -227,7 +226,7 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
         for valor in dic_medias.values():
             dados.append(valor)
 
-        df_medias = pd.DataFrame(dados, index=dic_medias.keys(), columns=colunas)
+        df_medias = pd.DataFrame(dados, index=sorted(dic_medias.keys()), columns=colunas)
 
         return df_medias
 
