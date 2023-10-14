@@ -41,6 +41,24 @@ def analise_1_ana(df):
     return dicionario_final
 
 def analise_ana_2(dicionario_final):
+    """
+    Parameters
+    ----------
+    dicionario_final: dict
+    
+        DESCRIPTION. A função itera sobre os elementos do dicionario_final, assumindo que este é o mesmo dicionário retornado pela
+        função analise_1_ana, ou seja, assumimos que os valores desse dicionário são dicionários também, cujas chaves são valores,
+        em sua maioria, números em formato string. Então, a função procura a média de IGC Faixa por Organização Acadêmica, fazendo 
+        o produto das chaves (após transformá-las em int) pelas seus valores (frequência de ocorrência de cada) e dividindo pela
+        soma das contagens.
+    
+    Returns
+    -------
+    dict
+        Retorna um dicionário cujas chaves são os valores únicos de "Organização Acadêmica" e cujos valores são a média de IGC faixa
+        referente a cada chave.
+    """
+    
     media_por_org_acad = {}
 
     # Itera sobre chaves e valores de dicionario_final (o que a função analise_1_ana retorna a partir do df limpo)
@@ -48,19 +66,23 @@ def analise_ana_2(dicionario_final):
         total_contagens = sum(contagens.values())
         soma = 0
         
+        # Itera sobre os elementos dos dicionários que são valores de dicionario_final
         for chave, contagem in contagens.items():
             try:
                 chave_numerica = int(chave)
                 soma += chave_numerica * contagem
+            # se não tiver como transformar em int, continua lendo o código
             except ValueError:
                 continue
-            
+        # Para garantir que não vai ter divisões por zero, o if analise se o número de contagens é positivo.
         if total_contagens > 0:
             media = soma/total_contagens
         else:
             media = 0
         
+        # Adicionando as chaves e os valores do dicionário media_por_org_acad
         media_por_org_acad[org_acad] = media
+        # Deixando as médias com até três casas decimais
         media_arredondada = {chave: round(valor, 3) for chave, valor in media_por_org_acad.items()}
         
     return media_arredondada
