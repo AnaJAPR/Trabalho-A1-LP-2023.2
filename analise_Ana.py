@@ -24,5 +24,14 @@ for org_acad in valores_unicos_org_acad:
 # Elaborando o dicionário final, com os dicionários anteriores sendo valores agora e as chaves sendo a respectiva org_acad de cada um    
 tupla_org_acad_e_dic_IGC_faixa = zip(valores_unicos_org_acad, dic_cont_IGC_faixa_por_org_acad)
 dicionario_final = dict(tupla_org_acad_e_dic_IGC_faixa)
-print(dicionario_final)
+# print(dicionario_final)
 
+#Rascunhos em andamento
+for chave,valor in dicionario_final.items():
+    for value in valor:
+        faixa = int(faixa)
+        lista_produto_faixa_frequencia = list()
+        produto_faixa_frequencia = faixa * frequencia
+        lista_produto_faixa_frequencia.append(produto_faixa_frequencia)
+        média_faixa_por_org_acad = sum(lista_produto_faixa_frequencia)/len(lista_produto_faixa_frequencia)
+        print(média_faixa_por_org_acad)
