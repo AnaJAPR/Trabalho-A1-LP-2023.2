@@ -6,6 +6,22 @@ import matplotlib.pyplot as plt
 df = lp.corrige_nomes_df(lp.df)
 
 def analise_1_ana(df):
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+    
+        DESCRIPTION. A função verifica quais são os valores únicos da coluna "Organização Acadêmica" e, então, 
+        faz um dicionário com a frequência de ocorrência de cada IGC faixa para cada "organização Acadêmica".
+        
+    Returns
+    -------
+    dict
+        Retorna um dicionário cujas chaves são valores únicos de "Organização Acadêmica" e cujos valores são dicionários
+        os quais apresentam dados de IGC faixa como chave e a frequência de ocorrência destes para sua respectiva 
+        organização acadêmica como valores.
+    """
+    
     # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
     valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
 
@@ -25,7 +41,6 @@ def analise_1_ana(df):
     return dicionario_final
 
 def analise_ana_2(dicionario_final):
-    # Criando dicionário onde as chvaves serão valores únicos de "Organização Acadêmica" e os valores serão a média de IGC Faixa para cada org_acad
     media_por_org_acad = {}
 
     # Itera sobre chaves e valores de dicionario_final (o que a função analise_1_ana retorna a partir do df limpo)
