@@ -87,8 +87,6 @@ def analise_ana_2(dicionario_final):
         
     return media_arredondada
 
-# print(analise_ana_2(analise_1_ana(df)))
-
 def cria_plot_1_ana(dicionario_contagem):
     # Converte o dicionário em um DataFrame do pandas
     df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
@@ -99,17 +97,15 @@ def cria_plot_1_ana(dicionario_contagem):
     # Define o estilo do gráfico
     plt.style.use("seaborn-darkgrid")
     
-    fig, ax = plt.subplots()
-    
     for org_acad in df.index:
         igc_faixas = df.columns
         frequencias = df.loc[org_acad].values
-        ax.plot(igc_faixas, frequencias, label=org_acad, marker="o")
+        plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
 
-    ax.set_xlabel("IGC (Faixa)")
-    ax.set_ylabel("Frequência de Ocorrência")
-    ax.set_title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica")
-    ax.legend(loc="upper left", fontsize = 7)
+    plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
+    plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
+    plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
+    plt.legend(loc="upper left", fontsize = 7)
     plt.show()
     
 dicionario_contagem = analise_1_ana(df)
