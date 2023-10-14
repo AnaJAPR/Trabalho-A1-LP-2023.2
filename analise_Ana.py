@@ -53,13 +53,21 @@ def analise_ana_2(dicionario_final):
 # print(analise_ana_2(analise_1_ana(df)))
 
 def cria_plot_1_ana(dicionario_contagem):
+    # Converte o dicionário em um DataFrame do pandas
+    df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
+
+    # Classifica o DataFrame com base nas colunas (IGC Faixa)
+    df = df.sort_index(axis=1)
+    
     # Define o estilo do gráfico
     plt.style.use("seaborn-darkgrid")
     
     fig, ax = plt.subplots()
     
-    for org_acad, contagem in dicionario_contagem.items():
-        ax.plot(contagem.keys(), contagem.values(), marker="o", linestyle="-", label=org_acad)
+    for org_acad in df.index:
+        igc_faixas = df.columns
+        frequencias = df.loc[org_acad].values
+        ax.scatter(igc_faixas, frequencias, label=org_acad, marker="o")
 
     ax.set_xlabel("IGC (Faixa)")
     ax.set_ylabel("Frequência de Ocorrência")
