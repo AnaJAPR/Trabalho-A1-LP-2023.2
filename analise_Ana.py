@@ -9,13 +9,11 @@ def analise_1_ana(df):
     # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
     valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
 
-    # Criando uma lista com os valores únicos da coluna "IGC (Faixa)"
-    # valores_unicos_IGC_faixa = df["IGC (Faixa)"].unique().tolist()
-
+    # Criando lista onde serão colocados os dicionários advindos do for abaixo
     dic_cont_IGC_faixa_por_org_acad = list()
 
-    # Adicionando dicionários, cada um referente a um valor único da coluna "Organização Acadêmica".
-    # As chaves de cada dicionário se referem aos dados de "IGC (Faixa)" e os valores são frequências de ocorência de cada faixa para cada org_acad
+    # Criando dicionários, cada um referente a um valor único da coluna "Organização Acadêmica"
+    # As chaves de cada dicionário se referem aos dados de "IGC (Faixa)" e os valores são frequências de ocorrência de cada faixa para cada org_acad
     for org_acad in valores_unicos_org_acad:
         dic_contagem_IGC_faixa = df[df["Organização Acadêmica"] == org_acad]["IGC (Faixa)"].value_counts().to_dict()
         dic_cont_IGC_faixa_por_org_acad.append(dic_contagem_IGC_faixa)
@@ -27,8 +25,10 @@ def analise_1_ana(df):
     return dicionario_final
 
 def analise_ana_2(dicionario_final):
+    # Criando dicionário onde as chvaves serão valores únicos de "Organização Acadêmica" e os valores serão a média de IGC Faixa para cada org_acad
     media_por_org_acad = {}
-    
+
+    # Itera sobre chaves e valores de dicionario_final (o que a função analise_1_ana retorna a partir do df limpo)
     for org_acad, contagens in dicionario_final.items():
         total_contagens = sum(contagens.values())
         soma = 0
