@@ -51,3 +51,21 @@ def analise_ana_2(dicionario_final):
     return media_arredondada
 
 # print(analise_ana_2(analise_1_ana(df)))
+
+def cria_plot_1_ana(dicionario_contagem):
+    # Define o estilo do gráfico
+    plt.style.use("seaborn-darkgrid")
+    
+    fig, ax = plt.subplots()
+    
+    for org_acad, contagem in dicionario_contagem.items():
+        ax.plot(contagem.keys(), contagem.values(), marker="o", linestyle="-", label=org_acad)
+
+    ax.set_xlabel("IGC (Faixa)")
+    ax.set_ylabel("Frequência de Ocorrência")
+    ax.set_title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica")
+    ax.legend()
+    plt.show()
+    
+dicionario_contagem = analise_1_ana(df)
+cria_plot_1_ana(dicionario_contagem)
