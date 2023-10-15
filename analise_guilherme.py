@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import func_analises as fan
+import numpy as np
 
 df1 = fan.df[["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado", "Categoria Administrativa"]]
 df_grad = df1[df1["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
@@ -11,6 +12,8 @@ df1 = df1.set_index("Categoria Administrativa")
 df_grad = df_grad.set_index("Categoria Administrativa")
 df_mest = df_mest.set_index("Categoria Administrativa")
 df_dout = df_dout.set_index("Categoria Administrativa")
+
+# Coloquei os prints em funções apenas para não poluírem a main toda vez que roda-la
 
 def prints_de_todas_medianas():
     """
@@ -128,5 +131,30 @@ def grafico_medias_cm():
     plt.show()
 
 
-# def scatter_plot()
-    
+def scatter_plot():
+
+    # Crie um DataFrame com as colunas e índices desejados
+    data = {'Conceito Médio de Graduação': df_grad,
+            'Conceito Médio de Mestrado': df_mest,
+            'Conceito Médio do doutorado': df_dout}
+    # df = pd.DataFrame(data, index=['Pública Federal', 'Pública Estadual', 'Privada Sem Fins Lucrativos', 'Especial', 'Pública Municipal', 'Privada Com Fins Lucrativos'])
+
+    # Converta as categorias em números
+    df1.index = pd.Categorical(df1.index)
+    df1.index = df1.index.codes
+
+    # Crie o gráfico de dispersão com subcategorias nas cores dos pontos
+    plt.scatter(x=df_grad.index, y=df_grad, c='yellow')
+    plt.scatter(x=df_mest.index, y=df_mest, c='green')
+    plt.scatter(x=df_dout.index, y=df_dout, c='blue')
+
+    # Adicione uma legenda ao gráfico
+    legend_elements = [plt.Line2D([0], [0], label='Conceito Médio de Graduação', alpha=0.5),
+                    plt.Line2D([0], [0], label='Conceito Médio de Mestrado', alpha=0.5),
+                    plt.Line2D([0], [0], label='Conceito Médio do doutorado', alpha=0.5)]
+    plt.legend(handles=legend_elements)
+
+    # Exiba o gráfico
+    plt.show()
+
+scatter_plot()
