@@ -4,12 +4,17 @@ from dominate import document
 from dominate.tags import h1, img
 # import analise_ana as aa
 import analise_paulo as ap
-# import analise_Otavio as ao
+import analise_Otavio as ao
 import analise_guilherme as ag
 
-#ao.analise_org_media_num_cursos(df)
-#ao.analise_org_num_catadm_empilhado(df)
-#ao.analise_intervalos_igc_catadm_pizza(df)
+# Cria DataFrame e limpa os dados
+df = pd.read_csv("IGC_2021.csv")
+df = lp.corrige_nomes_df(lp.df)
+
+# Gráficos do Otavio
+ao.analise_org_media_num_cursos(df)
+ao.analise_org_num_catadm_empilhado(df)
+ao.analise_intervalos_igc_catadm_pizza(df)
 
 # Gráficos de Ana
 # aa.cria_plot_1_ana(aa.analise_1_ana(df))
