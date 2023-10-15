@@ -13,7 +13,7 @@ dict
     os quais apresentam dados de IGC faixa como chave e a frequência de ocorrência destes para sua respectiva 
     organização acadêmica como valores.
 
->>> from analise_Ana import analise_1_ana, df
+>>> from analise_ana import analise_1_ana, df
 
 Teste 1: A função é usada corretamente e retorna o dicionário esperado.
 >>> analise_1_ana(df)
