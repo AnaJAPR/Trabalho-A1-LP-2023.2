@@ -1,5 +1,4 @@
-import pandas as pd
-import limpa_dados as lp
+import matplotlib.pyplot as plt
 import func_analises as fan
 
 df1 = fan.df[["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado", "Categoria Administrativa"]]
@@ -85,5 +84,15 @@ def prints_da_analise_das_medias(df2):
     # O maior desvio é da graduação(0.293501) e o menor o do doutorado(0.036502). O desvio padrão das médias do mestrado é 0.137659
 
 
+def grafico_medias_cm():
+    boxplot = plt.boxplot(df2, patch_artist=True)
 
+    for box in boxplot["boxes"]:
+            box.set(facecolor="blue")
+    
+    plt.title("BoxPlot - Comparação da média do Conceito Médio")
+    plt.xlabel("Níveis do ensino superior")
+    plt.ylabel("Conceito Médio")
+    plt.show()
 
+grafico_medias_cm()
