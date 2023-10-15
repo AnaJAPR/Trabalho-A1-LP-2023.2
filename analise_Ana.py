@@ -112,17 +112,20 @@ def cria_plot_1_ana(dicionario_contagem):
     # Define o estilo do gráfico
     plt.style.use("seaborn-darkgrid")
     
+    # Definindo eixos, tipo do gráfico, entre outras informações base para a construção do gráfico
     for org_acad in df.index:
         igc_faixas = df.columns
         frequencias = df.loc[org_acad].values
         plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
 
+    # Definindo labels, legenda, entre outros dados estéticos do gráfico
     plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
     plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
     plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
     plt.legend(loc="upper left", fontsize = 7)
+    # Plota o gráfico
     plt.show()
-    
+
+# Chamando as funções para plotar o gráfico
 dicionario_contagem = analise_1_ana(df)
-# cria_plot_1_ana(dicionario_contagem)
-print(type(cria_plot_1_ana(dicionario_contagem)))
+cria_plot_1_ana(dicionario_contagem)
