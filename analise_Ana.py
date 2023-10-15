@@ -87,7 +87,7 @@ def analise_ana_2(dicionario_final):
         
     return media_arredondada
 
-def cria_plot_1_ana(dicionario_contagem):
+def cria_plot_1_ana(dicionario_contagem, media_arredondada):
     """
     Parameters
     ----------
@@ -95,6 +95,7 @@ def cria_plot_1_ana(dicionario_contagem):
 
         DESCRIPTION. A função representa os dados de um dicionário (assumindo que esse é o mesmo retornado pela analise_1_ana) em 
         um gráfico de linhas, usando o matplotlib.
+        TO DO
 
     Returns
     -------
@@ -118,14 +119,31 @@ def cria_plot_1_ana(dicionario_contagem):
         frequencias = df.loc[org_acad].values
         plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
 
+        dicionário_media_contagem_total = {}
+
+        # Adiciona média no gráfico
+        frequencia_total_org_acad = sum(frequencias)
+        for org_acad, media in media_arredondada.items:
+            dicionário_media_contagem_total[org_acad] = {media, frequencia_total_org_acad}
+            plt.scatter(media, frequencia_total_org_acad, label=org_acad, marker="*", s=100)
+            
+        # if frequencia_total_org_acad > 0  #DESENVOLER UM TRY EXCEPT AQUI TALVEZ
+        
+    
     # Definindo labels, legenda, entre outros dados estéticos do gráfico
     plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
     plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
     plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
     plt.legend(loc="upper left", fontsize = 7)
+    
     # Plota o gráfico
     plt.show()
 
 # Chamando as funções para plotar o gráfico
 dicionario_contagem = analise_1_ana(df)
-cria_plot_1_ana(dicionario_contagem)
+# Cria o dicionário com médias de IGC faixa por organização acadêmica
+# medias = analise_ana_2(dicionario_contagem)
+# cria_plot_1_ana(dicionario_contagem, medias)
+df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
+df = df.sort_index(axis=1)
+print(df)
