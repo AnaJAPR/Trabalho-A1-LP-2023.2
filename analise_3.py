@@ -23,6 +23,17 @@ print(df_mestrado, end="\n")
 # Medidas de tendência central e dispersão
 print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
 
+# ANÁLISE - ALFA, BETA E GAMA
+# Selecionando as colunas do DataFrame e adicionando uma nova (soma das 3)
+df_alfa_beta_gama = df[["Alfa (Proporção de Graduação)", "Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]]
+df_alfa_beta_gama["Soma"] = df_alfa_beta_gama["Alfa (Proporção de Graduação)"] + df_alfa_beta_gama["Beta (Proporção de Mestrado - Equivalente)"] + df_alfa_beta_gama["Gama (Proporção de Doutorandos – Equivalente)"]
+print(df_alfa_beta_gama)
+
+print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Soma"))
+print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Alfa (Proporção de Graduação)"))
+print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Beta (Proporção de Mestrado - Equivalente)"))
+print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Gama (Proporção de Doutorandos – Equivalente)"))
+
 # Desenvolvimento de Gráficos
 def grafico_1():
     bplot = plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], patch_artist=True)
