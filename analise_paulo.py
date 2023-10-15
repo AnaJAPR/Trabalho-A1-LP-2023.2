@@ -40,10 +40,12 @@ def graf_boxplot_conceito_medio_mestrado():
     
     # Personalizando o BoxPlot
     for box in bplot['boxes']:
-            box.set(facecolor="red")
+            box.set(facecolor="#8B0000")
     plt.title("BoxPlot - Conceito Médio de Mestrado")
     plt.xlabel("Mestrado")
     plt.ylabel("Conceito Médio")
+    plt.gca().set_xticklabels([])
+
     plt.show()
 
 graf_boxplot_conceito_medio_mestrado()
@@ -63,14 +65,21 @@ graf_mapa_instituições_por_uf()
 
 def graf_hist_alfa_beta_gama():
     fig, axs = plt.subplots(1, 3, figsize=(12, 4))
-    axs[0].hist(df_alfa_beta_gama["Alfa (Proporção de Graduação)"], bins=10, color="green")
+    axs[0].hist(df_alfa_beta_gama["Alfa (Proporção de Graduação)"], bins=10, color="#008B00")
     axs[0].set_title("Proporção de Graduação")
+    axs[0].set_xlim(0, 1)
+    axs[0].set_xlabel("Proporção")
+    axs[0].set_ylabel("Número de Instituições de Ensino")
 
-    axs[1].hist(df_alfa_beta_gama["Beta (Proporção de Mestrado - Equivalente)"], bins=10, color="red")
+    axs[1].hist(df_alfa_beta_gama["Beta (Proporção de Mestrado - Equivalente)"], bins=10, color="#8B0000")
     axs[1].set_title("Proporção de Mestrado")
+    axs[1].set_xlim(0, 1)
+    axs[1].set_xlabel("Proporção")
 
-    axs[2].hist(df_alfa_beta_gama["Gama (Proporção de Doutorandos – Equivalente)"], bins=10, color="blue")
+    axs[2].hist(df_alfa_beta_gama["Gama (Proporção de Doutorandos – Equivalente)"], bins=10, color="#00008B")
     axs[2].set_title("Proporção de Doutorado")
+    axs[2].set_xlim(0, 1)
+    axs[2].set_xlabel("Proporção")
 
     plt.tight_layout()
 
