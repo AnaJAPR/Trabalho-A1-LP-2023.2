@@ -69,7 +69,7 @@ def analise_ana_2(dicionario_contagem):
         referente a cada chave.
     """
     try:
-        # Testando se foi passado corretamente um DataFrame como parâmetro
+        # Testando se foi passado corretamente um dicionário como parâmetro
         if not isinstance(dicionario_contagem, dict):
             raise TypeError("A função só pode receber dicionário!")
     

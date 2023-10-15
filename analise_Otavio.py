@@ -17,8 +17,22 @@ def analise_org_media_num_cursos(df):
     -------
     None
         Apenas cria o gráfico de média de cursos com organização acadêmica.
-    """ 
-
+    """
+    
+    # Teste para que argumento passado seja DataFrame
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Argumento passado tem que se DataFrame")
+    
+    # Teste para que DataFrame contenha colunas necessárias
+    colunas_necessarias = ['Organização Acadêmica', 'Nº de Cursos com CPC no triênio']
+    if not all(column in df.columns for column in colunas_necessarias):
+        raise ValueError("DataFrame deve conter colunas: 'Organização Acadêmica' e 'Nº de Cursos com CPC no triênio'.")
+        
+    # Teste para que colunas tenham dados dos tipos corretos
+    if df['Organização Acadêmica'].dtype != 'object' or df['Categoria Administrativa'].dtype != 'object':
+        raise ValueError("Colunas 'Organização Acadêmica' e 'Categoria Administrativa' devem conter tipo string")
+        
+        
     # Os dados_1 representam a agrupação das Organizações Academicas com a média do numero de cursos já calculada.
     dados_1 = df.groupby('Organização Acadêmica')['Nº de Cursos com CPC no triênio'].mean()
 
@@ -31,6 +45,7 @@ def analise_org_media_num_cursos(df):
         grafico_1.text(i, j, round(j, 2), ha='center', va='bottom')
 
     plt.show()
+    
 
 
 # Analise 2
@@ -51,9 +66,23 @@ def analise_org_num_catadm_empilhado(df):
     -------
     None
         Apenas cria o gráfico e printa os dados adicionais.
-    """ 
+    """
 
-    
+        
+    # Teste para que argumento passado seja DataFrame
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Argumento passado tem que se DataFrame")
+        
+    # Teste para que DataFrame contenha colunas necessárias
+    colunas_necessarias = ['Organização Acadêmica', 'Categoria Administrativa', 'Código da IES']
+    if not all(column in df.columns for column in colunas_necessarias):
+        raise ValueError("DataFrame deve conter colunas: 'Organização Acadêmica', 'Categoria Administrativa' e 'Código da IES'.")
+        
+    # Teste para que colunas tenham dados dos tipos corretos
+    if df['Organização Acadêmica'].dtype != 'object' or df['Categoria Administrativa'].dtype != 'object' or df['Código da IES'].dtype != 'float64':
+        raise ValueError("Colunas 'Organização Acadêmica' e 'Categoria Administrativa' devem conter tipo string e 'Código da IES' tipo float.")
+        
+
     # Os dados_2 representam as organizações relacionadas a categorias, para cada unica instituição
     dados_2 = df.groupby(['Organização Acadêmica', 'Categoria Administrativa'])['Código da IES'].count().unstack()
 
@@ -106,6 +135,20 @@ def analise_intervalos_igc_catadm_pizza(df):
     None
         Apenas cria o gráfico de pizza.
     """ 
+    
+    # Teste para que argumento passado seja DataFrame
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Argumento passado tem que se DataFrame")
+    
+    # Teste para que DataFrame contenha colunas necessárias
+    colunas_necessarias = ['Categoria Administrativa', 'IGC (Contínuo)']
+    if not all(column in df.columns for column in colunas_necessarias):
+        raise ValueError("DataFrame deve conter colunas: 'Categoria Administrativa' e 'IGC (Contínuo)'.")
+        
+    # Teste para que colunas tenham dados dos tipos corretos
+    if df['Categoria Administrativa'].dtype != 'object' or df['IGC (Contínuo)'].dtype != 'float64':
+        raise ValueError("Coluna 'Categoria Administrativa' deve conter tipo string e 'IGC (Contínuo)' tipo float.")
+        
 
     # Usamos a funçao de numpy para achar os valores de IGC correspondentes aos percentuais
     igc_intervalo = np.percentile(df['IGC (Contínuo)'], [15, 50, 85])
@@ -157,9 +200,3 @@ def analise_intervalos_igc_catadm_pizza(df):
     axes[1, 1].pie(categoria_min_15a50, labels=categoria_min_15a50.index, autopct='%1.1f%%')
     
     plt.show()
-    
-
-if __name__ == "__main__":
-    analise_org_media_num_cursos(df)
-    analise_org_num_catadm_empilhado(df)
-    analise_intervalos_igc_catadm_pizza(df)
