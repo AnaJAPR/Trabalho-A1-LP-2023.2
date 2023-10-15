@@ -60,3 +60,20 @@ def grafico_2():
     plt.show()
 
 grafico_2()
+
+def grafico_3():
+    fig, axs = plt.subplots(1, 3, figsize=(12, 4))
+    axs[0].hist(df_alfa_beta_gama["Alfa (Proporção de Graduação)"], bins=10, color="green")
+    axs[0].set_title("Proporção de Graduação")
+
+    axs[1].hist(df_alfa_beta_gama["Beta (Proporção de Mestrado - Equivalente)"], bins=10, color="red")
+    axs[1].set_title("Proporção de Mestrado")
+
+    axs[2].hist(df_alfa_beta_gama["Gama (Proporção de Doutorandos – Equivalente)"], bins=10, color="blue")
+    axs[2].set_title("Proporção de Doutorado")
+
+    plt.tight_layout()
+
+    plt.show()
+
+grafico_3()
