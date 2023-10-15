@@ -135,6 +135,20 @@ def analise_intervalos_igc_catadm_pizza(df):
     None
         Apenas cria o gráfico de pizza.
     """ 
+    
+    # Teste para que argumento passado seja DataFrame
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Argumento passado tem que se DataFrame")
+    
+    # Teste para que DataFrame contenha colunas necessárias
+    colunas_necessarias = ['Categoria Administrativa', 'IGC (Contínuo)']
+    if not all(column in df.columns for column in colunas_necessarias):
+        raise ValueError("DataFrame deve conter colunas: 'Categoria Administrativa' e 'IGC (Contínuo)'.")
+        
+    # Teste para que colunas tenham dados dos tipos corretos
+    if df['Categoria Administrativa'].dtype != 'object' or df['CIGC (Contínuo)'].dtype != 'float64':
+        raise ValueError("Coluna 'Categoria Administrativa' deve conter tipo string e 'IGC (Contínuo)' tipo float.")
+        
 
     # Usamos a funçao de numpy para achar os valores de IGC correspondentes aos percentuais
     igc_intervalo = np.percentile(df['IGC (Contínuo)'], [15, 50, 85])
