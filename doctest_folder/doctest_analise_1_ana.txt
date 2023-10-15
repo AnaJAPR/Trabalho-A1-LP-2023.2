@@ -1,0 +1,22 @@
+"""
+Parameters
+----------
+df: pandas.core.frame.DataFrame
+    
+    DESCRIPTION. A função verifica quais são os valores únicos da coluna "Organização Acadêmica" e, então, 
+    faz um dicionário com a frequência de ocorrência de cada IGC faixa para cada "organização Acadêmica".
+        
+Returns
+-------
+dict
+    Retorna um dicionário cujas chaves são valores únicos de "Organização Acadêmica" e cujos valores são dicionários
+    os quais apresentam dados de IGC faixa como chave e a frequência de ocorrência destes para sua respectiva 
+    organização acadêmica como valores.
+
+>>> from analise_Ana import analise_1_ana, df
+
+Teste 1
+>>> analise_1_ana(df)
+
+
+    """
