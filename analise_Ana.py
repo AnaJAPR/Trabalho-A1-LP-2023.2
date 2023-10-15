@@ -22,23 +22,32 @@ def analise_1_ana(df):
         organização acadêmica como valores.
     """
     
-    # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
-    valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if not isinstance(df, pd.core.frame.DataFrame):
+            raise TypeError("A função só pode receber DataFrame!")
+        
+        # Criando uma lista com os valores únicos da coluna "Organização Acadêmica"
+        valores_unicos_org_acad = df["Organização Acadêmica"].unique().tolist()
 
-    # Criando lista onde serão colocados os dicionários advindos do for abaixo
-    dic_cont_IGC_faixa_por_org_acad = list()
+        # Criando lista onde serão colocados os dicionários advindos do for abaixo
+        dic_cont_IGC_faixa_por_org_acad = list()
 
-    # Criando dicionários, cada um referente a um valor único da coluna "Organização Acadêmica"
-    # As chaves de cada dicionário se referem aos dados de "IGC (Faixa)" e os valores são frequências de ocorrência de cada faixa para cada org_acad
-    for org_acad in valores_unicos_org_acad:
-        dic_contagem_IGC_faixa = df[df["Organização Acadêmica"] == org_acad]["IGC (Faixa)"].value_counts().to_dict()
-        dic_cont_IGC_faixa_por_org_acad.append(dic_contagem_IGC_faixa)
+        # Criando dicionários, cada um referente a um valor único da coluna "Organização Acadêmica"
+        # As chaves de cada dicionário se referem aos dados de "IGC (Faixa)" e os valores são frequências de ocorrência de cada faixa para cada org_acad
+        for org_acad in valores_unicos_org_acad:
+            dic_contagem_IGC_faixa = df[df["Organização Acadêmica"] == org_acad]["IGC (Faixa)"].value_counts().to_dict()
+            dic_cont_IGC_faixa_por_org_acad.append(dic_contagem_IGC_faixa)
 
-    # Elaborando o dicionário final, com os dicionários anteriores sendo valores agora e as chaves sendo a respectiva org_acad de cada um    
-    tupla_org_acad_e_dic_IGC_faixa = zip(valores_unicos_org_acad, dic_cont_IGC_faixa_por_org_acad)
-    dicionario_contagem = dict(tupla_org_acad_e_dic_IGC_faixa)
+        # Elaborando o dicionário final, com os dicionários anteriores sendo valores agora e as chaves sendo a respectiva org_acad de cada um    
+        tupla_org_acad_e_dic_IGC_faixa = zip(valores_unicos_org_acad, dic_cont_IGC_faixa_por_org_acad)
+        dicionario_contagem = dict(tupla_org_acad_e_dic_IGC_faixa)
+        
+        return dicionario_contagem
     
-    return dicionario_contagem
+    except TypeError as e:
+        print(f"Erro: {e}")
+    return None
 
 def analise_ana_2(dicionario_contagem):
     """
@@ -172,3 +181,6 @@ def cria_plot_2_ana(media_arredondada):
 
     # Plota o gráfico de barras
     plt.show()
+
+print(analise_1_ana("ana"))
+# print(type(df))
