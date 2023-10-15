@@ -36,17 +36,17 @@ def analise_1_ana(df):
 
     # Elaborando o dicionário final, com os dicionários anteriores sendo valores agora e as chaves sendo a respectiva org_acad de cada um    
     tupla_org_acad_e_dic_IGC_faixa = zip(valores_unicos_org_acad, dic_cont_IGC_faixa_por_org_acad)
-    dicionario_final = dict(tupla_org_acad_e_dic_IGC_faixa)
+    dicionario_contagem = dict(tupla_org_acad_e_dic_IGC_faixa)
     
-    return dicionario_final
+    return dicionario_contagem
 
-def analise_ana_2(dicionario_final):
+def analise_ana_2(dicionario_contagem):
     """
     Parameters
     ----------
     dicionario_final: dict
     
-        DESCRIPTION. A função itera sobre os elementos do dicionario_final, assumindo que este é o mesmo dicionário retornado pela
+        DESCRIPTION. A função itera sobre os elementos do dicionario_contagem, assumindo que este é o mesmo dicionário retornado pela
         função analise_1_ana, ou seja, assumimos que os valores desse dicionário são dicionários também, cujas chaves são valores,
         em sua maioria, números em formato string. Então, a função procura a média de IGC Faixa por Organização Acadêmica, fazendo 
         o produto das chaves (após transformá-las em int) pelas seus valores (frequência de ocorrência de cada) e dividindo pela
@@ -61,12 +61,12 @@ def analise_ana_2(dicionario_final):
     
     media_por_org_acad = {}
 
-    # Itera sobre chaves e valores de dicionario_final (o que a função analise_1_ana retorna a partir do df limpo)
-    for org_acad, contagens in dicionario_final.items():
+    # Itera sobre chaves e valores de dicionario_contagem (o que a função analise_1_ana retorna a partir do df limpo)
+    for org_acad, contagens in dicionario_contagem.items():
         total_contagens = sum(contagens.values())
         soma = 0
         
-        # Itera sobre os elementos dos dicionários que são valores de dicionario_final
+        # Itera sobre os elementos dos dicionários que são valores de dicionario_contagem
         for chave, contagem in contagens.items():
             try:
                 chave_numerica = int(chave)
@@ -87,7 +87,7 @@ def analise_ana_2(dicionario_final):
         
     return media_arredondada
 
-def cria_plot_1_ana(dicionario_contagem, media_arredondada):
+def cria_plot_1_ana(dicionario_contagem):
     """
     Parameters
     ----------
@@ -95,7 +95,6 @@ def cria_plot_1_ana(dicionario_contagem, media_arredondada):
 
         DESCRIPTION. A função representa os dados de um dicionário (assumindo que esse é o mesmo retornado pela analise_1_ana) em 
         um gráfico de linhas, usando o matplotlib.
-        TO DO
 
     Returns
     -------
@@ -118,32 +117,51 @@ def cria_plot_1_ana(dicionario_contagem, media_arredondada):
         igc_faixas = df.columns
         frequencias = df.loc[org_acad].values
         plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
-
-        dicionário_media_contagem_total = {}
-
-        # Adiciona média no gráfico
-        frequencia_total_org_acad = sum(frequencias)
-        for org_acad, media in media_arredondada.items:
-            dicionário_media_contagem_total[org_acad] = {media, frequencia_total_org_acad}
-            plt.scatter(media, frequencia_total_org_acad, label=org_acad, marker="*", s=100)
-            
+        
         # if frequencia_total_org_acad > 0  #DESENVOLER UM TRY EXCEPT AQUI TALVEZ
         
-    
     # Definindo labels, legenda, entre outros dados estéticos do gráfico
     plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
     plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
     plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
-    plt.legend(loc="upper left", fontsize = 7)
+    plt.legend(loc="upper left", fontsize = 8)
+    plt.gca().set_facecolor("white")
     
     # Plota o gráfico
     plt.show()
+    
+def cria_plot_2_ana(media_arredondada):
+    # Organiza os dados em listas separadas para as organizações acadêmicas e as médias
+    org_acads = list(media_arredondada.keys())
+    medias = list(media_arredondada.values())
 
-# Chamando as funções para plotar o gráfico
-dicionario_contagem = analise_1_ana(df)
-# Cria o dicionário com médias de IGC faixa por organização acadêmica
-# medias = analise_ana_2(dicionario_contagem)
-# cria_plot_1_ana(dicionario_contagem, medias)
-df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
-df = df.sort_index(axis=1)
-print(df)
+    # Cria uma figura e um eixo
+    fig, ax = plt.subplots()
+
+    # Define a largura das barras
+    largura_barra = 0.7
+    
+    # Cria uma paleta de cores personalizada com base no número de organizações acadêmicas
+    cores = plt.cm.get_cmap('viridis', len(org_acads))
+
+    # Cria barras atribuindo cores diferentes para cada uma
+    barras = ax.bar(org_acads, medias, largura_barra, color=cores(range(len(org_acads))))
+
+    # Definir rótulos dos eixos e título do gráfico
+    ax.set_xlabel('Organização Acadêmica')
+    ax.set_ylabel('Média de IGC Faixa')
+    ax.set_title('Média de IGC Faixa por Organização Acadêmica')
+
+    # Rotação dos rótulos do eixo x para evitar sobreposição
+    plt.xticks(rotation=25, ha="right")
+
+    # Exibir o gráfico de barras
+    plt.show()
+    
+# dicionario_contagem = analise_1_ana(df)
+# media_arredondada = analise_ana_2(dicionario_contagem)
+
+# if __name__==__main__:
+#     cria_plot_1_ana(dicionario_contagem)
+#     cria_plot_2_ana(media_arredondada)
+    
