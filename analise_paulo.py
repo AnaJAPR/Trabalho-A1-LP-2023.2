@@ -46,6 +46,7 @@ def graf_boxplot_conceito_medio_mestrado():
     plt.ylabel("Conceito Médio")
     plt.gca().set_xticklabels([])
 
+    plt.savefig("grafic_folder/grafico_3.png")
     plt.show()
 
 graf_boxplot_conceito_medio_mestrado()
@@ -59,6 +60,8 @@ def graf_mapa_instituições_por_uf():
     # Personalizando o gráfico
     plt.title("Quantidade de Instituições de Ensino por Estado")
     plt.axis("off")
+
+    plt.savefig("grafic_folder/grafico_4.png")
     plt.show()
 
 graf_mapa_instituições_por_uf()
@@ -83,6 +86,7 @@ def graf_hist_alfa_beta_gama():
 
     plt.tight_layout()
 
+    plt.savefig("grafic_folder/grafico_5.png")
     plt.show()
 
 graf_hist_alfa_beta_gama()
