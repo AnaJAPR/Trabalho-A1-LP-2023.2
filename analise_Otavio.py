@@ -146,7 +146,7 @@ def analise_intervalos_igc_catadm_pizza(df):
         raise ValueError("DataFrame deve conter colunas: 'Categoria Administrativa' e 'IGC (Contínuo)'.")
         
     # Teste para que colunas tenham dados dos tipos corretos
-    if df['Categoria Administrativa'].dtype != 'object' or df['CIGC (Contínuo)'].dtype != 'float64':
+    if df['Categoria Administrativa'].dtype != 'object' or df['IGC (Contínuo)'].dtype != 'float64':
         raise ValueError("Coluna 'Categoria Administrativa' deve conter tipo string e 'IGC (Contínuo)' tipo float.")
         
 
@@ -200,9 +200,3 @@ def analise_intervalos_igc_catadm_pizza(df):
     axes[1, 1].pie(categoria_min_15a50, labels=categoria_min_15a50.index, autopct='%1.1f%%')
     
     plt.show()
-    
-
-if __name__ == "__main__":
-    analise_org_media_num_cursos(df)
-    analise_org_num_catadm_empilhado(df)
-    analise_intervalos_igc_catadm_pizza(df)
