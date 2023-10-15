@@ -110,12 +110,23 @@ def prints_da_analise_das_medias():
 
 
 def grafico_medias_cm():
+    # Criando o boxplot
     boxplot = plt.boxplot(df2, patch_artist=True)
 
+    # Alterando a cor das caixas do boxplot
     for box in boxplot["boxes"]:
             box.set(facecolor="blue")
-    
-    plt.title("BoxPlot - Comparação da média do Conceito Médio")
+
+    # Nomeando
+    plt.xticks([1, 2, 3], ["Graduação", "Mestrado", "Doutorado"])
+    plt.title("BoxPlot - Comparação da média por categoria do Conceito Médio")
     plt.xlabel("Níveis do ensino superior")
     plt.ylabel("Conceito Médio")
+
+    # Salvando e plotando
+    plt.savefig("graphic_folder/grafico_6.png")
     plt.show()
+
+
+# def scatter_plot()
+    
