@@ -1,3 +1,4 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 import func_analises as fan
 
@@ -11,8 +12,20 @@ df_grad = df_grad.set_index("Categoria Administrativa")
 df_mest = df_mest.set_index("Categoria Administrativa")
 df_dout = df_dout.set_index("Categoria Administrativa")
 
-def prints_de_todas_medianas(df1):
-    print(df1)
+def prints_de_todas_medianas():
+    """
+    Parameters
+    ----------
+    None
+
+        DESCRIPTION. A função printa as medianas das colunas "Conceito Médio de Graduação", "Conceito Médio de Mestrado", 
+        "Conceito Médio do doutorado" por indices("Categoria Administrativa").
+        
+    Returns
+    -------
+    None
+        Retorna apenas os prints das medianas.
+    """ 
     indices = fan.df["Categoria Administrativa"].unique().tolist()
     
     mediana_grad, mediana_mest, mediana_dout = 0,0,0
@@ -31,28 +44,40 @@ def prints_de_todas_medianas(df1):
     # O que valeu para o if acima vale pros demais 
         if cat_adm in df_mest.index:
             
-            if not df_mest["Conceito Médio de Mestrado"].loc[cat_adm].shape[0] == 1: 
-                mediana_mest = df_mest.loc[cat_adm].median()
+            if not df_mest.loc[cat_adm].shape[0] == 1: 
+                mediana_mest = df_mest["Conceito Médio de Mestrado"].loc[cat_adm].median()
             else:
                 mediana_mest = df_mest["Conceito Médio de Mestrado"].loc[cat_adm]
 
         if cat_adm in df_dout.index:
             
-            if not df_dout["Conceito Médio do doutorado"].loc[cat_adm].shape[0] == 1:
-                mediana_dout = df_dout.loc[cat_adm].median()
+            if not df_dout.loc[cat_adm].shape[0] == 1:
+                mediana_dout = df_dout["Conceito Médio do doutorado"].loc[cat_adm].median()
             else:
                 mediana_dout = df_dout["Conceito Médio do doutorado"].loc[cat_adm]
 
         # Vemos a seguir as medianas por cada dos CMs por cada categoria
         print(f"A mediana do CM de graduação na categoria {cat_adm} é {mediana_grad}")
         print(f"A mediana do CM de mestrado na categoria {cat_adm} é {mediana_mest}")
-        print(f"A mediana do CM do doutorado na categoria {cat_adm} é {mediana_dout}", end="\n\n")
-            
+        print(f"A mediana do CM do doutorado na categoria {cat_adm} é {mediana_dout}", end="\n\n")  
 
 df2 = fan.media_tres_por_indice(fan.df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
 
-def prints_da_analise_das_medias(df2):
-    print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS#######################", end="\n\n")
+def prints_da_analise_das_medias():
+    """
+    Parameters
+    ----------
+    None
+
+        DESCRIPTION. A função printa análises de um DataFrame com colunas "Média Conceito Médio de Graduação", "Média Conceito Médio de Mestrado", 
+        "Média Conceito Médio do doutorado" por indices("Categoria Administrativa").
+        
+    Returns
+    -------
+    None
+        Retorna apenas os prints da análise.
+    """
+    print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS #######################", end="\n\n")
     # Vemos no df abaixo as médias dos conceitos médios em cada nível do ensino superior por categoria administrativa
     print(df2, end="\n\n")
 
@@ -94,5 +119,3 @@ def grafico_medias_cm():
     plt.xlabel("Níveis do ensino superior")
     plt.ylabel("Conceito Médio")
     plt.show()
-
-grafico_medias_cm()
