@@ -3,15 +3,52 @@ import limpa_dados as lp
 import func_analises as fan
 
 df1 = fan.df[["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado", "Categoria Administrativa"]]
-df1 = df1[df1["Conceito Médio de Graduação"] > 0]
-df1 = df1[df1["Conceito Médio de Mestrado"] > 0]
-df1 = df1[df1["Conceito Médio do doutorado"] > 0]
+df_grad = df1[df1["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
+df_mest = df1[df1["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
+df_dout = df1[df1["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
 
 df1 = df1.set_index("Categoria Administrativa")
+df_grad = df_grad.set_index("Categoria Administrativa")
+df_mest = df_mest.set_index("Categoria Administrativa")
+df_dout = df_dout.set_index("Categoria Administrativa")
 
-def prints_da_analise_geral(df1):
-    pass
+def prints_de_todas_medianas(df1):
+    print(df1)
+    indices = fan.df["Categoria Administrativa"].unique().tolist()
+    
+    mediana_grad, mediana_mest, mediana_dout = 0,0,0
+    
+    # Exibe as medianas dos Conceitos Médios nas respectivas Categorias Administrativa
+    for cat_adm in indices:
 
+        if cat_adm in df_grad.index:# Conferindo se há o nível de ensino no respectivo curso
+            
+            if not df_grad.loc[cat_adm].shape[0] == 1:# O caso de um unico registro será tratado separadamente
+                mediana_grad = df_grad["Conceito Médio de Graduação"].loc[cat_adm].median()# Pegando a mediana
+            
+            else:# Caso só haja um registro, ele é a pópria mediana
+                mediana_grad = df_grad["Conceito Médio de Graduação"].loc[cat_adm]
+    
+    # O que valeu para o if acima vale pros demais 
+        if cat_adm in df_mest.index:
+            
+            if not df_mest["Conceito Médio de Mestrado"].loc[cat_adm].shape[0] == 1: 
+                mediana_mest = df_mest.loc[cat_adm].median()
+            else:
+                mediana_mest = df_mest["Conceito Médio de Mestrado"].loc[cat_adm]
+
+        if cat_adm in df_dout.index:
+            
+            if not df_dout["Conceito Médio do doutorado"].loc[cat_adm].shape[0] == 1:
+                mediana_dout = df_dout.loc[cat_adm].median()
+            else:
+                mediana_dout = df_dout["Conceito Médio do doutorado"].loc[cat_adm]
+
+        # Vemos a seguir as medianas por cada dos CMs por cada categoria
+        print(f"A mediana do CM de graduação na categoria {cat_adm} é {mediana_grad}")
+        print(f"A mediana do CM de mestrado na categoria {cat_adm} é {mediana_mest}")
+        print(f"A mediana do CM do doutorado na categoria {cat_adm} é {mediana_dout}", end="\n\n")
+            
 
 df2 = fan.media_tres_por_indice(fan.df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
 
