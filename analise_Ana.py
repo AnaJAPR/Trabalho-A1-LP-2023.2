@@ -88,6 +88,21 @@ def analise_ana_2(dicionario_final):
     return media_arredondada
 
 def cria_plot_1_ana(dicionario_contagem):
+    """
+    Parameters
+    ----------
+    dicionario_contagem: dict
+
+        DESCRIPTION. A função representa os dados de um dicionário (assumindo que esse é o mesmo retornado pela analise_1_ana) em 
+        um gráfico de linhas, usando o matplotlib.
+
+    Returns
+    -------
+    NoneType
+        Retorna um gráfico de linhas com valores únicos de IGC faixa no eixo x e frequências de ocorrência no eixo y, sendo cada 
+        linha referente a uma organização acadêmica.
+    """
+    
     # Converte o dicionário em um DataFrame do pandas
     df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
 
@@ -109,4 +124,5 @@ def cria_plot_1_ana(dicionario_contagem):
     plt.show()
     
 dicionario_contagem = analise_1_ana(df)
-cria_plot_1_ana(dicionario_contagem)
+# cria_plot_1_ana(dicionario_contagem)
+print(type(cria_plot_1_ana(dicionario_contagem)))
