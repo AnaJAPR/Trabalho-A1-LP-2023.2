@@ -1,0 +1,53 @@
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame 
+    colunas: 'Categoria Administrativa', 'IGC (Contínuo)'
+    
+        DESCRIPTION. A função calcula o valor de certos percentuais do IGC (Contínuo) - um float entre 0 e 5 -
+        nos valores de 15%, 50% e 85%. Utilizando esses valores, define um intervalo e calcula as Categorias Administrativas o
+        que representam. Depois, cria um grafico de pizza para cada intervalo que mostra a composição do intervalo por Categoria Administrativa.
+
+    Returns
+    -------
+    None
+        Apenas cria o gráfico de pizza.
+    """ 
+
+>>> from analise_Otavio import analise_intervalos_igc_catadm_pizza, df
+
+>>> analise_intervalos_igc_catadm_pizza(df)
+
+>>> analise_intervalos_igc_catadm_pizza()
+Traceback (most recent call last):
+
+  Cell In[16], line 1
+    analise_intervalos_igc_catadm_pizza()
+
+TypeError: analise_intervalos_igc_catadm_pizza() missing 1 required positional argument: 'df'
+
+
+>>> analise_intervalos_igc_catadm_pizza(123)
+Traceback (most recent call last):
+
+  Cell In[17], line 1
+    analise_intervalos_igc_catadm_pizza(123)
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:145 in analise_intervalos_igc_catadm_pizza
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+
+>>> analise_intervalos_igc_catadm_pizza(['a','b','c'])
+Traceback (most recent call last):
+
+  Cell In[18], line 1
+    analise_intervalos_igc_catadm_pizza(['a','b','c'])
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:145 in analise_intervalos_igc_catadm_pizza
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+“””
