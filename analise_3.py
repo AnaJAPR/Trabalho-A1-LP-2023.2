@@ -1,4 +1,5 @@
 import func_analises as fan
+import geopandas as gpd
 import limpa_dados as lp
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -30,3 +31,13 @@ def grafico_1():
     plt.show()
 
 grafico_1()
+
+def grafico_2():
+    brasil = gpd.read_file("shapefiles\estados_2010\estados_2010.shp")
+    merge = brasil.merge(ocorrencia_por_uf, left_on="sigla", right_on="Sigla da UF", how="left")
+    merge.plot(column="count", cmap="viridis", legend=True)
+    plt.title("Quantidade de Instituições de Ensino por Estado")
+    plt.axis("off")
+    plt.show()
+
+grafico_2()
