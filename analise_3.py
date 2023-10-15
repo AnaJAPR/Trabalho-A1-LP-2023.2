@@ -12,19 +12,18 @@ print(sigla_uf, end="\n")
 ocorrencia_por_uf = sigla_uf.value_counts().to_frame()
 print(ocorrencia_por_uf, end="\n")
 
-# Análise "Conceito Médio de Mestrado"
+# Análise "Conceito Médio"
+# "Mestrado"
 df_mestrado = fan.selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"])
 print(df_mestrado, end="\n")
-
 # Medidas de tendência central e dispersão
 print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
-
 
 # Desenvolvimento de Gráficos
 def grafico_1():
     bplot = plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], patch_artist=True)
     for box in bplot['boxes']:
-        box.set(facecolor='blue')
+            box.set(facecolor="red")
     plt.title("BoxPlot - Conceito Médio de Mestrado")
     plt.xlabel("Mestrado")
     plt.ylabel("Conceito Médio")
