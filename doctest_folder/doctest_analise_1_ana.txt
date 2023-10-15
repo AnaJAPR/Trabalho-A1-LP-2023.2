@@ -17,6 +17,9 @@ dict
 
 Teste 1
 >>> analise_1_ana(df)
+{'Universidade': {'4': 109, '3': 78, '5': 15, '2': 1}, 'Faculdade': {'3': 952, '2': 234, '4': 204, '5': 31, 'SC': 12, '1': 7}, 'Centro Universitário': {'3': 208, '4': 117, '2': 4}, 'Centro Federal De Educação Tecnológica': {'4': 2}, 'Instituto Federal De Educação, Ciência E Tecnologia': {'3': 20, '4': 18}}
 
+Teste 2
+>>> analise_1_ana("ana")
 
     """
