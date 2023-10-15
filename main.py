@@ -39,13 +39,13 @@ doc = document(title="Meus Gráficos")
 
 with doc:
      h1("Gráfico 3")
-     img(src="grafic_folder/grafico_3.png")
+     img(src="graphic_folder/grafico_3.png")
     
      h1("Gráfico 4")
-     img(src="grafic_folder/grafico_4.png")
+     img(src="graphic_folder/grafico_4.png")
 
      h1("Gráfico 5")
-     img(src="grafic_folder/grafico_5.png")
+     img(src="graphic_folder/grafico_5.png")
 
 # Salva a página HTML em um arquivo
 with open("index.html", "w") as f:

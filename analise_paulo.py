@@ -46,10 +46,8 @@ def graf_boxplot_conceito_medio_mestrado():
     plt.ylabel("Conceito Médio")
     plt.gca().set_xticklabels([])
 
-    plt.savefig("grafic_folder/grafico_3.png")
+    plt.savefig("graphic_folder/grafico_3.png")
     plt.show()
-
-graf_boxplot_conceito_medio_mestrado()
 
 def graf_mapa_instituições_por_uf():
     # Utilizando um shapefile para o desenvolvimento de um gráfico de mapa
@@ -58,13 +56,11 @@ def graf_mapa_instituições_por_uf():
     merge.plot(column="count", cmap="viridis", legend=True)
 
     # Personalizando o gráfico
-    plt.title("Quantidade de Instituições de Ensino por Estado")
+    plt.title("Quantidade de Instituiçõess de Ensino por Estado")
     plt.axis("off")
 
-    plt.savefig("grafic_folder/grafico_4.png")
+    plt.savefig("graphic_folder/grafico_4.png")
     plt.show()
-
-graf_mapa_instituições_por_uf()
 
 def graf_hist_alfa_beta_gama():
     fig, axs = plt.subplots(1, 3, figsize=(12, 4))
@@ -86,7 +82,5 @@ def graf_hist_alfa_beta_gama():
 
     plt.tight_layout()
 
-    plt.savefig("grafic_folder/grafico_5.png")
+    plt.savefig("graphic_folder/grafico_5.png")
     plt.show()
-
-graf_hist_alfa_beta_gama()
