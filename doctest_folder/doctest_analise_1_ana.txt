@@ -22,5 +22,9 @@ Teste 1: A função é usada corretamente e retorna o dicionário esperado.
 Teste 2
 >>> analise_1_ana("ana")
 Erro: A função só pode receber DataFrame!
-None
-    """
+
+Teste 3
+>>> analise_1_ana(5)
+Erro: A função só pode receber DataFrame!
+
+"""
