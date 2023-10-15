@@ -1,0 +1,38 @@
+"""
+Parameters
+----------
+dicionario_final: dict
+    
+    DESCRIPTION. A função itera sobre os elementos do dicionario_contagem, assumindo que este é o mesmo dicionário retornado pela
+    função analise_1_ana, ou seja, assumimos que os valores desse dicionário são dicionários também, cujas chaves são valores,
+    em sua maioria, números em formato string. Então, a função procura a média de IGC Faixa por Organização Acadêmica, fazendo 
+    o produto das chaves (após transformá-las em int) pelas seus valores (frequência de ocorrência de cada) e dividindo pela
+    soma das contagens.
+    
+Returns
+-------
+dict
+    Retorna um dicionário cujas chaves são os valores únicos de "Organização Acadêmica" e cujos valores são a média de IGC faixa
+    referente a cada chave.
+
+>>> from analise_ana import analise_ana_2, analise_1_ana, df
+
+Teste 1: A função é usada corretamente e retorna o dicionário esperado
+>>> analise_ana_2(analise_1_ana(df))
+{'Universidade': 3.68, 'Faculdade': 2.987, 'Centro Universitário': 3.343, 'Centro Federal De Educação Tecnológica': 4.0, 'Instituto Federal De Educação, Ciência E Tecnologia': 3.474}
+
+Teste 2
+>>> analise_ana_2("juju")
+Erro: A função só pode receber dicionário!
+
+Teste 3
+>>> analise_ana_2(5)
+Erro: A função só pode receber dicionário!
+
+Teste 4
+>>> analise_ana_2()
+Traceback (most recent call last):
+    ...
+TypeError: analise_ana_2() missing 1 required positional argument: 'dicionario_contagem'
+
+"""
