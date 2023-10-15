@@ -68,34 +68,43 @@ def analise_ana_2(dicionario_contagem):
         Retorna um dicionário cujas chaves são os valores únicos de "Organização Acadêmica" e cujos valores são a média de IGC faixa
         referente a cada chave.
     """
+    try:
+        # Testando se foi passado corretamente um DataFrame como parâmetro
+        if not isinstance(dicionario_contagem, dict):
+            raise TypeError("A função só pode receber dicionário!")
     
-    media_por_org_acad = {}
+        media_por_org_acad = {}
 
-    # Itera sobre chaves e valores de dicionario_contagem (o que a função analise_1_ana retorna a partir do df limpo)
-    for org_acad, contagens in dicionario_contagem.items():
-        total_contagens = sum(contagens.values())
-        soma = 0
+        # Itera sobre chaves e valores de dicionario_contagem (o que a função analise_1_ana retorna a partir do df limpo)
+        for org_acad, contagens in dicionario_contagem.items():
+            total_contagens = sum(contagens.values())
+            soma = 0
         
-        # Itera sobre os elementos dos dicionários que são valores de dicionario_contagem
-        for chave, contagem in contagens.items():
-            try:
-                chave_numerica = int(chave)
-                soma += chave_numerica * contagem
-            # se não tiver como transformar em int, continua lendo o código
-            except ValueError:
-                continue
-        # Para garantir que não vai ter divisões por zero, o if analise se o número de contagens é positivo.
-        if total_contagens > 0:
-            media = soma/total_contagens
-        else:
-            media = 0
+            # Itera sobre os elementos dos dicionários que são valores de dicionario_contagem
+            for chave, contagem in contagens.items():
+                try:
+                    chave_numerica = int(chave)
+                    soma += chave_numerica * contagem
+                # se não tiver como transformar em int, continua lendo o código
+                except ValueError:
+                    continue
+            # Para garantir que não vai ter divisões por zero, o if analise se o número de contagens é positivo.
+            if total_contagens > 0:
+                media = soma/total_contagens
+            else:
+                media = 0
         
-        # Adicionando as chaves e os valores do dicionário media_por_org_acad
-        media_por_org_acad[org_acad] = media
-        # Deixando as médias com até três casas decimais
-        media_arredondada = {chave: round(valor, 3) for chave, valor in media_por_org_acad.items()}
+            # Adicionando as chaves e os valores do dicionário media_por_org_acad
+            media_por_org_acad[org_acad] = media
+            # Deixando as médias com até três casas decimais
+            media_arredondada = {chave: round(valor, 3) for chave, valor in media_por_org_acad.items()}
         
-    return media_arredondada
+        return media_arredondada
+    
+    except TypeError as e:
+        print(f"Erro: {e}")
+    return None
+    
 
 def cria_plot_1_ana(dicionario_contagem):
     """
@@ -184,6 +193,6 @@ def cria_plot_2_ana(media_arredondada):
     plt.show()
 
 if __name__ == "__main__":
-    doctest.testfile("doctest_folder\doctest_analise_1_ana.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest_analise_ana_2.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
     # doctest.testfile("doctest_folder\doctest_cria_plot_1_ana.txt", verbose=True)
