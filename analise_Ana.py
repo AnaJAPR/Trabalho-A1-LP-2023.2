@@ -131,6 +131,21 @@ def cria_plot_1_ana(dicionario_contagem):
     plt.show()
     
 def cria_plot_2_ana(media_arredondada):
+    """
+    Parameters
+    ----------
+    media_arredondada: dict
+    
+        DESCRIPTION. A função faz duas listas de modo que as chaves do media_arredondada são salvas em uma e os valores são salvos na outra.
+        A partir disso, define-se vários detalhes para o gráfico que será plotado. Esse gráfico representa as médias de IGC faixa para cada 
+        organização acadêmica em formato de barras.
+        
+    Returns
+    -------
+    NoneType
+        Retorna um gráfico de barras representando a média de IGC faixa por organização acadêmica.
+    """
+    
     # Organiza os dados em listas separadas para as organizações acadêmicas e as médias
     org_acads = list(media_arredondada.keys())
     medias = list(media_arredondada.values())
@@ -142,26 +157,18 @@ def cria_plot_2_ana(media_arredondada):
     largura_barra = 0.7
     
     # Cria uma paleta de cores personalizada com base no número de organizações acadêmicas
-    cores = plt.cm.get_cmap('viridis', len(org_acads))
+    cores = plt.cm.get_cmap("viridis", len(org_acads))
 
     # Cria barras atribuindo cores diferentes para cada uma
     barras = ax.bar(org_acads, medias, largura_barra, color=cores(range(len(org_acads))))
 
     # Definir rótulos dos eixos e título do gráfico
-    ax.set_xlabel('Organização Acadêmica')
-    ax.set_ylabel('Média de IGC Faixa')
-    ax.set_title('Média de IGC Faixa por Organização Acadêmica')
+    ax.set_xlabel("Organização Acadêmica", size=15, color="green", alpha=0.5)
+    ax.set_ylabel("Média de IGC Faixa", size=15, color="green", alpha=0.5)
+    ax.set_title("Média de IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
 
     # Rotação dos rótulos do eixo x para evitar sobreposição
     plt.xticks(rotation=25, ha="right")
 
-    # Exibir o gráfico de barras
+    # Plota o gráfico de barras
     plt.show()
-    
-# dicionario_contagem = analise_1_ana(df)
-# media_arredondada = analise_ana_2(dicionario_contagem)
-
-# if __name__==__main__:
-#     cria_plot_1_ana(dicionario_contagem)
-#     cria_plot_2_ana(media_arredondada)
-    
