@@ -5,6 +5,7 @@ from dominate.tags import h1, img
 # import analise_Ana as aa
 import analise_paulo as ap
 # import analise_Otavio as ao
+import analise_guilherme as ag
 
 # df = pd.read_csv("IGC_2021.csv")
 # df = lp.corrige_nomes_df(lp.df)
@@ -31,9 +32,13 @@ import analise_paulo as ap
 # aa.cria_plot_1_ana(aa.analise_1_ana(df))
 # aa.cria_plot_2_ana(aa.analise_ana_2(aa.analise_1_ana(df)))
 
-ap.graf_mapa_instituições_por_uf()
+# Gráficos do Paulo
 ap.graf_boxplot_conceito_medio_mestrado()
+ap.graf_mapa_instituições_por_uf()
 ap.graf_hist_alfa_beta_gama()
+
+# Gráficos do Guilherme
+ag.grafico_medias_cm()
 
 doc = document(title="Meus Gráficos")
 
@@ -46,6 +51,9 @@ with doc:
 
      h1("Gráfico 5")
      img(src="graphic_folder/grafico_5.png")
+
+     h1("Gráfico 6")
+     img(src="graphic_folder/grafico_6.png")
 
 # Salva a página HTML em um arquivo
 with open("index.html", "w") as f:
