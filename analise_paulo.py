@@ -4,35 +4,41 @@ import limpa_dados as lp
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = lp.corrige_nomes_df(lp.df)
+df = fan.df
 
 # ANÁLISE - INSTITUIÇÕES DE ENSINO POR UF
 # Extraindo a coluna "Sigla da UF"
 sigla_uf = df["Sigla da UF"]
-print(sigla_uf, end="\n")
 
 # Observando número de ocorrências por UF
 ocorrencia_por_uf = sigla_uf.value_counts().to_frame()
-print(ocorrencia_por_uf, end="\n")
+
+# Definindo função de prints para evitar execuções indesejadas
+def prints_analise_institucoes_de_ensino_por_uf():
+    print(sigla_uf, end="\n")
+    print(ocorrencia_por_uf, end="\n")
 
 # ANÁLISE - CONCEITO MÉDIO DE MESTRADO
 # Selecionando as colunas de "Beta" e "Conceito de Mestrado"
 df_mestrado = fan.selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"])
-print(df_mestrado, end="\n")
 
-# Medidas de tendência central e dispersão
-print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
+def prints_analise_conceito_medio_de_mestrado():
+    print(df_mestrado, end="\n")
+    # Medidas de tendência central e dispersão:
+    print(fan.medidas_tendencia_e_dispersao(df_mestrado, "Conceito Médio de Mestrado"))
 
 # ANÁLISE - ALFA, BETA E GAMA
 # Selecionando as colunas do DataFrame e adicionando uma nova (soma das 3)
 df_alfa_beta_gama = df[["Alfa (Proporção de Graduação)", "Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]]
 df_alfa_beta_gama["Soma"] = df_alfa_beta_gama["Alfa (Proporção de Graduação)"] + df_alfa_beta_gama["Beta (Proporção de Mestrado - Equivalente)"] + df_alfa_beta_gama["Gama (Proporção de Doutorandos – Equivalente)"]
-print(df_alfa_beta_gama)
 
-print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Soma"))
-print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Alfa (Proporção de Graduação)"))
-print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Beta (Proporção de Mestrado - Equivalente)"))
-print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Gama (Proporção de Doutorandos – Equivalente)"))
+def print_analise_abg():
+    print(df_alfa_beta_gama)
+    # Medidas de tendência central e dispersão para cada coluna
+    print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Soma"))
+    print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Alfa (Proporção de Graduação)"))
+    print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Beta (Proporção de Mestrado - Equivalente)"))
+    print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Gama (Proporção de Doutorandos – Equivalente)"))
 
 # Desenvolvimento de Gráficos
 def graf_boxplot_conceito_medio_mestrado():
@@ -40,7 +46,7 @@ def graf_boxplot_conceito_medio_mestrado():
     
     # Personalizando o BoxPlot
     for box in bplot['boxes']:
-            box.set(facecolor="#8B0000")
+        box.set(facecolor="#8B0000")
     plt.title("BoxPlot - Conceito Médio de Mestrado")
     plt.xlabel("Mestrado")
     plt.ylabel("Conceito Médio")
@@ -56,7 +62,7 @@ def graf_mapa_instituições_por_uf():
     merge.plot(column="count", cmap="viridis", legend=True)
 
     # Personalizando o gráfico
-    plt.title("Quantidade de Instituiçõess de Ensino por Estado")
+    plt.title("Quantidade de Instituições de Ensino por Estado")
     plt.axis("off")
 
     plt.savefig("graphic_folder/grafico_4.png")
