@@ -35,7 +35,7 @@ print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Beta (Proporção de
 print(fan.medidas_tendencia_e_dispersao(df_alfa_beta_gama, "Gama (Proporção de Doutorandos – Equivalente)"))
 
 # Desenvolvimento de Gráficos
-def grafico_1():
+def graf_boxplot_conceito_medio_mestrado():
     bplot = plt.boxplot(df_mestrado["Conceito Médio de Mestrado"], patch_artist=True)
     
     # Personalizando o BoxPlot
@@ -46,9 +46,9 @@ def grafico_1():
     plt.ylabel("Conceito Médio")
     plt.show()
 
-grafico_1()
+graf_boxplot_conceito_medio_mestrado()
 
-def grafico_2():
+def graf_mapa_instituições_por_uf():
     # Utilizando um shapefile para o desenvolvimento de um gráfico de mapa
     brasil = gpd.read_file("shapefiles\estados_2010\estados_2010.shp")
     merge = brasil.merge(ocorrencia_por_uf, left_on="sigla", right_on="Sigla da UF", how="left")
@@ -59,9 +59,9 @@ def grafico_2():
     plt.axis("off")
     plt.show()
 
-grafico_2()
+graf_mapa_instituições_por_uf()
 
-def grafico_3():
+def graf_hist_alfa_beta_gama():
     fig, axs = plt.subplots(1, 3, figsize=(12, 4))
     axs[0].hist(df_alfa_beta_gama["Alfa (Proporção de Graduação)"], bins=10, color="green")
     axs[0].set_title("Proporção de Graduação")
@@ -76,4 +76,4 @@ def grafico_3():
 
     plt.show()
 
-grafico_3()
+graf_hist_alfa_beta_gama()
