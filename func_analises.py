@@ -25,6 +25,7 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
 
     """
     try:
+        # Testando possíveis erros ao passar o argumento
         if type(df) != pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame Pandas.")
         if type(colunas) != list:
@@ -38,7 +39,9 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
         new_df = df
         print("Uma ou mais colunas passadas não estão presentes no DataFrame.")
     else:
+        # Selecionando as colunas do DataFrame como float
         new_df = df[colunas].astype(float)
+        # Eliminando todas as ocorrências de "0" ou "NA"
         new_df = new_df[(new_df[colunas[0]] != 0) & (new_df[colunas[0]].notna())]
     finally:
         return new_df
@@ -63,6 +66,7 @@ def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
 
     """
     try:
+        # Testando possíveis erros para os argumentos da função
         if type(df) != pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame Pandas.")
         if type(coluna) != str:
@@ -78,6 +82,7 @@ def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
     except ValueError as erro:
         return str(erro)
     else:
+        # Calculando medidas resumos e adicionando-as à um dicionário a ser retornado
         media = df[coluna].mean()
         mediana = df[coluna].median()
         desvio_padrao = df[coluna].std()
