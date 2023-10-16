@@ -1,0 +1,35 @@
+    """
+    Parameters
+    ----------
+    df : pd.core.frame.DataFrame
+        Recebe o dataframe gerado
+
+        DESCRIPTION. A função printa análises de um DataFrame com colunas "Média Conceito Médio de Graduação", "Média Conceito Médio de Mestrado", 
+        "Média Conceito Médio do doutorado" por indices("Categoria Administrativa").
+        
+    Returns
+    -------
+    NoneType
+        Retorna apenas os prints da análise.
+
+    >>> import limpa_dados as lp
+    >>> from analise_guilherme import prints_da_analise_das_medias
+
+    >>> prints_da_analise_das_medias()
+    Traceback (most recent call last):
+    ...
+    TypeError: prints_da_analise_das_medias() missing 1 required positional argument: 'df'
+    
+    >>> prints_da_analise_das_medias("Eu adoro a Emap")
+    TypeError: A função só pode receber DataFrame!
+
+    >>> prints_da_analise_das_medias(["Tio", "Rafa"])
+    TypeError: A função só pode receber DataFrame!
+
+    >>> prints_da_analise_das_medias(42)
+    TypeError: A função só pode receber DataFrame!
+
+    >>> prints_da_analise_das_medias(lp.df)
+    ValueError: O parâmetro df não está no formato necessário!
+
+    """

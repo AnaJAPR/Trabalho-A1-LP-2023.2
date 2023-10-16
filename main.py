@@ -8,14 +8,7 @@ import analise_paulo as ap
 import analise_otavio as ao
 import analise_guilherme as ag
 
-# Cria DataFrame
-df = pd.read_csv("IGC_2021.csv")
-
-# As linhas de indice 2012 e 2013 não contém dados, logo são removidas
-df.drop(index=[2012, 2013], inplace = True)
-
-# Limpa os Dados
-df = lp.corrige_nomes_df(df)
+df = fan.df
 
 # Gerando os Dataframes filtrados para Conceitos Médios de cada um dos níveis de ensino para as plotagens do Guilherme
 df_grad = fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")
@@ -28,12 +21,12 @@ df_conc_medios = fan.media_tres_por_indice(df, ["Conceito Médio de Graduação"
 aa.cria_plot_1_ana(aa.analise_1_ana(df))
 aa.cria_plot_2_ana(aa.analise_ana_2(aa.analise_1_ana(df)))
 
-# Gráficos do Paulo
+# # Gráficos do Paulo
 ap.graf_boxplot_conceito_medio_mestrado(df)
 ap.graf_mapa_instituições_por_uf(df, "shapefiles/estados_2010/estados_2010.shp")
 ap.graf_hist_alfa_beta_gama(df)
 
-# Gráficos do Guilherme
+# # Gráficos do Guilherme
 ag.grafico_medias_cm(df, df_conc_medios)
 ag.scatter_plot(df, df_grad, df_mest, df_dout)
 # ag.prints_da_analise_das_medias(df_conc_medios)

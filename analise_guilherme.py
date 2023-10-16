@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import func_analises as fan
+import doctest
+import func_analises as fan
+import limpa_dados as lp
 
 # Coloquei os prints em uma função apenas para não poluir a main toda vez que roda-la, e só aparecerem caso chamada sua função
 
@@ -20,37 +23,50 @@ def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
     NoneType
         Retorna apenas os prints da análise.
     """
-    print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS #######################", end="\n\n")
-    # Vemos no df abaixo as médias dos conceitos médios em cada nível do ensino superior por categoria administrativa
-    print(df, end="\n\n")
+    try:
+        if type(df) != pd.core.frame.DataFrame:
+            raise TypeError
+        if df.equals(fan.media_tres_por_indice(fan.df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado",
+                                                                 "Conceito Médio do doutorado"], "Categoria Administrativa")) == False:
+            raise ValueError
+                         
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
 
-    # Vemos a partir da tabela abaixo as categorias administrativas com os maiores Conceitos médios em cada nível de ensino superior
-    print(df[df == df.max()], end="\n\n")
-    # A categoria administrativa "Especial" possui a maior média tanto no conceito médio de graduação(3.059135) quanto no do doutorado(4.66137)
-    # "Pública Federal" possui a maior média no conceito médio de mestrado(4.3846)
+    except ValueError:
+        print(f"ValueError: O parâmetro df não está no formato necessário!")
 
-    # Vemos a partir da tabela abaixo as categorias administrativas com os menores Conceitos médios em cada nível de ensino superior
-    print(df[df == df.min()], end="\n\n")
-    # A categoria administrativa "Pública Municipal" possui a menor média do conceito médio do doutorado(4.579625)
-    # A categoria administrativa "Especial" possui a menor média do conceito médio de mestrado(4)
-    # "Pública Federal" possui a menor média no conceito médio de graduação(2.226348)
+    else:
+        print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS #######################", end="\n\n")
+        # Vemos no df abaixo as médias dos conceitos médios em cada nível do ensino superior por categoria administrativa
+        print(df, end="\n\n")
+
+        # Vemos a partir da tabela abaixo as categorias administrativas com os maiores Conceitos médios em cada nível de ensino superior
+        print(df[df == df.max()], end="\n\n")
+        # A categoria administrativa "Especial" possui a maior média tanto no conceito médio de graduação(3.059135) quanto no do doutorado(4.66137)
+        # "Pública Federal" possui a maior média no conceito médio de mestrado(4.3846)
+
+        # Vemos a partir da tabela abaixo as categorias administrativas com os menores Conceitos médios em cada nível de ensino superior
+        print(df[df == df.min()], end="\n\n")
+        # A categoria administrativa "Pública Municipal" possui a menor média do conceito médio do doutorado(4.579625)
+        # A categoria administrativa "Especial" possui a menor média do conceito médio de mestrado(4)
+        # "Pública Federal" possui a menor média no conceito médio de graduação(2.226348)
 
 
-    # O print abaixo nos revela as médias das 3 colunas
-    print("AS médias de cada nível de ensino são: ", df.mean(), sep="\n", end="\n\n")
-    # Vemos que a maior média é do doutorado(4.628627) e a menor é de graduação(2.573522)
+        # O print abaixo nos revela as médias das 3 colunas
+        print("AS médias de cada nível de ensino são: ", df.mean(), sep="\n", end="\n\n")
+        # Vemos que a maior média é do doutorado(4.628627) e a menor é de graduação(2.573522)
 
-    # O print abaixo nos revela as medianas das 3 colunas
-    print("AS medianas de cada nível de ensino são: ", df.median(), sep="\n", end="\n\n")
-    # O maior valor novamente é do doutorado(4.64235) e o menor e da graduação(2.525514)
+        # O print abaixo nos revela as medianas das 3 colunas
+        print("AS medianas de cada nível de ensino são: ", df.median(), sep="\n", end="\n\n")
+        # O maior valor novamente é do doutorado(4.64235) e o menor e da graduação(2.525514)
 
-    # A partir das medidas de resumo acima, vemos que a mediana e a média são muito proximas em seus respectivos níveis de graduação
-    # Vemos também que o mestrado se mantém bem próximo do doutorado e distante da graduação nas notas (sua média é 4.267921 e sua mediana é 4.304046)
+        # A partir das medidas de resumo acima, vemos que a mediana e a média são muito proximas em seus respectivos níveis de graduação
+        # Vemos também que o mestrado se mantém bem próximo do doutorado e distante da graduação nas notas (sua média é 4.267921 e sua mediana é 4.304046)
 
-    # O print abaixo dos da o desvioo padrão das médias
-    print("O devio padrão em cada nível de ensino são: ", df.std(), sep="\n", end="\n\n")
-    # O maior desvio é da graduação(0.293501) e o menor o do doutorado(0.036502). O desvio padrão das médias do mestrado é 0.137659
-
+        # O print abaixo dos da o desvioo padrão das médias
+        print("O devio padrão em cada nível de ensino são: ", df.std(), sep="\n", end="\n\n")
+        # O maior desvio é da graduação(0.293501) e o menor o do doutorado(0.036502). O desvio padrão das médias do mestrado é 0.137659
 
 def grafico_medias_cm(df, df_conc_medios):
     """
@@ -72,13 +88,13 @@ def grafico_medias_cm(df, df_conc_medios):
         if type(df) != pd.core.frame.DataFrame or type(df_conc_medios) != pd.core.frame.DataFrame:
             raise TypeError
     
-        if not df_conc_medios.equals(fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado",
-                                                                 "Conceito Médio do doutorado"], "Categoria Administrativa")):
+        if df_conc_medios.equals(fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado",
+                                                                 "Conceito Médio do doutorado"], "Categoria Administrativa")) == False:
              raise ValueError
     except TypeError:
         print("TypeError: A função só pode receber DataFrame!")
     except ValueError:
-        print(f"O parâmetro df_conc_medios não está no formato necessário!")
+        print(f"ValueError: O parâmetro df_conc_medios não está no formato necessário!")
     else:
         # Criando o boxplot
         boxplot = plt.boxplot(df_conc_medios, patch_artist=True)
@@ -173,3 +189,6 @@ def scatter_plot(df,df_grad, df_mest, df_dout):
         plt.savefig("graphic_folder/grafico_07.png")
         plt.show()
 
+if __name__ == "__main__":
+    doctest.testfile("doctest_folder\doctest-prints_da_analise_das_medias.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-grafico_medias_cm.txt", verbose=True)

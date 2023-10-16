@@ -1,0 +1,33 @@
+    """
+    Parameters
+    ----------
+    df : pd.core.frame.DataFrame
+        Recebe o DataFrame principal 
+    df_conc_medios : pd.core.frame.DataFrame
+        Recebe o DataFrame gerado por fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
+       
+        DESCRIPTION. Recebe o DataFrame "df" para tratamento. O gráfico é um Boxplot gerado pelo DataFrame df_conc_medios. 
+        
+    Returns
+    -------
+    NoneType
+        Apenas plota e salva o gráfico.
+
+    >>> import func_analises as fan
+    >>> from analise_guilherme import grafico_medidas_cm
+
+    >>> grafico_medidas_cm(fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa"))
+    
+    >>> grafico_medidas_cm("Eu adoro a Emap")
+    TypeError: A função só pode receber DataFrame!
+
+    >>> grafico_medidas_cm(["Tio", "Rafa"])
+    TypeError: A função só pode receber DataFrame!
+
+    >>> grafico_medidas_cm(42)
+    TypeError: A função só pode receber DataFrame!
+
+    >>> grafico_medidas_cm(lp.df)
+    ValueError: O parâmetro df não está no formato necessário!
+    
+    """
