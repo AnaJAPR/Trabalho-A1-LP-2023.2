@@ -43,6 +43,7 @@ def analise_org_media_num_cursos(df):
     for indice, elemento in enumerate(dados_1):
         grafico_1.text(indice, elemento, round(elemento, 2), ha="center", va="bottom")
 
+    plt.savefig("graphic_folder/grafico_08.png")
     plt.show()
     
 
@@ -112,6 +113,7 @@ def analise_org_num_catadm_empilhado(df):
     plt.title("Número de Instistuições por tipo de organização e categoria administrativa")
     # Ancoramos a legenda de forma que não cubra o grafico.
     plt.legend(title="Categoria Administrativa", bbox_to_anchor=(1, 1), loc="upper left")
+    plt.savefig("graphic_folder/grafico_09.png")
     plt.show()
 
 
@@ -198,4 +200,5 @@ def analise_intervalos_igc_catadm_pizza(df):
     axes[1, 1].set_title("50% a Menor 15% IGC - Categoria Administrativa")
     axes[1, 1].pie(categoria_min_15a50, labels=categoria_min_15a50.index, autopct="%1.1f%%")
     
+    plt.savefig("graphic_folder/grafico_10.png")
     plt.show()

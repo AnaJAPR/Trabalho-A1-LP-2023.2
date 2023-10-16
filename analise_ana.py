@@ -3,9 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import doctest
 
-# Definindo o df limpo. Usei apenas uma função de lp porque ela já possui as outras dentro dela
-df = lp.corrige_nomes_df(lp.df)
-
 def analise_1_ana(df):
     """
     Parameters
@@ -129,7 +126,7 @@ def cria_plot_1_ana(dicionario_contagem):
     df = df.sort_index(axis=1)
     
     # Define o estilo do gráfico
-    plt.style.use("seaborn-darkgrid")
+    # plt.style.use("seaborn-darkgrid")
     
     # Definindo eixos, tipo do gráfico, entre outras informações base para a construção do gráfico
     for org_acad in df.index:
@@ -147,7 +144,7 @@ def cria_plot_1_ana(dicionario_contagem):
     plt.gca().set_facecolor("white")
     
     # Salva e plota o gráfico
-    plt.savefig("graphic_folder/grafico_1.png")
+    plt.savefig("graphic_folder/grafico_01.png")
     plt.show()
     
 def cria_plot_2_ana(media_arredondada):
@@ -191,7 +188,7 @@ def cria_plot_2_ana(media_arredondada):
     plt.xticks(rotation=25, ha="right")
 
     # Salva e plota o gráfico de barras
-    plt.savefig("graphic_folder/grafico_2.png")
+    plt.savefig("graphic_folder/grafico_02.png")
     plt.show()
 
 if __name__ == "__main__":

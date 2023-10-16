@@ -1,64 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import func_analises as fan
 
-# Coloquei os prints em funções apenas para não poluírem a main toda vez que roda-la, e só aparecerem caso chamadas suas funções
-
-def prints_de_todas_medianas(df_grad, df_mest, df_dout):
-    """
-    Parameters
-    ----------
-    df_grad: pandas.core.frame.DataFrame
-        O DataFrame com apenas a coluna "Conceito Médio de Graduação" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
-    df_mest: pandas.core.frame.DataFrame
-        O DataFrame com apenas a coluna "Conceito Médio de Mestrado" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
-    df_dout: pandas.core.frame.DataFrame
-        O DataFrame com apenas a coluna "Conceito Médio do doutorado" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
-
-        DESCRIPTION. A função printa as medianas das colunas "Conceito Médio de Graduação", "Conceito Médio de Mestrado", 
-        "Conceito Médio do doutorado" por indices("Categoria Administrativa").
-        
-    Returns
-    -------
-    None
-        Retorna apenas os prints das medianas.
-    """ 
-
-    indices = df_grad["Categoria Administrativa"].unique().tolist()
-    
-    mediana_grad, mediana_mest, mediana_dout = 0,0,0
-    
-    # Exibe as medianas dos Conceitos Médios nas respectivas Categorias Administrativa
-    for cat_adm in indices:
-
-        if cat_adm in df_grad.index:# Conferindo se há o nível de ensino no respectivo curso
-            
-            if not df_grad.loc[cat_adm].shape[0] == 1:# O caso de um unico registro será tratado separadamente
-                mediana_grad = df_grad["Conceito Médio de Graduação"].loc[cat_adm].median()# Pegando a mediana
-            
-            else:# Caso só haja um registro, ele é a pópria mediana
-                mediana_grad = df_grad["Conceito Médio de Graduação"].loc[cat_adm]
-    
-    # O que valeu para o if acima vale pros demais 
-        if cat_adm in df_mest.index:
-            
-            if not df_mest.loc[cat_adm].shape[0] == 1: 
-                mediana_mest = df_mest["Conceito Médio de Mestrado"].loc[cat_adm].median()
-            else:
-                mediana_mest = df_mest["Conceito Médio de Mestrado"].loc[cat_adm]
-
-        if cat_adm in df_dout.index:
-            
-            if not df_dout.loc[cat_adm].shape[0] == 1:
-                mediana_dout = df_dout["Conceito Médio do doutorado"].loc[cat_adm].median()
-            else:
-                mediana_dout = df_dout["Conceito Médio do doutorado"].loc[cat_adm]
-
-        # Vemos a seguir as medianas por cada dos CMs por cada categoria
-        print(f"A mediana do CM de graduação na categoria {cat_adm} é {mediana_grad}")
-        print(f"A mediana do CM de mestrado na categoria {cat_adm} é {mediana_mest}")
-        print(f"A mediana do CM do doutorado na categoria {cat_adm} é {mediana_dout}", end="\n\n")  
-
+# Coloquei os prints em uma função apenas para não poluir a main toda vez que roda-la, e só aparecerem caso chamada sua função
 
 def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
     """
@@ -107,61 +52,89 @@ def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
     # O maior desvio é da graduação(0.293501) e o menor o do doutorado(0.036502). O desvio padrão das médias do mestrado é 0.137659
 
 
-def grafico_medias_cm(df_conc_medios):
-    # Criando o boxplot
-    boxplot = plt.boxplot(df_conc_medios, patch_artist=True)
+def grafico_medias_cm(df, df_conc_medios):
+    try:
+        if type(df) != pd.core.frame.DataFrame or type(df_conc_medios) != pd.core.frame.DataFrame:
+            raise TypeError
+    
+        if not df_conc_medios.equals(fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado",
+                                                                 "Conceito Médio do doutorado"], "Categoria Administrativa")):
+             raise ValueError
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
+    except ValueError:
+        print(f"O parâmetro df_conc_medios não está no formato necessário!")
+    else:
+        # Criando o boxplot
+        boxplot = plt.boxplot(df_conc_medios, patch_artist=True)
 
-    # Alterando a cor das caixas do boxplot
-    for box in boxplot["boxes"]:
-            box.set(facecolor="blue")
+        # Alterando a cor das caixas do boxplot
+        for box in boxplot["boxes"]:
+                box.set(facecolor="blue")
 
-    # Nomeando
-    plt.xticks([1, 2, 3], ["Graduação", "Mestrado", "Doutorado"])
-    plt.title("BoxPlot - Comparação da média por categoria do Conceito Médio")
-    plt.xlabel("Níveis do ensino superior")
-    plt.ylabel("Conceito Médio")
+        # Nomeando
+        plt.xticks([1, 2, 3], ["Graduação", "Mestrado", "Doutorado"])
+        plt.title("BoxPlot - Comparação da média por categoria do Conceito Médio")
+        plt.xlabel("Níveis do ensino superior")
+        plt.ylabel("Conceito Médio")
 
-    # Salvando e plotando
-    plt.savefig("graphic_folder/grafico_6.png")
-    plt.show()
+        # Salvando e plotando
+        plt.savefig("graphic_folder/grafico_06.png")
+        plt.show()
 
 
-def scatter_plot(df_grad, df_mest, df_dout):
+def scatter_plot(df,df_grad, df_mest, df_dout):
+    try:
+        if type(df) != pd.core.frame.DataFrame or type(df_grad) != pd.core.frame.DataFrame or type(df_mest) != pd.core.frame.DataFrame or type(df_dout) != pd.core.frame.DataFrame:
+            raise TypeError
+    
+        if not df_grad.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")):
+             raise ValueError(f"O parâmetro df_grad={df_grad} não está no formato necessário!")
+        
+        if not df_mest.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")):
+             raise ValueError(f"O parâmetro df_mest={df_mest} não está no formato necessário!")
+        
+        if not df_dout.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio do doutorado")):
+             raise ValueError(f"O parâmetro df_conc_dout={df_dout} não está no formato necessário!")
+    
+    except TypeError:
+        print("TypeError: A função só pode receber DataFrame!")
+   
+    else:
 
-    # Convertendo as categorias em números
-    df_grad.index = pd.Categorical(df_grad.index)
-    df_grad.index = df_grad.index.codes
+        # Convertendo as categorias em números
+        df_grad.index = pd.Categorical(df_grad.index)
+        df_grad.index = df_grad.index.codes
 
-    df_mest.index = pd.Categorical(df_mest.index)
-    df_mest.index = df_mest.index.codes
+        df_mest.index = pd.Categorical(df_mest.index)
+        df_mest.index = df_mest.index.codes
 
-    df_dout.index = pd.Categorical(df_dout.index)
-    df_dout.index = df_dout.index.codes
+        df_dout.index = pd.Categorical(df_dout.index)
+        df_dout.index = df_dout.index.codes
 
-    # Fazendo o jitter para diminuir as sobreposições
-    grad_index_jitted = df_grad.index.tolist() + np.random.normal(-0.1, 0.1, len(df_grad.index.tolist()))
-    mest_index_jitted = df_mest.index.tolist() + np.random.normal(-0.1, 0.1, len(df_mest.index.tolist()))
-    dout_index_jitted = df_dout.index.tolist() + np.random.normal(-0.1, 0.1, len(df_dout.index.tolist()))
+        # Fazendo o jitter para diminuir as sobreposições
+        grad_index_jitted = df_grad.index.tolist() + np.random.normal(-0.1, 0.1, len(df_grad.index.tolist()))
+        mest_index_jitted = df_mest.index.tolist() + np.random.normal(-0.1, 0.1, len(df_mest.index.tolist()))
+        dout_index_jitted = df_dout.index.tolist() + np.random.normal(-0.1, 0.1, len(df_dout.index.tolist()))
 
-    # Criando o gráfico de dispersão com os Conceitos Médios dos 3 níveis de ensino superior nas cores dos pontos
-    plt.scatter(x=grad_index_jitted, y=df_grad, color="yellow", alpha=0.5)
-    plt.scatter(x=mest_index_jitted, y=df_mest, color="green", alpha=0.5)
-    plt.scatter(x=dout_index_jitted, y=df_dout, color="blue", alpha=0.5)
+        # Criando o gráfico de dispersão com os Conceitos Médios dos 3 níveis de ensino superior nas cores dos pontos
+        plt.scatter(x=grad_index_jitted, y=df_grad, color="yellow", alpha=0.5)
+        plt.scatter(x=mest_index_jitted, y=df_mest, color="green", alpha=0.5)
+        plt.scatter(x=dout_index_jitted, y=df_dout, color="blue", alpha=0.5)
 
-    plt.xticks([0, 1, 2, 3, 4, 5], ["Especial", "Priv. C/ Fins Lucrativos", "Priv. S/ Fins Lucrativos",
-                                     "Pública Estadual", "Pública Federal", "Pública Municipal"], rotation=15)
+        plt.xticks([0, 1, 2, 3, 4, 5], ["Especial", "Priv. C/ Fins Lucrativos", "Priv. S/ Fins Lucrativos",
+                                        "Pública Estadual", "Pública Federal", "Pública Municipal"], rotation=15)
 
-    # Adicionando legenda ao gráfico
-    legend_elements = [plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio de Graduação",
-                          markerfacecolor="yellow", markersize=10),
-                    plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio de Mestrado",
-                          markerfacecolor="green", markersize=10),
-                    plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio do doutorado",
-                          markerfacecolor="blue", markersize=10)]
-    plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), loc="lower right")
+        # Adicionando legenda ao gráfico
+        legend_elements = [plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio de Graduação",
+                            markerfacecolor="yellow", markersize=10),
+                        plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio de Mestrado",
+                            markerfacecolor="green", markersize=10),
+                        plt.Line2D([0], [0], marker="o", color="white", label="Conceito Médio do doutorado",
+                            markerfacecolor="blue", markersize=10)]
+        plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), loc="lower right")
 
-    # Salvando e plotando
-    plt.savefig("graphic_folder/grafico_7.png")
-    plt.show()
+        # Salvando e plotando
+        plt.savefig("graphic_folder/grafico_07.png")
+        plt.show()
 
-# scatter_plot(df_grad, df_mest, df_dout)

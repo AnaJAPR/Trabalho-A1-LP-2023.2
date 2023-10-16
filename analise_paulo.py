@@ -48,7 +48,7 @@ def graf_boxplot_conceito_medio_mestrado(df):
         plt.ylabel("Conceito Médio")
         plt.gca().set_xticklabels([])
 
-        plt.savefig("graphic_folder/grafico_3.png")
+        plt.savefig("graphic_folder/grafico_03.png")
         plt.show()
 
 # INSTITUIÇÕES DE ENSINO POR UF
@@ -96,7 +96,7 @@ def graf_mapa_instituições_por_uf(df, path_shapefile):
         plt.title("Quantidade de Instituições de Ensino por Estado")
         plt.axis("off")
 
-        plt.savefig("graphic_folder/grafico_4.png")
+        plt.savefig("graphic_folder/grafico_04.png")
         plt.show()
 
 # ALFA, BETA E GAMA
@@ -156,5 +156,5 @@ def graf_hist_alfa_beta_gama(df):
 
         plt.tight_layout()
 
-        plt.savefig("graphic_folder/grafico_5.png")
+        plt.savefig("graphic_folder/grafico_05.png")
         plt.show()

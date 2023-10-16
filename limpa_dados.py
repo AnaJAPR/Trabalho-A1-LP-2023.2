@@ -125,6 +125,7 @@ def corrige_nomes_df(df):
     else:
         # Já utilizando o tratamento das demais funções desse módulo
         df = trata_celulas_vazias(remove_colunas_sem_dado(df))
+        
         # Corrigindo os nomes das colunas
 
         # Esse for retira o espaço no início do nome da coluna (se houver)
