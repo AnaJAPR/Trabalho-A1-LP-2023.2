@@ -15,16 +15,7 @@ class TestTrataCelulasVazias(unittest.TestCase):
 
         # Adiciona as asserções apropriadas para verificar o resultado
         self.assertIsInstance(resultado, pd.core.frame.DataFrame) # Resultado é um DataFrame pandas
-        
-        # lista_nulos = list()
-        # for coluna in resultado.columns.tolist():
-        #     for indice in range(len(resultado)):
-        #         celula = resultado[coluna].iloc[indice]
-        #         if isinstance(celula, np.NaN):
-        #             lista_nulos.append(resultado[coluna].iloc[indice])
-        #         if len(lista_nulos) > resultado.shape[0] / 2:    
-        #             raise AssertionError("Essa coluna nçao foi tratada!")
-    
+
     # teste com parâmetro inválido, ou seja, um que não seja DataFrame
     def test_trata_celulas_vazias_sem_dataframe(self):
         
@@ -36,10 +27,10 @@ class TestTrataCelulasVazias(unittest.TestCase):
     
     # teste sem parâmetro
     def test_analise_1_ana_sem_parametro(self):
-        with self.assertRaises(TypeError) as cm: # Espera-se que a função levante um erro
+        with self.assertRaises(TypeError) as cm:
             resultado = trata_celulas_vazias()
         
-        self.assertEqual(str(cm.exception), "trata_celulas_vazias() missing 1 required positional argument: 'df'") # Mensagem de erro esperada
+        self.assertEqual(str(cm.exception), "trata_celulas_vazias() missing 1 required positional argument: 'df'")
 
 if __name__ == "__main__":
     unittest.main()
