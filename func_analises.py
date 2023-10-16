@@ -33,17 +33,16 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
         if not set(colunas) <= set(df.columns):
             raise NameError("Uma ou mais colunas passadas não estão presentes no DataFrame.")
     except TypeError as erro:
-        new_df = df
         print(f"{erro.__class__.__name__}: {erro}")
+        return df
     except NameError as erro:
-        new_df = df
         print(f"{erro.__class__.__name__}: {erro}")
+        return df
     else:
         # Selecionando as colunas do DataFrame como float
         new_df = df[colunas].astype(float)
         # Eliminando todas as ocorrências de "0" ou "NA"
         new_df = new_df[(new_df[colunas[0]] != 0) & (new_df[colunas[0]].notna())]
-    finally:
         return new_df
     
 def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
