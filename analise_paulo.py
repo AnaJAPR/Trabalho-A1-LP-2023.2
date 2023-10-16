@@ -127,10 +127,10 @@ def graf_hist_alfa_beta_gama(df):
     try:
         if not type(df) == pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame.")
-        if not set(["Alfa (Proporção de Graduação)","Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]) <= set(df.columns):
-            raise NameError("O DataFrame necessita conter as colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado'.")
-        if not pd.api.types.is_numeric_dtype(df["Alfa (Proporção de Graduação)"]) or not pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente)"]) or not pd.api.types.is_numeric_dtype(df["Gama (Proporção de Doutorandos – Equivalente)"]):
-            raise ValueError("As colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado' necessitam ser numéricas.")
+        if not set(["Alfa (Proporção de Graduação)", "Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]) <= set(df.columns):
+            raise NameError("O DataFrame necessita conter as colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)'.")
+        if pd.api.types.is_numeric_dtype(df["Alfa (Proporção de Graduação)"]) == False or pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente)"]) == False or pd.api.types.is_numeric_dtype(df["Gama (Proporção de Doutorandos – Equivalente)"]) == False:
+            raise ValueError("As colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)' necessitam ser numéricas.")
     
     except TypeError as erro:
         return str(erro)
@@ -172,3 +172,4 @@ def graf_hist_alfa_beta_gama(df):
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-graf_boxplot_conceito_medio_mestrado.txt")
     doctest.testfile("doctest_folder\doctest-graf_mapa_instituições_por_uf.txt")
+    doctest.testfile("doctest_folder\doctest-graf_hist_alfa_beta_gama.txt")

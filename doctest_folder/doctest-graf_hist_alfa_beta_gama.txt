@@ -1,0 +1,40 @@
+"""
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+
+        DESCRIPTION. A função extrai as colunas de proporção de graduação, mestrado e doutorado
+        Com elas é criado um gráfico contendo um histograma para cada uma das colunas.
+        
+    Returns
+    -------
+    None
+        A função somente exibe o gráfico criado e o salva em um arquivo na pasta "graphic_folder"
+
+    >>> from analise_paulo import graf_hist_alfa_beta_gama, df
+    >>> import pandas as pd
+
+    Teste 1
+    >>> graf_hist_alfa_beta_gama(df)
+
+    Teste 2
+    >>> graf_hist_alfa_beta_gama("Não sou um df")
+    'O argumento passado não é um DataFrame.'
+
+    Teste 3
+    >>> b = pd.DataFrame({"Sigla da UF":[4, 3, 2, 1]})
+    >>> graf_hist_alfa_beta_gama(b)
+    "O DataFrame necessita conter as colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)'."
+
+    Teste 4
+    >>> c = pd.DataFrame({'Alfa (Proporção de Graduação)':["r", "s", "t"], 'Beta (Proporção de Mestrado - Equivalente)':["u", "v", "w"], 'Gama (Proporção de Doutorandos – Equivalente)':["x", "y", "z"]})
+    >>> graf_hist_alfa_beta_gama(c)
+    "As colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)' necessitam ser numéricas."
+    
+    Teste 5
+    >>> graf_hist_alfa_beta_gama()
+    Traceback (most recent call last):
+    ...
+    TypeError: graf_hist_alfa_beta_gama() missing 1 required positional argument: 'df'
+
+    """
