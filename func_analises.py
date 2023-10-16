@@ -32,12 +32,12 @@ def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list
             raise TypeError("O argumento passado não é uma lista.")
         if not set(colunas) <= set(df.columns):
             raise NameError("Uma ou mais colunas passadas não estão presentes no DataFrame.")
-    except TypeError:
+    except TypeError as erro:
         new_df = df
-        print("Um ou mais argumentos passados não corresponde ao tipo solicitado.")
-    except NameError:
+        print(f"{erro.__class__.__name__}: {erro}")
+    except NameError as erro:
         new_df = df
-        print("Uma ou mais colunas passadas não estão presentes no DataFrame.")
+        print(f"{erro.__class__.__name__}: {erro}")
     else:
         # Selecionando as colunas do DataFrame como float
         new_df = df[colunas].astype(float)
@@ -76,11 +76,11 @@ def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
         if not pd.api.types.is_numeric_dtype(df[coluna]):
             raise ValueError("A coluna passada não é numérica.")
     except TypeError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except NameError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except ValueError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     else:
         # Calculando medidas resumos e adicionando-as à um dicionário a ser retornado
         media = df[coluna].mean()
@@ -88,12 +88,12 @@ def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
         desvio_padrao = df[coluna].std()
         maximo = df[coluna].max()
         minimo = df[coluna].min()
-    resumo = {"Média":media,
+        resumo = {"Média":media,
               "Mediana":mediana,
               "Desvio Padrão": desvio_padrao,
               "Máximo": maximo,
               "Mínimo": minimo}
-    return resumo
+        return resumo
 
 def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice:str):
     """
@@ -201,7 +201,7 @@ def reindexacao_e_filtragem(df, coluna):
             tipo = "uma string"
             raise TypeError
     
-        if df.equals(df = lp.corrige_nomes_df(lp.df)) == False:
+        if df.equals(lp.corrige_nomes_df(lp.df)) == False:
              raise ValueError
         
         if coluna not in df.columns.tolist():
@@ -217,7 +217,7 @@ def reindexacao_e_filtragem(df, coluna):
         print("ValueError: O DataFrame passado não está no formato necessário!")
 
     except NameError:
-        print(f"{coluna} não é uma coluna do DataFrame passado!")
+        print(f"NameError: '{coluna}' não é uma coluna do DataFrame passado!")
 
     else:
         new_df = df[df[coluna] > 0][[coluna, "Categoria Administrativa"]]
