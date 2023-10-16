@@ -132,9 +132,6 @@ def cria_plot_1_ana(dicionario_contagem):
         # Classifica o DataFrame com base nas colunas (IGC Faixa)
         df = df.sort_index(axis=1)
     
-        # Define o estilo do gráfico
-        # plt.style.use("seaborn-darkgrid")
-    
         # Definindo eixos, tipo do gráfico, entre outras informações base para a construção do gráfico
         for org_acad in df.index:
             igc_faixas = df.columns
@@ -144,10 +141,10 @@ def cria_plot_1_ana(dicionario_contagem):
             # if frequencia_total_org_acad > 0  #DESENVOLER UM TRY EXCEPT AQUI TALVEZ
         
         # Definindo labels, legenda, entre outros dados estéticos do gráfico
-        plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
-        plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
-        plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=10, color="purple", alpha=0.7)
-        plt.legend(loc="upper left", fontsize = 8)
+        plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.7)
+        plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.7)
+        plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=10, color="purple", alpha=1.0)
+        plt.legend(loc="upper right", fontsize = 6.3)
         plt.gca().set_facecolor("white")
     
         # Salva e plota o gráfico
@@ -173,38 +170,44 @@ def cria_plot_2_ana(media_arredondada):
     NoneType
         Retorna um gráfico de barras representando a média de IGC faixa por organização acadêmica.
     """
+    try:
+        # Testando se foi passado corretamente um dicionário como parâmetro
+        if not isinstance(dicionario_contagem, dict):
+            raise TypeError("A função só pode receber dicionário!")
+        
+        # Organiza os dados em listas separadas para as organizações acadêmicas e as médias
+        org_acads = list(media_arredondada.keys())
+        medias = list(media_arredondada.values())
+
+        # Cria um eixo e uma figura com 5 de largura e 3 de altura
+        fig, ax = plt.subplots(figsize=(10,5))
+
+        # Define a largura das barras
+        largura_barra = 0.7
     
-    # Organiza os dados em listas separadas para as organizações acadêmicas e as médias
-    org_acads = list(media_arredondada.keys())
-    medias = list(media_arredondada.values())
+        # Cria uma paleta de cores personalizada com base no número de organizações acadêmicas
+        cores = plt.cm.get_cmap("viridis", len(org_acads))
 
-    # Cria um eixo e uma figura com 5 de largura e 3 de altura
-    fig, ax = plt.subplots(figsize=(5,3))
+        # Cria barras atribuindo cores diferentes para cada uma
+        barras = ax.bar(org_acads, medias, largura_barra, color=cores(range(len(org_acads))))
 
-    # Define a largura das barras
-    largura_barra = 0.7
-    
-    # Cria uma paleta de cores personalizada com base no número de organizações acadêmicas
-    cores = plt.cm.get_cmap("viridis", len(org_acads))
+        # Definir rótulos dos eixos e título do gráfico
+        ax.set_xlabel("Organização Acadêmica", size=15, color="green", alpha=0.7)
+        ax.set_ylabel("Média de IGC Faixa", size=15, color="green", alpha=0.7)
+        ax.set_title("Média de IGC Faixa por Organização Acadêmica", size=15, color="purple", alpha=1.0)
 
-    # Cria barras atribuindo cores diferentes para cada uma
-    barras = ax.bar(org_acads, medias, largura_barra, color=cores(range(len(org_acads))))
+        # Rotação dos rótulos do eixo x para evitar sobreposição
+        plt.xticks(rotation=5, ha="right")
 
-    # Definir rótulos dos eixos e título do gráfico
-    ax.set_xlabel("Organização Acadêmica", size=15, color="green", alpha=0.5)
-    ax.set_ylabel("Média de IGC Faixa", size=15, color="green", alpha=0.5)
-    ax.set_title("Média de IGC Faixa por Organização Acadêmica", size=10, color="purple", alpha=0.7)
-
-    # Rotação dos rótulos do eixo x para evitar sobreposição
-    plt.xticks(rotation=25, ha="right")
-
-    # Salva e plota o gráfico de barras
-    plt.savefig("graphic_folder/grafico_02.png")
-    plt.show()
+        # Salva e plota o gráfico de barras
+        plt.savefig("graphic_folder/grafico_02.png")
+        plt.show()
+        
+    except TypeError as e:
+        print(f"Erro: {e}")
+    return None
 
 # if __name__ == "__main__":
-    # doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
     # doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt", verbose=True)
-
-cria_plot_2_ana(analise_ana_2(analise_1_ana(df)))
