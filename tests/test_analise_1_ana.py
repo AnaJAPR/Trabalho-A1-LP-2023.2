@@ -1,7 +1,6 @@
 import sys
 sys.path.append('.') # assim o python procura os modulos a serem importados em todo o respositório atual. Importante para o import de analise_ana.py
 import unittest
-import doctest
 from analise_ana import analise_1_ana, df 
 
 class TestAnalise1Ana(unittest.TestCase):
