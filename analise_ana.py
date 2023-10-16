@@ -1,6 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import doctest
+import limpa_dados as lp
+
+df = lp.corrige_nomes_df(lp.df)
 
 def analise_1_ana(df):
     """
@@ -193,4 +196,4 @@ def cria_plot_2_ana(media_arredondada):
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest_cria_plot_1_ana.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt", verbose=True)

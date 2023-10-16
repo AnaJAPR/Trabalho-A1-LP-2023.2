@@ -17,8 +17,6 @@ df.drop(index=[2012, 2013], inplace = True)
 # Limpa os Dados
 df = lp.corrige_nomes_df(df)
 
-print(df.columns)
-
 # Gerando os Dataframes filtrados para Conceitos Médios de cada um dos níveis de ensino para as plotagens do Guilherme
 df_grad = fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")
 df_mest = fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")

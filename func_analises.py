@@ -1,5 +1,8 @@
 import doctest
 import pandas as pd
+import limpa_dados as lp
+
+df = lp.corrige_nomes_df(lp.df)
 
 def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list):
     """
@@ -200,5 +203,5 @@ def reindexacao_e_filtragem(df, coluna):
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)

@@ -16,8 +16,7 @@
         seu valor como valor.
 
     >>> import pandas as pd
-    >>> from func_analises import medidas_tendencia_e_dispersao
-    >>> from main import df
+    >>> from func_analises import medidas_tendencia_e_dispersao, df
 
     Teste 1:
     >>> medidas_tendencia_e_dispersao(df, "Conceito Médio de Graduação")

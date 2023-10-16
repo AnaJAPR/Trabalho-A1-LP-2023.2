@@ -19,8 +19,7 @@
         médias dos dados não nulos das colunas escolhidas do DataFrame original.
     
     >>> import pandas as pd
-    >>> from func_analises import media_tres_por_indice
-    >>> from main import df
+    >>> from func_analises import media_tres_por_indice, df
     
     Teste 1: A função é usada corretamente e retorna o df com as médias dos conceitos médios por estado
     >>> media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Sigla da UF")

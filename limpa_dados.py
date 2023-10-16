@@ -1,6 +1,9 @@
 import pandas as pd
 import doctest
 
+df = pd.read_csv("IGC_2021.csv")
+df.drop(index=[2012, 2013], inplace = True)
+
 def remove_colunas_sem_dado(df):
     """
     Parameters
@@ -156,6 +159,6 @@ def corrige_nomes_df(df):
         return df
 
 if __name__ == "__main__":
-    # doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-corrige_nomes_df.txt", verbose=True)

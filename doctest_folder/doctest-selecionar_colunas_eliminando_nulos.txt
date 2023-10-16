@@ -17,8 +17,7 @@
         passado como argumento será retornado sem nenhuma alteração.
 
     >>> import pandas as pd
-    >>> from func_analises import selecionar_colunas_eliminando_nulos
-    >>> from main import df
+    >>> from func_analises import selecionar_colunas_eliminando_nulos, df
 
     Teste 1:
     >>> selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"])
