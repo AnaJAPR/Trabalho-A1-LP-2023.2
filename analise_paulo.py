@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Desenvolvimento de Gráficos
-# CONCEITO MÉDIO DE MESTRADO
+# Conceito Médio de Mestrado
 def graf_boxplot_conceito_medio_mestrado(df):
     """
     Parameters
@@ -24,7 +24,7 @@ def graf_boxplot_conceito_medio_mestrado(df):
     try:
         if not type(df) == pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame.")
-        if not ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"] in df.columns:
+        if not set(["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"]) <= set(df.columns):
             raise NameError("O DataFrame necessita conter as colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado'.")
         if not pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente)"]) or not pd.api.types.is_numeric_dtype(df["Conceito Médio de Mestrado"]):
             raise ValueError("As colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado' necessitam ser numéricas.")
@@ -71,7 +71,7 @@ def graf_mapa_instituições_por_uf(df, path_shapefile):
     try:
         if not type(df) == pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame.")
-        if not ["Sigla da UF"] in df.columns:
+        if not "Sigla da UF" in df.columns:
             raise NameError("O DataFrame necessita conter a coluna 'Sigla da UF'.")
         if pd.api.types.is_number(df["Sigla da UF"]):
             raise ValueError("A coluna 'Sigla da UF' não deve ser numérica.")
@@ -117,9 +117,9 @@ def graf_hist_alfa_beta_gama(df):
     try:
         if not type(df) == pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame.")
-        if not ["Alfa (Proporção de Graduação)","Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"] in df.columns:
+        if not set(["Alfa (Proporção de Graduação)","Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]) <= set(df.columns):
             raise NameError("O DataFrame necessita conter as colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado'.")
-        if not pd.api.types.is_numeric_dtype(df["Alfa (Proporção de Graduação)"]) or not pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente"]) or not pd.api.types.is_numeric_dtype(df["Gama (Proporção de Doutorandos – Equivalente)"]):
+        if not pd.api.types.is_numeric_dtype(df["Alfa (Proporção de Graduação)"]) or not pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente)"]) or not pd.api.types.is_numeric_dtype(df["Gama (Proporção de Doutorandos – Equivalente)"]):
             raise ValueError("As colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado' necessitam ser numéricas.")
     
     except TypeError as erro:

@@ -17,6 +17,8 @@ df.drop(index=[2012, 2013], inplace = True)
 # Limpa os Dados
 df = lp.corrige_nomes_df(df)
 
+print(df.columns)
+
 # Gerando os Dataframes filtrados para Conceitos Médios de cada um dos níveis de ensino para as plotagens do Guilherme
 df_grad = fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")
 df_mest = fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")
@@ -34,14 +36,13 @@ ao.analise_intervalos_igc_catadm_pizza(df)
 # aa.cria_plot_2_ana(aa.analise_ana_2(aa.analise_1_ana(df)))
 
 # Gráficos do Paulo
-# ap.graf_boxplot_conceito_medio_mestrado()
-# ap.graf_mapa_instituições_por_uf()
-# ap.graf_hist_alfa_beta_gama()
+ap.graf_boxplot_conceito_medio_mestrado(df)
+ap.graf_mapa_instituições_por_uf(df, "shapefiles/estados_2010/estados_2010.shp")
+ap.graf_hist_alfa_beta_gama(df)
 
 # Gráficos do Guilherme
 ag.grafico_medias_cm(df_conc_medios)
 ag.scatter_plot(df_grad, df_mest, df_dout)
-# ag.prints_de_todas_medianas(df_grad, df_mest, df_dout)
 # ag.prints_da_analise_das_medias(df_conc_medios)
 
 doc = document(title="Meus Gráficos")
