@@ -89,7 +89,7 @@ def grafico_medias_cm(df, df_conc_medios):
     
         if df_conc_medios.equals(fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado",
                                                                  "Conceito Médio do doutorado"], "Categoria Administrativa")) == False:
-             raise ValueError
+            raise ValueError
     except TypeError:
         print("TypeError: A função só pode receber DataFrame!")
     except ValueError:
