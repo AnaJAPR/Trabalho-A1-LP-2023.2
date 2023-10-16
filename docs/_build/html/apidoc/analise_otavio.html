@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>analise_otavio module &#8212; Trabalho A1 de Linguagens de Programação - Análise de Dados IGC 2021  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=039e1c02" />
+    <script src="../_static/documentation_options.js?v=8946c2f5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="analise-otavio-module">
+<h1>analise_otavio module<a class="headerlink" href="#analise-otavio-module" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-analise_otavio">
+<dt class="sig sig-object py" id="analise_otavio.analise_intervalos_igc_catadm_pizza">
+<span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_intervalos_igc_catadm_pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_intervalos_igc_catadm_pizza" title="Link to this definition">¶</a></dt>
+<dd><section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame 
+colunas: ‘Categoria Administrativa’, ‘IGC (Contínuo)’</p>
+<blockquote>
+<div><p>DESCRIPTION. A função calcula o valor de certos percentuais do IGC (Contínuo) - um float entre 0 e 5 -
+nos valores de 15%, 50% e 85%. Utilizando esses valores, define um intervalo e calcula as Categorias Administrativas o
+que representam. Depois, cria um grafico de pizza para cada intervalo que mostra a composição do intervalo por Categoria Administrativa.</p>
+</div></blockquote>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>Apenas cria o gráfico de pizza.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="analise_otavio.analise_org_media_num_cursos">
+<span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_org_media_num_cursos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_org_media_num_cursos" title="Link to this definition">¶</a></dt>
+<dd><section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame 
+colunas: ‘Organização Acadêmica’, ‘Nº de Cursos com CPC no triênio’</p>
+<blockquote>
+<div><p>DESCRIPTION. A função calcula a média do número de cursos por tipo de Organização Acadêmica e cria
+um grafico de colunas com eixo-x sendo o tipo da Organização e eixo-y a média.</p>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>Apenas cria o gráfico de média de cursos com organização acadêmica.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="analise_otavio.analise_org_num_catadm_empilhado">
+<span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_org_num_catadm_empilhado</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_org_num_catadm_empilhado" title="Link to this definition">¶</a></dt>
+<dd><section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame 
+colunas: ‘Organização Acadêmica’, ‘Categoria Administrativa’, ‘Código da IES’</p>
+<blockquote>
+<div><p>DESCRIPTION. A função calcula a quantidade de instituições para cada Organização Acadêmica, e quantas de cada das
+Categorias Administrativas compôe esse tipo de organização. Esses dados são grafados num gráfico de colunas
+empilhadas.
+Também é calculado para cada tipo de Oganização Acadêmica qual Categoria Administrativa é mais presente
+em sua composição, a quantidade desta categoria e a porcentagem que representa. Esses resultados são printados.</p>
+</div></blockquote>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>Apenas cria o gráfico e printa os dados adicionais.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Trabalho A1 de Linguagens de Programação - Análise de Dados IGC 2021</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Ana Júlia Amaro, Guilherme Moreira Castilho, Otávio Bettega, Paulo César Gomes Rodrigues.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="../_sources/apidoc/analise_otavio.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

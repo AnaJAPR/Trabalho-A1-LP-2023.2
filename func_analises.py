@@ -1,16 +1,13 @@
 import doctest
 import pandas as pd
-import limpa_dados as lp
-
-df = lp.corrige_nomes_df(lp.df)
 
 def selecionar_colunas_eliminando_nulos(df:pd.core.frame.DataFrame, colunas:list):
     """
     Parameters
     ----------
-    df : pandas.core.frame.DataFrame
+    df: pandas.core.frame.DataFrame
         Recebe um DataFrame.
-    colunas : list
+    colunas: list
         Recebe uma lista de colunas pertencentes ao DataFrame.
 
         DESCRIPTION. A função tem como objetivo selecionar um determinado conjunto de
@@ -50,9 +47,9 @@ def medidas_tendencia_e_dispersao(df:pd.core.frame.DataFrame, coluna:str):
     """
     Parameters
     ----------
-    df : pandas.core.frame.DataFrame
+    df: pandas.core.frame.DataFrame
         Recebe um DataFrame.
-    coluna : str
+    coluna: str
         Recebe uma string que representa o nome de uma coluna do DataFrame.
 
         DESCRIPTION. A função analisa uma coluna do DataFrame e extrai as informações
@@ -99,12 +96,9 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
     """
     Parameters
     ----------
-    df : pandas.core.frame.DataFrame
-        Recebe um DataFrame tratado
-    lista_colunas : list
-        Recebe uma lista com exatamente os nomes de 3 colunas nunéricas do DataFrame
+    df: pandas.core.frame.DataFrame
+    lista_colunas: list
     filtro : str
-        Uma string de um nome de uma coluna não-numérica
 
         DESCRIPTION. A função recebe um DataFrame tratado e retorna um DataFrame com a coluna escolhida em "indice"
         como indice, colunas com a media dos dados não nulos das escolhidas em "lista_colunas" por cada registro do "indice".
@@ -180,4 +174,3 @@ if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)
-    
