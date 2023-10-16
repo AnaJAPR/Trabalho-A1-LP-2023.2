@@ -12,42 +12,27 @@
     -------
     None
         Apenas cria o gráfico de pizza.
-    """ 
+    
 
->>> from analise_otavio import analise_intervalos_igc_catadm_pizza, df
+    >>> from analise_otavio import analise_intervalos_igc_catadm_pizza, df
 
->>> analise_intervalos_igc_catadm_pizza(df)
+    >>> analise_intervalos_igc_catadm_pizza(df)
 
->>> analise_intervalos_igc_catadm_pizza()
-Traceback (most recent call last):
-
-  Cell In[16], line 1
-    analise_intervalos_igc_catadm_pizza()
-
-TypeError: analise_intervalos_igc_catadm_pizza() missing 1 required positional argument: 'df'
+    >>> analise_intervalos_igc_catadm_pizza()
+    Traceback (most recent call last):
+    ...
+    TypeError: analise_intervalos_igc_catadm_pizza() missing 1 required positional argument: 'df'
 
 
->>> analise_intervalos_igc_catadm_pizza(123)
-Traceback (most recent call last):
-
-  Cell In[17], line 1
-    analise_intervalos_igc_catadm_pizza(123)
-
-  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:145 in analise_intervalos_igc_catadm_pizza
-    raise TypeError("Argumento passado tem que se DataFrame")
-
-TypeError: Argumento passado tem que se DataFrame
+    >>> analise_intervalos_igc_catadm_pizza(123)
+    Traceback (most recent call last):
+    ...
+    TypeError: Argumento passado tem que se DataFrame
 
 
->>> analise_intervalos_igc_catadm_pizza(['a','b','c'])
-Traceback (most recent call last):
+    >>> analise_intervalos_igc_catadm_pizza(['a','b','c'])
+    Traceback (most recent call last):
+    ...
+    TypeError: Argumento passado tem que se DataFrame
 
-  Cell In[18], line 1
-    analise_intervalos_igc_catadm_pizza(['a','b','c'])
-
-  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:145 in analise_intervalos_igc_catadm_pizza
-    raise TypeError("Argumento passado tem que se DataFrame")
-
-TypeError: Argumento passado tem que se DataFrame
-
-“””
+    """
