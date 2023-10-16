@@ -53,7 +53,7 @@ def analise_ana_2(dicionario_contagem):
     """
     Parameters
     ----------
-    dicionario_final: dict
+    dicionario_contagem: dict
     
         DESCRIPTION. A função itera sobre os elementos do dicionario_contagem, assumindo que este é o mesmo dicionário retornado pela
         função analise_1_ana, ou seja, assumimos que os valores desse dicionário são dicionários também, cujas chaves são valores,
@@ -84,7 +84,7 @@ def analise_ana_2(dicionario_contagem):
                 try:
                     chave_numerica = int(chave)
                     soma += chave_numerica * contagem
-                # se não tiver como transformar em int, continua lendo o código
+                # se não puder transformar em int, continua lendo o código
                 except ValueError:
                     continue
             # Para garantir que não vai ter divisões por zero, o if analise se o número de contagens é positivo.
@@ -121,33 +121,42 @@ def cria_plot_1_ana(dicionario_contagem):
         linha referente a uma organização acadêmica.
     """
     
-    # Converte o dicionário em um DataFrame do pandas
-    df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
+    try:
+        # Testando se foi passado corretamente um dicionário como parâmetro
+        if not isinstance(dicionario_contagem, dict):
+            raise TypeError("A função só pode receber dicionário!")
+        
+        # Converte o dicionário em um DataFrame do pandas
+        df = pd.DataFrame.from_dict(dicionario_contagem, orient='index')
 
-    # Classifica o DataFrame com base nas colunas (IGC Faixa)
-    df = df.sort_index(axis=1)
+        # Classifica o DataFrame com base nas colunas (IGC Faixa)
+        df = df.sort_index(axis=1)
     
-    # Define o estilo do gráfico
-    # plt.style.use("seaborn-darkgrid")
+        # Define o estilo do gráfico
+        # plt.style.use("seaborn-darkgrid")
     
-    # Definindo eixos, tipo do gráfico, entre outras informações base para a construção do gráfico
-    for org_acad in df.index:
-        igc_faixas = df.columns
-        frequencias = df.loc[org_acad].values
-        plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
+        # Definindo eixos, tipo do gráfico, entre outras informações base para a construção do gráfico
+        for org_acad in df.index:
+            igc_faixas = df.columns
+            frequencias = df.loc[org_acad].values
+            plt.plot(igc_faixas, frequencias, label=org_acad, marker="o", linestyle="--", markersize=6)
         
-        # if frequencia_total_org_acad > 0  #DESENVOLER UM TRY EXCEPT AQUI TALVEZ
+            # if frequencia_total_org_acad > 0  #DESENVOLER UM TRY EXCEPT AQUI TALVEZ
         
-    # Definindo labels, legenda, entre outros dados estéticos do gráfico
-    plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
-    plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
-    plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
-    plt.legend(loc="upper left", fontsize = 8)
-    plt.gca().set_facecolor("white")
+        # Definindo labels, legenda, entre outros dados estéticos do gráfico
+        plt.xlabel("IGC Faixa", size=15, color="green", alpha=0.5)
+        plt.ylabel("Frequência de Ocorrência", size=15, color="green", alpha=0.5)
+        plt.title("Frequência de Ocorrência de cada IGC Faixa por Organização Acadêmica", size=10, color="purple", alpha=0.7)
+        plt.legend(loc="upper left", fontsize = 8)
+        plt.gca().set_facecolor("white")
     
-    # Salva e plota o gráfico
-    plt.savefig("graphic_folder/grafico_01.png")
-    plt.show()
+        # Salva e plota o gráfico
+        plt.savefig("graphic_folder/grafico_01.png")
+        plt.show()
+        
+    except TypeError as e:
+        print(f"Erro: {e}")
+    return None
     
 def cria_plot_2_ana(media_arredondada):
     """
@@ -169,8 +178,8 @@ def cria_plot_2_ana(media_arredondada):
     org_acads = list(media_arredondada.keys())
     medias = list(media_arredondada.values())
 
-    # Cria uma figura e um eixo
-    fig, ax = plt.subplots()
+    # Cria um eixo e uma figura com 5 de largura e 3 de altura
+    fig, ax = plt.subplots(figsize=(5,3))
 
     # Define a largura das barras
     largura_barra = 0.7
@@ -184,7 +193,7 @@ def cria_plot_2_ana(media_arredondada):
     # Definir rótulos dos eixos e título do gráfico
     ax.set_xlabel("Organização Acadêmica", size=15, color="green", alpha=0.5)
     ax.set_ylabel("Média de IGC Faixa", size=15, color="green", alpha=0.5)
-    ax.set_title("Média de IGC Faixa por Organização Acadêmica", size=20, color="purple", alpha=0.7)
+    ax.set_title("Média de IGC Faixa por Organização Acadêmica", size=10, color="purple", alpha=0.7)
 
     # Rotação dos rótulos do eixo x para evitar sobreposição
     plt.xticks(rotation=25, ha="right")
@@ -193,7 +202,9 @@ def cria_plot_2_ana(media_arredondada):
     plt.savefig("graphic_folder/grafico_02.png")
     plt.show()
 
-if __name__ == "__main__":
-    doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
-    doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
+# if __name__ == "__main__":
+    # doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
     # doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt", verbose=True)
+
+cria_plot_2_ana(analise_ana_2(analise_1_ana(df)))
