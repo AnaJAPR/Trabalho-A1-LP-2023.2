@@ -3,7 +3,6 @@ import numpy as np
 import sys
 sys.path.append(".")
 import unittest
-import doctest
 from limpa_dados import corrige_nomes_df, df 
 
 class TestCorrigeNomesDf(unittest.TestCase):

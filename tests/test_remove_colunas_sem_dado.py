@@ -3,7 +3,6 @@ import numpy as np
 import sys
 sys.path.append('.')
 import unittest
-import doctest
 from limpa_dados import remove_colunas_sem_dado, df 
 
 class TestRemoveColunasSemDado(unittest.TestCase):

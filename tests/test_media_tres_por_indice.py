@@ -3,7 +3,6 @@ import numpy as np
 import sys
 sys.path.append(".")
 import unittest
-import doctest
 from func_analises import media_tres_por_indice, df 
 
 class TestReindexacaoEFiltragem(unittest.TestCase):

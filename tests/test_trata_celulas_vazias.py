@@ -3,7 +3,6 @@ import numpy as np
 import sys
 sys.path.append(".")
 import unittest
-import doctest
 from limpa_dados import trata_celulas_vazias, df 
 
 class TestTrataCelulasVazias(unittest.TestCase):
