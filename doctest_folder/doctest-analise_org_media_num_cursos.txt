@@ -1,0 +1,51 @@
+“””
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame 
+    colunas: 'Organização Acadêmica', 'Nº de Cursos com CPC no triênio'
+
+        DESCRIPTION. A função calcula a média do número de cursos por tipo de Organização Acadêmica e cria
+        um grafico de colunas com eixo-x sendo o tipo da Organização e eixo-y a média.
+        
+    Returns
+    -------
+    None
+        Apenas cria o gráfico de média de cursos com organização acadêmica.
+
+>>> from analise_Otavio import analise_org_media_num_cursos, df
+
+>>> analise_org_media_num_cursos(df)
+
+>>> analise_org_media_num_cursos()
+Traceback (most recent call last):
+
+  Cell In[6], line 1
+    analise_org_media_num_cursos()
+
+TypeError: analise_org_media_num_cursos() missing 1 required positional argument: 'df'
+
+
+>>> analise_org_media_num_cursos(123)
+Traceback (most recent call last):
+
+  Cell In[7], line 1
+    analise_org_media_num_cursos(123)
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:28 in analise_org_media_num_cursos
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+
+>>> analise_org_media_num_cursos(['a','b','c'])
+Traceback (most recent call last):
+
+  Cell In[8], line 1
+    analise_org_media_num_cursos(['a','b','c'])
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:28 in analise_org_media_num_cursos
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+“””

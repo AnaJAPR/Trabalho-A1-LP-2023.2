@@ -146,7 +146,8 @@ def cria_plot_1_ana(dicionario_contagem):
     plt.legend(loc="upper left", fontsize = 8)
     plt.gca().set_facecolor("white")
     
-    # Plota o gráfico
+    # Salva e plota o gráfico
+    plt.savefig("graphic_folder/grafico_1.png")
     plt.show()
     
 def cria_plot_2_ana(media_arredondada):
@@ -189,7 +190,8 @@ def cria_plot_2_ana(media_arredondada):
     # Rotação dos rótulos do eixo x para evitar sobreposição
     plt.xticks(rotation=25, ha="right")
 
-    # Plota o gráfico de barras
+    # Salva e plota o gráfico de barras
+    plt.savefig("graphic_folder/grafico_2.png")
     plt.show()
 
 if __name__ == "__main__":

@@ -38,7 +38,7 @@ def analise_org_media_num_cursos(df):
 
     # Usamos dados_1 para criar o grafico_1 com titulo
     grafico_1 = dados_1.plot(kind='bar', xlabel='Organização Acadêmica', ylabel='Média de Número de Cursos')
-    plt.title('Número de Cursos por Organização Aadêmica')
+    plt.title('Número de Cursos por Organização Acadêmica')
     
     # Calculamos a média arredondada e adiconamos essa no grafico_1 posicionado acima das colunas
     for i, j in enumerate(dados_1):

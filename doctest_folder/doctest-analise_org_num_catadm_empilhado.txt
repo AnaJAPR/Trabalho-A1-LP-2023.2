@@ -1,0 +1,80 @@
+"""
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame 
+    colunas: 'Organização Acadêmica', 'Categoria Administrativa', 'Código da IES'
+
+        DESCRIPTION. A função calcula a quantidade de instituições para cada Organização Acadêmica, e quantas de cada das
+        Categorias Administrativas compôe esse tipo de organização. Esses dados são grafados num gráfico de colunas
+        empilhadas.
+        Também é calculado para cada tipo de Oganização Acadêmica qual Categoria Administrativa é mais presente
+        em sua composição, a quantidade desta categoria e a porcentagem que representa. Esses resultados são printados.
+
+    Returns
+    -------
+    None
+        Apenas cria o gráfico e printa os dados adicionais.
+    """
+
+>>> from analise_Otavio import analise_org_num_catadm_empilhado, df
+
+>>> analise_org_num_catadm_empilhado(df)
+Centro Federal De Educação Tecnológica:
+   Categoria Administrativa mais representada: Pública Federal
+   Número de 'Pública Federal nessa organização: 2
+   Porcentagem nessa organização: 100.0%
+
+Centro Universitário:
+   Categoria Administrativa mais representada: Privada Com Fins Lucrativos
+   Número de 'Privada Com Fins Lucrativos nessa organização: 185
+   Porcentagem nessa organização: 56.23%
+
+Faculdade:
+   Categoria Administrativa mais representada: Privada Com Fins Lucrativos
+   Número de 'Privada Com Fins Lucrativos nessa organização: 778
+   Porcentagem nessa organização: 54.03%
+
+Instituto Federal De Educação, Ciência E Tecnologia:
+   Categoria Administrativa mais representada: Pública Federal
+   Número de 'Pública Federal nessa organização: 38
+   Porcentagem nessa organização: 100.0%
+
+Universidade:
+   Categoria Administrativa mais representada: Privada Sem Fins Lucrativos
+   Número de 'Privada Sem Fins Lucrativos nessa organização: 69
+   Porcentagem nessa organização: 33.99%
+
+
+>>> analise_org_num_catadm_empilhado()
+Traceback (most recent call last):
+
+  Cell In[11], line 1
+    analise_org_num_catadm_empilhado()
+
+TypeError: analise_org_num_catadm_empilhado() missing 1 required positional argument: 'df'
+
+
+>>> analise_org_num_catadm_empilhado(123)
+Traceback (most recent call last):
+
+  Cell In[12], line 1
+    analise_org_num_catadm_empilhado(123)
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:78 in analise_org_num_catadm_empilhado
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+
+>>> analise_org_num_catadm_empilhado(['a','b','c'])
+Traceback (most recent call last):
+
+  Cell In[13], line 1
+    analise_org_num_catadm_empilhado(['a','b','c'])
+
+  File ~/CS/Trabalho-A1-LP-2023.2/analise_Otavio.py:78 in analise_org_num_catadm_empilhado
+    raise TypeError("Argumento passado tem que se DataFrame")
+
+TypeError: Argumento passado tem que se DataFrame
+
+“””
