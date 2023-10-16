@@ -172,7 +172,7 @@ def cria_plot_2_ana(media_arredondada):
     """
     try:
         # Testando se foi passado corretamente um dicionário como parâmetro
-        if not isinstance(dicionario_contagem, dict):
+        if not isinstance(media_arredondada, dict):
             raise TypeError("A função só pode receber dicionário!")
         
         # Organiza os dados em listas separadas para as organizações acadêmicas e as médias
@@ -207,7 +207,7 @@ def cria_plot_2_ana(media_arredondada):
         print(f"Erro: {e}")
     return None
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
-    # doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt")

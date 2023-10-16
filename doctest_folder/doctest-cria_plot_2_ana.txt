@@ -1,0 +1,49 @@
+"""
+    Parameters
+    ----------
+    media_arredondada: dict
+    
+        DESCRIPTION. A função faz duas listas de modo que as chaves do media_arredondada são salvas em uma e os valores são salvos na outra.
+        A partir disso, define-se vários detalhes para o gráfico que será plotado. Esse gráfico representa as médias de IGC faixa para cada 
+        organização acadêmica em formato de barras.
+        
+    Returns
+    -------
+    NoneType
+        Retorna um gráfico de barras representando a média de IGC faixa por organização acadêmica.
+
+>>> from analise_ana import cria_plot_2_ana, analise_1_ana, analise_ana_2, df
+
+Teste 1: A função é usada corretamente e apenas plota o gráfico esperado
+>>> cria_plot_2_ana(analise_ana_2(analise_1_ana(df)))
+
+Teste 2
+>>> cria_plot_2_ana(df)
+Erro: A função só pode receber dicionário!
+
+Teste 3
+>>> cria_plot_2_ana("juju")
+Erro: A função só pode receber dicionário!
+
+Teste 4
+>>> cria_plot_2_ana(analise_ana_2(analise_1_ana("juju")))
+Erro: A função só pode receber DataFrame!
+Erro: A função só pode receber dicionário!
+Erro: A função só pode receber dicionário!
+
+Teste 5
+>>> cria_plot_2_ana(analise_1_ana(df))
+Erro: unhashable type: 'dict'
+
+Teste 6
+>>> cria_plot_2_ana(analise_ana_2("juju"))
+Erro: A função só pode receber dicionário!
+Erro: A função só pode receber dicionário!
+
+Teste 7
+>>> cria_plot_2_ana()
+Traceback (most recent call last):
+    ...
+TypeError: cria_plot_2_ana() missing 1 required positional argument: 'media_arredondada'
+
+"""

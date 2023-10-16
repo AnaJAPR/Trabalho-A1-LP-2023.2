@@ -13,14 +13,28 @@
         A função somente exibe o gráfico criado e o salva em um arquivo na pasta "graphic_folder"
 
     >>> from analise_paulo import graf_boxplot_conceito_medio_mestrado, df
+    >>> import pandas as pd
 
     Teste 1
     >>> graf_boxplot_conceito_medio_mestrado(df)
-    None
 
+    Teste 2
     >>> graf_boxplot_conceito_medio_mestrado(12)
     'O argumento passado não é um DataFrame.'
 
-    >>> graf_boxplot_conceito_medio_mestrado(df["a", "b", "c"])
+    Teste 3
+    >>> graf_boxplot_conceito_medio_mestrado(df[["Sigla da UF", "Código da IES"]])
+    "O DataFrame necessita conter as colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado'."
 
+    Teste 4
+    >>> a = pd.DataFrame({"Beta (Proporção de Mestrado - Equivalente)":df["Beta (Proporção de Mestrado - Equivalente)"].astype(str), "Conceito Médio de Mestrado":df["Conceito Médio de Mestrado"].astype(str)})
+    >>> graf_boxplot_conceito_medio_mestrado(a)
+    "As colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado' necessitam ser numéricas."
+
+    Teste 5
+    >>> graf_boxplot_conceito_medio_mestrado()
+    Traceback (most recent call last):
+    ...
+    TypeError: graf_boxplot_conceito_medio_mestrado() missing 1 required positional argument: 'df'
+    
     """
