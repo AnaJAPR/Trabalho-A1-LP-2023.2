@@ -211,3 +211,4 @@ if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-analise_1_ana.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-analise_ana_2.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-cria_plot_1_ana.txt")
+    doctest.testfile("doctest_folder\doctest-cria_plot_2_ana.txt")
