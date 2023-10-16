@@ -1,10 +1,12 @@
 import pandas as pd
 import doctest
 
-df = pd.read_csv("IGC_2021.csv")
+# df = pd.read_csv("IGC_2021.csv")
 
 # As linhas de indice 2012 e 2013 não contém dados, logo são removidas
-df.drop(index=[2012, 2013], inplace = True)
+# df.drop(index=[2012, 2013], inplace = True)
+
+x = 1
 
 def remove_colunas_sem_dado(df):
     """
