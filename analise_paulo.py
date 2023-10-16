@@ -3,6 +3,7 @@ import func_analises as fan
 import geopandas as gpd
 import limpa_dados as lp
 import matplotlib.pyplot as plt
+import os
 import pandas as pd
 
 df = fan.df
@@ -74,15 +75,21 @@ def graf_mapa_instituições_por_uf(df, path_shapefile):
     try:
         if not type(df) == pd.core.frame.DataFrame:
             raise TypeError("O argumento passado não é um DataFrame.")
+        if not type(path_shapefile) == str:
+            raise TypeError("O argumento passado não é uma string.")
         if not "Sigla da UF" in df.columns:
             raise NameError("O DataFrame necessita conter a coluna 'Sigla da UF'.")
-        if pd.api.types.is_number(df["Sigla da UF"]):
+        if pd.api.types.is_numeric_dtype(df["Sigla da UF"]):
             raise ValueError("A coluna 'Sigla da UF' não deve ser numérica.")
+        if not os.path.exists(path_shapefile):
+            raise FileNotFoundError("O shapefile não foi encontrado.")
     except TypeError as erro:
         return str(erro)
     except NameError as erro:
         return str(erro)
     except ValueError as erro:
+        return str(erro)
+    except FileNotFoundError as erro:
         return str(erro)
 
     else:
@@ -164,3 +171,4 @@ def graf_hist_alfa_beta_gama(df):
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-graf_boxplot_conceito_medio_mestrado.txt")
+    doctest.testfile("doctest_folder\doctest-graf_mapa_instituições_por_uf.txt")

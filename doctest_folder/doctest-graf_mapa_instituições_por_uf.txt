@@ -1,0 +1,44 @@
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+    path_shapefile: str
+
+        DESCRIPTION. A função extrai a coluna "Sigla da UF" e cálculo quantas vezes cada
+        valor aparece. O shapefile dado como argumento é passado e, juntamente com a
+        informação da contagem é criado um gráfico de mapa.
+        
+    Returns
+    -------
+    None
+        A função somente exibe o gráfico criado e o salva em um arquivo na pasta "graphic_folder"
+
+    >>> from analise_paulo import graf_mapa_instituições_por_uf, df
+    >>> import pandas as pd
+    
+    Teste 1
+    >>> graf_mapa_instituições_por_uf(df, "shapefiles/estados_2010/estados_2010.shp")
+
+    Teste 2
+    >>> graf_mapa_instituições_por_uf("Não sou um df", "shapefiles/estados_2010/estados_2010.shp")
+    'O argumento passado não é um DataFrame.'
+
+    Teste 3
+    >>> graf_mapa_instituições_por_uf(df, 42)
+    'O argumento passado não é uma string.'
+
+    Teste 4
+    >>> a = pd.DataFrame({"Beta (Proporção de Mestrado - Equivalente)":df["Beta (Proporção de Mestrado - Equivalente)"].astype(str), "Conceito Médio de Mestrado":df["Conceito Médio de Mestrado"].astype(str)})
+    >>> graf_mapa_instituições_por_uf(a, "shapefiles/estados_2010/estados_2010.shp")
+    "O DataFrame necessita conter a coluna 'Sigla da UF'."
+
+    Teste 5
+    >>> b = pd.DataFrame({"Sigla da UF":[4, 3, 2, 1]})
+    >>> graf_mapa_instituições_por_uf(b, "shapefiles/estados_2010/estados_2010.shp")
+    "A coluna 'Sigla da UF' não deve ser numérica."
+
+    Teste 6
+    >>> graf_mapa_instituições_por_uf(df, "shapefile/estados_2010/NaoExistente.shp")
+    'O shapefile não foi encontrado.'
+
+    """
