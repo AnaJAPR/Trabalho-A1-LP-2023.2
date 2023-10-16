@@ -1,0 +1,43 @@
+"""
+    Parameters
+    ----------
+    dicionario_contagem: dict
+
+        DESCRIPTION. A função representa os dados de um dicionário (assumindo que esse é o mesmo retornado pela analise_1_ana) em 
+        um gráfico de linhas, usando o matplotlib.
+
+    Returns
+    -------
+    NoneType
+        Retorna um gráfico de linhas com valores únicos de IGC faixa no eixo x e frequências de ocorrência no eixo y, sendo cada 
+        linha referente a uma organização acadêmica.
+
+>>> from analise_ana import cria_plot_1_ana, analise_1_ana, df
+
+Teste 1: A função é usada corretamente e apenas plota o gráfico esperado
+>>> cria_plot_1_ana(analise_1_ana(df))
+
+Teste 2
+>>> cria_plot_1_ana(df)
+Erro: A função só pode receber dicionário!
+
+Teste 3
+>>> cria_plot_1_ana("juju")
+Erro: A função só pode receber dicionário!
+
+Teste 4
+>>> cria_plot_1_ana(analise_1_ana("juju"))
+Erro: A função só pode receber DataFrame!
+Erro: A função só pode receber dicionário!
+
+Teste 5
+>>> cria_plot_1_ana(5)
+Erro: A função só pode receber dicionário!
+
+Teste 6
+>>> cria_plot_1_ana()
+Traceback (most recent call last):
+    ...
+TypeError: cria_plot_1_ana() missing 1 required positional argument: 'dicionario_contagem'
+
+"""
