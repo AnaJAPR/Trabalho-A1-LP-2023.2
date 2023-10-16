@@ -1,0 +1,26 @@
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame 
+
+        DESCRIPTION. A função extrai as colunas "Beta (Proporção de Mestrado - Equivalente)" 
+        e "Conceito Médio de Mestrado" do DataFrame de modo a remover todas as linhas vazias.
+        Em seguida é criado um boxplot.
+
+    Returns
+    -------
+    None
+        A função somente exibe o gráfico criado e o salva em um arquivo na pasta "graphic_folder"
+
+    >>> from analise_paulo import graf_boxplot_conceito_medio_mestrado, df
+
+    Teste 1
+    >>> graf_boxplot_conceito_medio_mestrado(df)
+    None
+
+    >>> graf_boxplot_conceito_medio_mestrado(12)
+    'O argumento passado não é um DataFrame.'
+
+    >>> graf_boxplot_conceito_medio_mestrado(df["a", "b", "c"])
+
+    """

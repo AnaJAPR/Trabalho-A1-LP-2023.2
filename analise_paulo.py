@@ -4,6 +4,8 @@ import limpa_dados as lp
 import matplotlib.pyplot as plt
 import pandas as pd
 
+df = fan.df
+
 # Desenvolvimento de Gráficos
 # Conceito Médio de Mestrado
 def graf_boxplot_conceito_medio_mestrado(df):
@@ -158,3 +160,5 @@ def graf_hist_alfa_beta_gama(df):
 
         plt.savefig("graphic_folder/grafico_05.png")
         plt.show()
+
+print(graf_boxplot_conceito_medio_mestrado(df[["Sigla da UF", "Código da IES"]]))
