@@ -1,4 +1,3 @@
-import limpa_dados as lp
 import pandas as pd
 import matplotlib.pyplot as plt
 import doctest

@@ -17,7 +17,7 @@ def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
         
     Returns
     -------
-    None
+    NoneType
         Retorna apenas os prints da análise.
     """
     print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS #######################", end="\n\n")
@@ -53,6 +53,21 @@ def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
 
 
 def grafico_medias_cm(df, df_conc_medios):
+    """
+    Parameters
+    ----------
+    df : pd.core.frame.DataFrame
+        Recebe o DataFrame principal 
+    df_conc_medios : pd.core.frame.DataFrame
+        Recebe o DataFrame gerado por fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
+       
+        DESCRIPTION. Recebe o DataFrame "df" para tratamento. O gráfico é um Boxplot gerado pelo DataFrame df_conc_medios. 
+        
+    Returns
+    -------
+    NoneType
+        Apenas plota e salva o gráfico.
+    """
     try:
         if type(df) != pd.core.frame.DataFrame or type(df_conc_medios) != pd.core.frame.DataFrame:
             raise TypeError
@@ -84,6 +99,26 @@ def grafico_medias_cm(df, df_conc_medios):
 
 
 def scatter_plot(df,df_grad, df_mest, df_dout):
+    """
+    Parameters
+    ----------
+    df : pd.core.frame.DataFrame
+        Recebe o DataFrame principal 
+    df_grad : pd.core.frame.DataFrame
+        Recebe o DataFrame gerado por fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")
+    df_mest : pd.core.frame.DataFrame
+        Recebe o DataFrame gerado por fan.fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")
+    df_dout : pd.core.frame.DataFrame
+        Recebe o DataFrame gerado por fan.fan.reindexacao_e_filtragem(df, "Conceito Médio do doutorado")
+
+        DESCRIPTION. Recebe o DataFrame "df" para tratamento. O gráfico é um Scatterplot gerado pelos DataFrame df_grad,
+        df_mest e df_dout. 
+        
+    Returns
+    -------
+    NoneType
+        Apenas plota e salva o gráfico.
+    """
     try:
         if type(df) != pd.core.frame.DataFrame or type(df_grad) != pd.core.frame.DataFrame or type(df_mest) != pd.core.frame.DataFrame or type(df_dout) != pd.core.frame.DataFrame:
             raise TypeError
