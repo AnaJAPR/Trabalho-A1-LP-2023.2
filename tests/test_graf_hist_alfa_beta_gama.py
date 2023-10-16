@@ -1,12 +1,16 @@
 import sys
 sys.path.append('.')
 import unittest
+from unittest.mock import Mock, patch
 from analise_paulo import graf_hist_alfa_beta_gama, df
 import pandas as pd
 
 class GrafBoxplotConceitoMedioMestrado(unittest.TestCase):
     def teste_com_df_e_colunas(self):
-        resultado = graf_hist_alfa_beta_gama(df)
+    # Cria um Mock para plt.show() para evitar que o gráfico seja exibido
+        mock_show = Mock()
+        with patch('matplotlib.pyplot.show', mock_show):
+            resultado = graf_hist_alfa_beta_gama(df)
     # A função não possui retorno, apenas gera o gráfico
         self.assertIsNone(resultado)
 

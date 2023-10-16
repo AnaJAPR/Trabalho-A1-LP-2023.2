@@ -1,12 +1,16 @@
 import sys
 sys.path.append('.')
 import unittest
+from unittest.mock import Mock, patch
 from analise_paulo import graf_mapa_instituições_por_uf, df
 import pandas as pd
 
 class GrafMapaInstituicoesPorUF(unittest.TestCase):
     def teste_com_df_e_colunas(self):
-        resultado = graf_mapa_instituições_por_uf(df, "shapefiles\estados_2010\estados_2010.shp")
+    # Cria um Mock para plt.show() para evitar que o gráfico seja exibido
+        mock_show = Mock()
+        with patch('matplotlib.pyplot.show', mock_show):
+            resultado = graf_mapa_instituições_por_uf(df, "shapefiles\estados_2010\estados_2010.shp")
     # A função não possui retorno, apenas gera o gráfico
         self.assertIsNone(resultado)
 
