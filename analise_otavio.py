@@ -1,6 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import doctest
+import limpa_dados as lp
+
+df = lp.corrige_nomes_df(lp.df)
 
 # Analise 1
 def analise_org_media_num_cursos(df):
@@ -202,3 +206,8 @@ def analise_intervalos_igc_catadm_pizza(df):
     
     plt.savefig("graphic_folder/grafico_10.png")
     plt.show()
+
+if __name__ == "__main__":
+    doctest.testfile("doctest_folder\doctest-analise_org_media_num_cursos.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_org_num_catadm_empilhado.txt")
+    doctest.testfile("doctest_folder\doctest-analise_intervalos_igc_catadm_pizza.txt", verbose=True)

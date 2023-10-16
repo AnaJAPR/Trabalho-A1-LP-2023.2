@@ -12,7 +12,7 @@
     None
         Apenas cria o gráfico de média de cursos com organização acadêmica.
 
->>> from analise_Otavio import analise_org_media_num_cursos, df
+>>> from analise_otavio import analise_org_media_num_cursos, df
 
 >>> analise_org_media_num_cursos(df)
 

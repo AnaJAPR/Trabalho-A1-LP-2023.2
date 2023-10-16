@@ -14,7 +14,7 @@
         Apenas cria o gráfico de pizza.
     """ 
 
->>> from analise_Otavio import analise_intervalos_igc_catadm_pizza, df
+>>> from analise_otavio import analise_intervalos_igc_catadm_pizza, df
 
 >>> analise_intervalos_igc_catadm_pizza(df)
 
