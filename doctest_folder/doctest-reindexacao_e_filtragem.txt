@@ -17,5 +17,44 @@
     >>> import func_analises as fan
     >>> import limpa_dados as lp
 
+    >>> fan.reindexacao_e_filtragem(fan.df, "Conceito Médio de Graduação")
+                              Conceito Médio de Graduação
+    Categoria Administrativa
+    Pública Federal                                 3.019
+    Pública Federal                                 3.357
+    Pública Federal                                 3.213
+    Pública Federal                                 2.878
+    Pública Federal                                 2.866
+    ...                                               ...
+    Pública Federal                                 3.232
+    Pública Federal                                 3.314
+    Pública Federal                                 2.941
+    Pública Federal                                 3.026
+    Pública Federal                                 2.814
+    <BLANKLINE>
+    [2000 rows x 1 columns]
+
+    >>> fan.reindexacao_e_filtragem(fan.df, "Tio Rafa")
+    NameError: Tio Rafa não é uma coluna do DataFrame passado!
+    O DataFrame passado pode não estar no formato necessário!
+
+    >>> fan.reindexacao_e_filtragem(fan.df, ["Conceito Médio de Graduação"])
+    TypeError: O parâmetro coluna deve ser uma string!
+
+    >>> fan.reindexacao_e_filtragem(fan.df, "Tio Rafa")
+    NameError: Tio Rafa não é uma coluna do DataFrame passado!
+    O DataFrame passado pode não estar no formato necessário!
+
+    >>> fan.reindexacao_e_filtragem(lp.df, "Conceito Médio Graduação")
+    NameError: Conceito Médio Graduação não é uma coluna do DataFrame passado!
+    O DataFrame passado pode não estar no formato necessário!
+
+    >>> fan.reindexacao_e_filtragem(fan.df)
+    Traceback (most recent call last):
+    ...
+    TypeError: reindexacao_e_filtragem() missing 1 required positional argument: 'coluna'
+
+    >>> fan.reindexacao_e_filtragem(["Eu", "adoro", "a", "Emap"], "Tio Rafa")
+    TypeError: O parâmetro df deve ser um DataFrame!
 
     """ 

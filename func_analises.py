@@ -201,9 +201,6 @@ def reindexacao_e_filtragem(df, coluna):
             tipo = "uma string"
             raise TypeError
     
-        if df.equals(lp.corrige_nomes_df(lp.df)) == False:
-             raise ValueError
-        
         if coluna not in df.columns.tolist():
             raise NameError
         
@@ -213,11 +210,12 @@ def reindexacao_e_filtragem(df, coluna):
     except TypeError:
         print(f"TypeError: O parâmetro {erro} deve ser {tipo}!")
 
+    except NameError:
+        print(f"NameError: {coluna} não é uma coluna do DataFrame passado!")
+        print("O DataFrame passado pode não estar no formato necessário!")
+    
     except ValueError:
         print("ValueError: O DataFrame passado não está no formato necessário!")
-
-    except NameError:
-        print(f"NameError: '{coluna}' não é uma coluna do DataFrame passado!")
 
     else:
         new_df = df[df[coluna] > 0][[coluna, "Categoria Administrativa"]]
