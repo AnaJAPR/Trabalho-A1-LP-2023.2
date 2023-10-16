@@ -3,19 +3,38 @@ import numpy as np
 import matplotlib.pyplot as plt
 import func_analises as fan
 
-df1 = fan.df[["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado", "Categoria Administrativa"]]
-df_grad = df1[df1["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
-df_mest = df1[df1["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
-df_dout = df1[df1["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
+def reindexacao(df, coluna):
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+        Recebe um Dataframe de ICG
+    coluna: str
+        Recebe uma coluna de Conceito Médio 
 
-df1 = df1.set_index("Categoria Administrativa")
-df_grad = df_grad.set_index("Categoria Administrativa")
-df_mest = df_mest.set_index("Categoria Administrativa")
-df_dout = df_dout.set_index("Categoria Administrativa")
+        DESCRIPTION. A função cria um DataFrame a partir da coluna selecionada sem valores nulos, 
+        com um novo índice.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame apenas com a coluna selecionada e índice "Categoria Administrativa".
+    """ 
+    # gerando dfs a partir da filtragem do df recebido
+    df_grad = df[df["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
+    df_mest = df[df["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
+    df_dout = df[df["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
+
+    # Reindexando os dfs criados
+    df_grad = df_grad.set_index("Categoria Administrativa")
+    df_mest = df_mest.set_index("Categoria Administrativa")
+    df_dout = df_dout.set_index("Categoria Administrativa")
+    return df_grad, df_mest, df_dout
+
 
 # Coloquei os prints em funções apenas para não poluírem a main toda vez que roda-la
 
-def prints_de_todas_medianas():
+def prints_de_todas_medianas(df_grad, df_mest, df_dout):
     """
     Parameters
     ----------
