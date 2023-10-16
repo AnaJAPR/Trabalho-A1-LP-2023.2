@@ -1,3 +1,4 @@
+import doctest
 import func_analises as fan
 import geopandas as gpd
 import limpa_dados as lp
@@ -161,4 +162,5 @@ def graf_hist_alfa_beta_gama(df):
         plt.savefig("graphic_folder/grafico_05.png")
         plt.show()
 
-print(graf_boxplot_conceito_medio_mestrado(df[["Sigla da UF", "Código da IES"]]))
+if __name__ == "__main__":
+    doctest.testfile("doctest_folder\doctest-graf_boxplot_conceito_medio_mestrado.txt")
