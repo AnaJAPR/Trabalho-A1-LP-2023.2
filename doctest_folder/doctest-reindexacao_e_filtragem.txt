@@ -1,0 +1,21 @@
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+        Recebe um Dataframe de ICG
+    coluna: str
+        Recebe uma coluna de Conceito Médio 
+
+        DESCRIPTION. A função cria um DataFrame a partir da coluna selecionada sem valores nulos, 
+        com um novo índice.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame apenas com a coluna selecionada e índice "Categoria Administrativa".
+
+    >>> import func_analises as fan
+    >>> import limpa_dados as lp
+
+
+    """ 

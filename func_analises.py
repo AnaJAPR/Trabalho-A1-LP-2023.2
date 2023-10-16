@@ -190,18 +190,44 @@ def reindexacao_e_filtragem(df, coluna):
     pandas.core.frame.DataFrame
         Retorna um DataFrame apenas com a coluna selecionada e índice "Categoria Administrativa".
     """ 
-    # gerando dfs a partir da filtragem do df recebido
-    new_df = df[df[coluna] > 0][[coluna, "Categoria Administrativa"]]
-    # df_mest = df[df["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
-    # df_dout = df[df["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
+    try:
+        if type(df) != pd.core.frame.DataFrame:
+            erro = "df"
+            tipo = "um DataFrame"
+            raise TypeError
+        
+        if type(coluna) != str:
+            erro = "coluna"
+            tipo = "uma string"
+            raise TypeError
+    
+        if df.equals(df = lp.corrige_nomes_df(lp.df)) == False:
+             raise ValueError
+        
+        if coluna not in df.columns.tolist():
+            raise NameError
+        
+        if "Categoria Administrativa" not in df.columns.tolist():
+            raise ValueError
+        
+    except TypeError:
+        print(f"TypeError: O parâmetro {erro} deve ser {tipo}!")
 
-    # Reindexando os dfs criados
-    new_df = new_df.set_index("Categoria Administrativa")
-    # df_mest = df_mest.set_index("Categoria Administrativa")
-    # df_dout = df_dout.set_index("Categoria Administrativa")
-    return new_df
+    except ValueError:
+        print("ValueError: O DataFrame passado não está no formato necessário!")
+
+    except NameError:
+        print(f"{coluna} não é uma coluna do DataFrame passado!")
+
+    else:
+        new_df = df[df[coluna] > 0][[coluna, "Categoria Administrativa"]]
+
+        new_df = new_df.set_index("Categoria Administrativa")
+
+        return new_df
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-reindexacao_e_filtragem.txt", verbose=True)
