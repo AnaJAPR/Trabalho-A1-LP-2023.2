@@ -19,17 +19,17 @@
 
     Teste 2
     >>> graf_hist_alfa_beta_gama("Não sou um df")
-    'O argumento passado não é um DataFrame.'
+    TypeError: O argumento passado não é um DataFrame.
 
     Teste 3
     >>> b = pd.DataFrame({"Sigla da UF":[4, 3, 2, 1]})
     >>> graf_hist_alfa_beta_gama(b)
-    "O DataFrame necessita conter as colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)'."
+    NameError: O DataFrame necessita conter as colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)'.
 
     Teste 4
     >>> c = pd.DataFrame({'Alfa (Proporção de Graduação)':["r", "s", "t"], 'Beta (Proporção de Mestrado - Equivalente)':["u", "v", "w"], 'Gama (Proporção de Doutorandos – Equivalente)':["x", "y", "z"]})
     >>> graf_hist_alfa_beta_gama(c)
-    "As colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)' necessitam ser numéricas."
+    ValueError: As colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)' necessitam ser numéricas.
     
     Teste 5
     >>> graf_hist_alfa_beta_gama()

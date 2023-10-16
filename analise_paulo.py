@@ -33,11 +33,11 @@ def graf_boxplot_conceito_medio_mestrado(df):
         if not pd.api.types.is_numeric_dtype(df["Beta (Proporção de Mestrado - Equivalente)"]) or not pd.api.types.is_numeric_dtype(df["Conceito Médio de Mestrado"]):
             raise ValueError("As colunas 'Beta (Proporção de Mestrado - Equivalente)' e 'Conceito Médio de Mestrado' necessitam ser numéricas.")
     except TypeError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except NameError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except ValueError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     
     else:
         # Selecionando as colunas de "Beta" e "Conceito de Mestrado"
@@ -84,13 +84,13 @@ def graf_mapa_instituições_por_uf(df, path_shapefile):
         if not os.path.exists(path_shapefile):
             raise FileNotFoundError("O shapefile não foi encontrado.")
     except TypeError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except NameError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except ValueError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except FileNotFoundError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
 
     else:
         # Extraindo a coluna "Sigla da UF" e realizando value_counts()
@@ -133,11 +133,11 @@ def graf_hist_alfa_beta_gama(df):
             raise ValueError("As colunas 'Alfa (Proporção de Graduação)', 'Beta (Proporção de Mestrado - Equivalente)' e 'Gama (Proporção de Doutorandos – Equivalente)' necessitam ser numéricas.")
     
     except TypeError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except NameError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     except ValueError as erro:
-        return str(erro)
+        print(f"{erro.__class__.__name__}: {erro}")
     else:
         # Extraindo as colunas
         df_alfa_beta_gama = df[["Alfa (Proporção de Graduação)", "Beta (Proporção de Mestrado - Equivalente)", "Gama (Proporção de Doutorandos – Equivalente)"]]
