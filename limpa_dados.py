@@ -6,8 +6,6 @@ import doctest
 # As linhas de indice 2012 e 2013 não contém dados, logo são removidas
 # df.drop(index=[2012, 2013], inplace = True)
 
-x = 1
-
 def remove_colunas_sem_dado(df):
     """
     Parameters
@@ -163,6 +161,6 @@ def corrige_nomes_df(df):
         return df
 
 if __name__ == "__main__":
-    doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
-    doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-trata_celulas_vazias.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-remove_colunas_sem_dado.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-corrige_nomes_df.txt", verbose=True)

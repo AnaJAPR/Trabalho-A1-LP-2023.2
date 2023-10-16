@@ -16,7 +16,9 @@
         Retorna um DataFrame contendo as 3 colunas passadas. Em caso de erro, o DataFrame
         passado como argumento será retornado sem nenhuma alteração.
 
-    >>> from func_analises import selecionar_colunas_eliminando_nulos, df
+    >>> import pandas as pd
+    >>> from func_analises import selecionar_colunas_eliminando_nulos
+    >>> from cria_csv import df
 
     Teste 1:
     >>> selecionar_colunas_eliminando_nulos(df, ["Beta (Proporção de Mestrado - Equivalente)", "Conceito Médio de Mestrado"])

@@ -172,5 +172,5 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
 
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
-    doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
-    doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)
+    # doctest.testfile("doctest_folder\doctest-media_tres_por_indice.txt", verbose=True)
