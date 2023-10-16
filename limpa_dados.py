@@ -1,11 +1,6 @@
 import pandas as pd
 import doctest
 
-# df = pd.read_csv("IGC_2021.csv")
-
-# As linhas de indice 2012 e 2013 não contém dados, logo são removidas
-# df.drop(index=[2012, 2013], inplace = True)
-
 def remove_colunas_sem_dado(df):
     """
     Parameters
@@ -130,7 +125,6 @@ def corrige_nomes_df(df):
     else:
         # Já utilizando o tratamento das demais funções desse módulo
         df = trata_celulas_vazias(remove_colunas_sem_dado(df))
-        
         # Corrigindo os nomes das colunas
 
         # Esse for retira o espaço no início do nome da coluna (se houver)

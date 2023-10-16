@@ -1,44 +1,19 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import func_analises as fan
 
-def reindexacao(df, coluna):
-    """
-    Parameters
-    ----------
-    df: pandas.core.frame.DataFrame
-        Recebe um Dataframe de ICG
-    coluna: str
-        Recebe uma coluna de Conceito Médio 
-
-        DESCRIPTION. A função cria um DataFrame a partir da coluna selecionada sem valores nulos, 
-        com um novo índice.
-        
-    Returns
-    -------
-    pandas.core.frame.DataFrame
-        Retorna um DataFrame apenas com a coluna selecionada e índice "Categoria Administrativa".
-    """ 
-    # gerando dfs a partir da filtragem do df recebido
-    df_grad = df[df["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
-    df_mest = df[df["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
-    df_dout = df[df["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
-
-    # Reindexando os dfs criados
-    df_grad = df_grad.set_index("Categoria Administrativa")
-    df_mest = df_mest.set_index("Categoria Administrativa")
-    df_dout = df_dout.set_index("Categoria Administrativa")
-    return df_grad, df_mest, df_dout
-
-
-# Coloquei os prints em funções apenas para não poluírem a main toda vez que roda-la
+# Coloquei os prints em funções apenas para não poluírem a main toda vez que roda-la, e só aparecerem caso chamadas suas funções
 
 def prints_de_todas_medianas(df_grad, df_mest, df_dout):
     """
     Parameters
     ----------
-    None
+    df_grad: pandas.core.frame.DataFrame
+        O DataFrame com apenas a coluna "Conceito Médio de Graduação" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
+    df_mest: pandas.core.frame.DataFrame
+        O DataFrame com apenas a coluna "Conceito Médio de Mestrado" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
+    df_dout: pandas.core.frame.DataFrame
+        O DataFrame com apenas a coluna "Conceito Médio do doutorado" sem valores nulos e índices com os valores da coluna "Categoria Administrativa"
 
         DESCRIPTION. A função printa as medianas das colunas "Conceito Médio de Graduação", "Conceito Médio de Mestrado", 
         "Conceito Médio do doutorado" por indices("Categoria Administrativa").
@@ -48,7 +23,8 @@ def prints_de_todas_medianas(df_grad, df_mest, df_dout):
     None
         Retorna apenas os prints das medianas.
     """ 
-    indices = fan.df["Categoria Administrativa"].unique().tolist()
+
+    indices = df_grad["Categoria Administrativa"].unique().tolist()
     
     mediana_grad, mediana_mest, mediana_dout = 0,0,0
     
@@ -83,13 +59,13 @@ def prints_de_todas_medianas(df_grad, df_mest, df_dout):
         print(f"A mediana do CM de mestrado na categoria {cat_adm} é {mediana_mest}")
         print(f"A mediana do CM do doutorado na categoria {cat_adm} é {mediana_dout}", end="\n\n")  
 
-df2 = fan.media_tres_por_indice(fan.df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
 
-def prints_da_analise_das_medias():
+def prints_da_analise_das_medias(df:pd.core.frame.DataFrame):
     """
     Parameters
     ----------
-    None
+    df : pd.core.frame.DataFrame
+        Recebe o dataframe gerado
 
         DESCRIPTION. A função printa análises de um DataFrame com colunas "Média Conceito Médio de Graduação", "Média Conceito Médio de Mestrado", 
         "Média Conceito Médio do doutorado" por indices("Categoria Administrativa").
@@ -101,39 +77,39 @@ def prints_da_analise_das_medias():
     """
     print("####################### ANÁLISE DAS MÉDIAS DOS CONCEITOS MÉDIOS #######################", end="\n\n")
     # Vemos no df abaixo as médias dos conceitos médios em cada nível do ensino superior por categoria administrativa
-    print(df2, end="\n\n")
+    print(df, end="\n\n")
 
     # Vemos a partir da tabela abaixo as categorias administrativas com os maiores Conceitos médios em cada nível de ensino superior
-    print(df2[df2 == df2.max()], end="\n\n")
+    print(df[df == df.max()], end="\n\n")
     # A categoria administrativa "Especial" possui a maior média tanto no conceito médio de graduação(3.059135) quanto no do doutorado(4.66137)
     # "Pública Federal" possui a maior média no conceito médio de mestrado(4.3846)
 
     # Vemos a partir da tabela abaixo as categorias administrativas com os menores Conceitos médios em cada nível de ensino superior
-    print(df2[df2 == df2.min()], end="\n\n")
+    print(df[df == df.min()], end="\n\n")
     # A categoria administrativa "Pública Municipal" possui a menor média do conceito médio do doutorado(4.579625)
     # A categoria administrativa "Especial" possui a menor média do conceito médio de mestrado(4)
     # "Pública Federal" possui a menor média no conceito médio de graduação(2.226348)
 
 
     # O print abaixo nos revela as médias das 3 colunas
-    print("AS médias de cada nível de ensino são: ", df2.mean(), sep="\n", end="\n\n")
+    print("AS médias de cada nível de ensino são: ", df.mean(), sep="\n", end="\n\n")
     # Vemos que a maior média é do doutorado(4.628627) e a menor é de graduação(2.573522)
 
     # O print abaixo nos revela as medianas das 3 colunas
-    print("AS medianas de cada nível de ensino são: ", df2.median(), sep="\n", end="\n\n")
+    print("AS medianas de cada nível de ensino são: ", df.median(), sep="\n", end="\n\n")
     # O maior valor novamente é do doutorado(4.64235) e o menor e da graduação(2.525514)
 
     # A partir das medidas de resumo acima, vemos que a mediana e a média são muito proximas em seus respectivos níveis de graduação
     # Vemos também que o mestrado se mantém bem próximo do doutorado e distante da graduação nas notas (sua média é 4.267921 e sua mediana é 4.304046)
 
     # O print abaixo dos da o desvioo padrão das médias
-    print("O devio padrão em cada nível de ensino são: ", df2.std(), sep="\n", end="\n\n")
+    print("O devio padrão em cada nível de ensino são: ", df.std(), sep="\n", end="\n\n")
     # O maior desvio é da graduação(0.293501) e o menor o do doutorado(0.036502). O desvio padrão das médias do mestrado é 0.137659
 
 
-def grafico_medias_cm():
+def grafico_medias_cm(df_conc_medios):
     # Criando o boxplot
-    boxplot = plt.boxplot(df2, patch_artist=True)
+    boxplot = plt.boxplot(df_conc_medios, patch_artist=True)
 
     # Alterando a cor das caixas do boxplot
     for box in boxplot["boxes"]:
@@ -150,16 +126,16 @@ def grafico_medias_cm():
     plt.show()
 
 
-def scatter_plot(df_graduacao, df_mestrado, df_doutorado):
+def scatter_plot(df_grad, df_mest, df_dout):
 
     # Convertendo as categorias em números
-    df_grad.index = pd.Categorical(df_graduacao.index)
+    df_grad.index = pd.Categorical(df_grad.index)
     df_grad.index = df_grad.index.codes
 
-    df_mest.index = pd.Categorical(df_mestrado.index)
+    df_mest.index = pd.Categorical(df_mest.index)
     df_mest.index = df_mest.index.codes
 
-    df_dout.index = pd.Categorical(df_doutorado.index)
+    df_dout.index = pd.Categorical(df_dout.index)
     df_dout.index = df_dout.index.codes
 
     # Fazendo o jitter para diminuir as sobreposições

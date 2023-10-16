@@ -170,6 +170,34 @@ def media_tres_por_indice(df:pd.core.frame.DataFrame, lista_colunas:list, indice
 
         return df_medias
 
+def reindexacao_e_filtragem(df, coluna):
+    """
+    Parameters
+    ----------
+    df: pandas.core.frame.DataFrame
+        Recebe um Dataframe de ICG
+    coluna: str
+        Recebe uma coluna de Conceito Médio 
+
+        DESCRIPTION. A função cria um DataFrame a partir da coluna selecionada sem valores nulos, 
+        com um novo índice.
+        
+    Returns
+    -------
+    pandas.core.frame.DataFrame
+        Retorna um DataFrame apenas com a coluna selecionada e índice "Categoria Administrativa".
+    """ 
+    # gerando dfs a partir da filtragem do df recebido
+    new_df = df[df[coluna] > 0][[coluna, "Categoria Administrativa"]]
+    # df_mest = df[df["Conceito Médio de Mestrado"] > 0][["Conceito Médio de Mestrado", "Categoria Administrativa"]]
+    # df_dout = df[df["Conceito Médio do doutorado"] > 0][["Conceito Médio do doutorado", "Categoria Administrativa"]]
+
+    # Reindexando os dfs criados
+    new_df = new_df.set_index("Categoria Administrativa")
+    # df_mest = df_mest.set_index("Categoria Administrativa")
+    # df_dout = df_dout.set_index("Categoria Administrativa")
+    return new_df
+
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-selecionar_colunas_eliminando_nulos.txt", verbose=True)
     # doctest.testfile("doctest_folder\doctest-medidas_tendencia_e_dispersao.txt", verbose=True)

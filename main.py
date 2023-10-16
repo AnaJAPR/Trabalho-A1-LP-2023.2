@@ -1,15 +1,28 @@
-import limpa_dados as lp
 import pandas as pd
 from dominate import document
 from dominate.tags import h1, img
+import limpa_dados as lp
+import func_analises as fan
 # import analise_ana as aa
 import analise_paulo as ap
-import analise_Otavio as ao
+import analise_otavio as ao
 import analise_guilherme as ag
 
-# Cria DataFrame e limpa os dados
+# Cria DataFrame
 df = pd.read_csv("IGC_2021.csv")
-df = lp.corrige_nomes_df(lp.df)
+
+# As linhas de indice 2012 e 2013 não contém dados, logo são removidas
+df.drop(index=[2012, 2013], inplace = True)
+
+# Limpa os Dados
+df = lp.corrige_nomes_df(df)
+
+# Gerando os Dataframes filtrados para Conceitos Médios de cada um dos níveis de ensino para as plotagens do Guilherme
+df_grad = fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")
+df_mest = fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")
+df_dout = fan.reindexacao_e_filtragem(df, "Conceito Médio do doutorado")
+
+df_conc_medios = fan.media_tres_por_indice(df, ["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado"], "Categoria Administrativa")
 
 # Gráficos do Otavio
 ao.analise_org_media_num_cursos(df)
@@ -21,12 +34,15 @@ ao.analise_intervalos_igc_catadm_pizza(df)
 # aa.cria_plot_2_ana(aa.analise_ana_2(aa.analise_1_ana(df)))
 
 # Gráficos do Paulo
-ap.graf_boxplot_conceito_medio_mestrado()
-ap.graf_mapa_instituições_por_uf()
-ap.graf_hist_alfa_beta_gama()
+# ap.graf_boxplot_conceito_medio_mestrado()
+# ap.graf_mapa_instituições_por_uf()
+# ap.graf_hist_alfa_beta_gama()
 
 # Gráficos do Guilherme
-ag.grafico_medias_cm()
+ag.grafico_medias_cm(df_conc_medios)
+ag.scatter_plot(df_grad, df_mest, df_dout)
+# ag.prints_de_todas_medianas(df_grad, df_mest, df_dout)
+# ag.prints_da_analise_das_medias(df_conc_medios)
 
 doc = document(title="Meus Gráficos")
 
