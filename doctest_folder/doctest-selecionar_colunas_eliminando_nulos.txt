@@ -38,12 +38,12 @@
 
     Teste 2:
     >>> selecionar_colunas_eliminando_nulos("Não sou um df", ["Coluna 1", "Coluna 2"])
-    Um ou mais argumentos passados não corresponde ao tipo solicitado.
+    TypeError: O argumento passado não é um DataFrame Pandas.
     'Não sou um df'
 
     Teste 3:
     >>> selecionar_colunas_eliminando_nulos(df, 2)
-    Um ou mais argumentos passados não corresponde ao tipo solicitado.
+    TypeError: O argumento passado não é uma lista.
            Ano Categoria Administrativa Sigla da UF  ...  Código da IES  Sigla da IES  Organização Acadêmica
     0     2021          Pública Federal          MT  ...            1.0          UFMT           Universidade
     1     2021          Pública Federal          DF  ...            2.0           UNB           Universidade
@@ -61,7 +61,7 @@
 
     Teste 4:
     >>> selecionar_colunas_eliminando_nulos(df, ["a", "b"])
-    Uma ou mais colunas passadas não estão presentes no DataFrame.
+    NameError: Uma ou mais colunas passadas não estão presentes no DataFrame.
            Ano Categoria Administrativa Sigla da UF  ...  Código da IES  Sigla da IES  Organização Acadêmica
     0     2021          Pública Federal          MT  ...            1.0          UFMT           Universidade
     1     2021          Pública Federal          DF  ...            2.0           UNB           Universidade

@@ -23,19 +23,19 @@
     {'Média': 2.535961232604374, 'Mediana': 2.541, 'Desvio Padrão': 0.5750188871030091, 'Máximo': 4.302, 'Mínimo': 0.0}
 
     Teste 2:
-    >>> medidas_tendencia_e_dispersao("df", "Conceito Médio de Graduação")
-    'O argumento passado não é um DataFrame Pandas.'
+    >>> medidas_tendencia_e_dispersao("Não sou um df", "Conceito Médio de Graduação")
+    TypeError: O argumento passado não é um DataFrame Pandas.
 
     Teste 3:
     >>> medidas_tendencia_e_dispersao(df, 29)
-    'O argumento passado não é uma string.'
+    TypeError: O argumento passado não é uma string.
 
     Teste 4:
     >>> medidas_tendencia_e_dispersao(df, "Hello, World!")
-    'A coluna passada não está presente no DataFrame.'
+    NameError: A coluna passada não está presente no DataFrame.
 
     Teste 5
     >>> medidas_tendencia_e_dispersao(df, "Sigla da UF")
-    'A coluna passada não é numérica.'
+    ValueError: A coluna passada não é numérica.
 
     """
