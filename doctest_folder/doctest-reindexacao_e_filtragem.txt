@@ -19,7 +19,7 @@
 
     >>> fan.reindexacao_e_filtragem(fan.df, "Conceito Médio de Graduação")
                               Conceito Médio de Graduação
-    Categoria Administrativa
+    Categoria Administrativa                             
     Pública Federal                                 3.019
     Pública Federal                                 3.357
     Pública Federal                                 3.213
