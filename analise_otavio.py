@@ -208,6 +208,6 @@ def analise_intervalos_igc_catadm_pizza(df):
     plt.show()
 
 if __name__ == "__main__":
-    doctest.testfile("doctest_folder\doctest-analise_org_media_num_cursos.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_org_media_num_cursos.txt")
     doctest.testfile("doctest_folder\doctest-analise_org_num_catadm_empilhado.txt")
-    doctest.testfile("doctest_folder\doctest-analise_intervalos_igc_catadm_pizza.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-analise_intervalos_igc_catadm_pizza.txt")
