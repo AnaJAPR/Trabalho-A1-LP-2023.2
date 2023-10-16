@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import func_analises as fan
 import doctest
 import func_analises as fan
-import limpa_dados as lp
 
 # Coloquei os prints em uma função apenas para não poluir a main toda vez que roda-la, e só aparecerem caso chamada sua função
 
@@ -138,19 +137,23 @@ def scatter_plot(df,df_grad, df_mest, df_dout):
     try:
         if type(df) != pd.core.frame.DataFrame or type(df_grad) != pd.core.frame.DataFrame or type(df_mest) != pd.core.frame.DataFrame or type(df_dout) != pd.core.frame.DataFrame:
             raise TypeError
-    
+        
         if not df_grad.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio de Graduação")):
-             raise ValueError(f"O parâmetro df_grad={df_grad} não está no formato necessário!")
+            erro = "df_grad"
+            raise ValueError
         
         if not df_mest.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio de Mestrado")):
-             raise ValueError(f"O parâmetro df_mest={df_mest} não está no formato necessário!")
+            erro = "df_mest"
+            raise ValueError
         
         if not df_dout.equals(fan.reindexacao_e_filtragem(df, "Conceito Médio do doutorado")):
-             raise ValueError(f"O parâmetro df_conc_dout={df_dout} não está no formato necessário!")
+            erro = "df_dout"
+            raise ValueError
     
     except TypeError:
         print("TypeError: A função só pode receber DataFrame!")
-   
+    except ValueError:
+        print(f"ValueError: O parâmetro {erro} não está no formato necessário!")
     else:
 
         # Convertendo as categorias em números
@@ -192,3 +195,4 @@ def scatter_plot(df,df_grad, df_mest, df_dout):
 if __name__ == "__main__":
     doctest.testfile("doctest_folder\doctest-prints_da_analise_das_medias.txt", verbose=True)
     doctest.testfile("doctest_folder\doctest-grafico_medias_cm.txt", verbose=True)
+    doctest.testfile("doctest_folder\doctest-scatter_plot.txt", verbose=True)
