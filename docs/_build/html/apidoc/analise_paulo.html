@@ -31,6 +31,69 @@
             
   <section id="analise-paulo-module">
 <h1>analise_paulo module<a class="headerlink" href="#analise-paulo-module" title="Link to this heading">¶</a></h1>
+<dl class="py function" id="module-analise_paulo">
+<dt class="sig sig-object py" id="analise_paulo.graf_boxplot_conceito_medio_mestrado">
+<span class="sig-prename descclassname"><span class="pre">analise_paulo.</span></span><span class="sig-name descname"><span class="pre">graf_boxplot_conceito_medio_mestrado</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_paulo.graf_boxplot_conceito_medio_mestrado" title="Link to this definition">¶</a></dt>
+<dd><section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame</p>
+<blockquote>
+<div><p>DESCRIPTION. A função extrai as colunas “Beta (Proporção de Mestrado - Equivalente)” 
+e “Conceito Médio de Mestrado” do DataFrame de modo a remover todas as linhas vazias.
+Em seguida é criado um boxplot.</p>
+</div></blockquote>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>A função somente exibe o gráfico criado e o salva em um arquivo na pasta “graphic_folder”</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="analise_paulo.graf_hist_alfa_beta_gama">
+<span class="sig-prename descclassname"><span class="pre">analise_paulo.</span></span><span class="sig-name descname"><span class="pre">graf_hist_alfa_beta_gama</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_paulo.graf_hist_alfa_beta_gama" title="Link to this definition">¶</a></dt>
+<dd><section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame</p>
+<blockquote>
+<div><p>DESCRIPTION. A função extrai as colunas de proporção de graduação, mestrado e doutorado
+Com elas é criado um gráfico contendo um histograma para cada uma das colunas.</p>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>A função somente exibe o gráfico criado e o salva em um arquivo na pasta “graphic_folder”</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="analise_paulo.graf_mapa_instituicoes_por_uf">
+<span class="sig-prename descclassname"><span class="pre">analise_paulo.</span></span><span class="sig-name descname"><span class="pre">graf_mapa_instituições_por_uf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_shapefile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_paulo.graf_mapa_instituicoes_por_uf" title="Link to this definition">¶</a></dt>
+<dd><section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>df: pandas.core.frame.DataFrame
+path_shapefile: str</p>
+<blockquote>
+<div><p>DESCRIPTION. A função extrai a coluna “Sigla da UF” e cálculo quantas vezes cada
+valor aparece. O shapefile dado como argumento é passado e, juntamente com a
+informação da contagem é criado um gráfico de mapa.</p>
+</div></blockquote>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>A função somente exibe o gráfico criado e o salva em um arquivo na pasta “graphic_folder”</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
 </section>
 
 

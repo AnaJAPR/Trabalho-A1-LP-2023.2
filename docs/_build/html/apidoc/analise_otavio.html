@@ -36,13 +36,13 @@
 <span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_intervalos_igc_catadm_pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_intervalos_igc_catadm_pizza" title="Link to this definition">¶</a></dt>
 <dd><section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
-<p>df: pandas.core.frame.DataFrame 
-colunas: ‘Categoria Administrativa’, ‘IGC (Contínuo)’</p>
-<blockquote>
-<div><p>DESCRIPTION. A função calcula o valor de certos percentuais do IGC (Contínuo) - um float entre 0 e 5 -
+<dl>
+<dt>df: pandas.core.frame.DataFrame </dt><dd><p>colunas: “Categoria Administrativa”, “IGC (Contínuo)”</p>
+<p>DESCRIPTION. A função calcula o valor de certos percentuais do IGC (Contínuo) - um float entre 0 e 5 -
 nos valores de 15%, 50% e 85%. Utilizando esses valores, define um intervalo e calcula as Categorias Administrativas o
 que representam. Depois, cria um grafico de pizza para cada intervalo que mostra a composição do intervalo por Categoria Administrativa.</p>
-</div></blockquote>
+</dd>
+</dl>
 </section>
 <section id="returns">
 <h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
@@ -58,12 +58,12 @@ que representam. Depois, cria um grafico de pizza para cada intervalo que mostra
 <span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_org_media_num_cursos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_org_media_num_cursos" title="Link to this definition">¶</a></dt>
 <dd><section id="id1">
 <h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
-<p>df: pandas.core.frame.DataFrame 
-colunas: ‘Organização Acadêmica’, ‘Nº de Cursos com CPC no triênio’</p>
-<blockquote>
-<div><p>DESCRIPTION. A função calcula a média do número de cursos por tipo de Organização Acadêmica e cria
+<dl>
+<dt>df: pandas.core.frame.DataFrame </dt><dd><p>colunas: “Organização Acadêmica”, “Nº de Cursos com CPC no triênio”</p>
+<p>DESCRIPTION. A função calcula a média do número de cursos por tipo de Organização Acadêmica e cria
 um grafico de colunas com eixo-x sendo o tipo da Organização e eixo-y a média.</p>
-</div></blockquote>
+</dd>
+</dl>
 </section>
 <section id="id2">
 <h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
@@ -79,15 +79,15 @@ um grafico de colunas com eixo-x sendo o tipo da Organização e eixo-y a média
 <span class="sig-prename descclassname"><span class="pre">analise_otavio.</span></span><span class="sig-name descname"><span class="pre">analise_org_num_catadm_empilhado</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analise_otavio.analise_org_num_catadm_empilhado" title="Link to this definition">¶</a></dt>
 <dd><section id="id3">
 <h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>df: pandas.core.frame.DataFrame 
-colunas: ‘Organização Acadêmica’, ‘Categoria Administrativa’, ‘Código da IES’</p>
-<blockquote>
-<div><p>DESCRIPTION. A função calcula a quantidade de instituições para cada Organização Acadêmica, e quantas de cada das
+<dl>
+<dt>df: pandas.core.frame.DataFrame </dt><dd><p>colunas: “Organização Acadêmica”, “Categoria Administrativa”, “Código da IES”</p>
+<p>DESCRIPTION. A função calcula a quantidade de instituições para cada Organização Acadêmica, e quantas de cada das
 Categorias Administrativas compôe esse tipo de organização. Esses dados são grafados num gráfico de colunas
 empilhadas.
 Também é calculado para cada tipo de Oganização Acadêmica qual Categoria Administrativa é mais presente
 em sua composição, a quantidade desta categoria e a porcentagem que representa. Esses resultados são printados.</p>
-</div></blockquote>
+</dd>
+</dl>
 </section>
 <section id="id4">
 <h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
