@@ -1,7 +1,7 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import func_analises as fan
-import numpy as np
 
 df1 = fan.df[["Conceito Médio de Graduação", "Conceito Médio de Mestrado", "Conceito Médio do doutorado", "Categoria Administrativa"]]
 df_grad = df1[df1["Conceito Médio de Graduação"] > 0][["Conceito Médio de Graduação", "Categoria Administrativa"]]
@@ -131,30 +131,44 @@ def grafico_medias_cm():
     plt.show()
 
 
-def scatter_plot():
-
+def scatter_plot(df_graduacao, df_mestrado, df_doutorado):
     # Crie um DataFrame com as colunas e índices desejados
-    data = {'Conceito Médio de Graduação': df_grad,
-            'Conceito Médio de Mestrado': df_mest,
-            'Conceito Médio do doutorado': df_dout}
+    data = {'Conceito Médio de Graduação': df_graduacao,
+            'Conceito Médio de Mestrado': df_mestrado,
+            'Conceito Médio do doutorado': df_doutorado}
     # df = pd.DataFrame(data, index=['Pública Federal', 'Pública Estadual', 'Privada Sem Fins Lucrativos', 'Especial', 'Pública Municipal', 'Privada Com Fins Lucrativos'])
 
-    # Converta as categorias em números
-    df1.index = pd.Categorical(df1.index)
-    df1.index = df1.index.codes
+    # Convertendo as categorias em números
+    df_grad.index = pd.Categorical(df_graduacao.index)
+    df_grad.index = df_grad.index.codes
+
+    df_mest.index = pd.Categorical(df_mestrado.index)
+    df_mest.index = df_mest.index.codes
+
+    df_dout.index = pd.Categorical(df_doutorado.index)
+    df_dout.index = df_dout.index.codes
+
+    grad_index_jitted = df_grad.index.tolist() + np.random.normal(-0.1, 0.1, len(df_grad.index.tolist()))
+    mest_index_jitted = df_mest.index.tolist() + np.random.normal(-0.1, 0.1, len(df_mest.index.tolist()))
+    dout_index_jitted = df_dout.index.tolist() + np.random.normal(-0.1, 0.1, len(df_dout.index.tolist()))
 
     # Crie o gráfico de dispersão com subcategorias nas cores dos pontos
-    plt.scatter(x=df_grad.index, y=df_grad, c='yellow')
-    plt.scatter(x=df_mest.index, y=df_mest, c='green')
-    plt.scatter(x=df_dout.index, y=df_dout, c='blue')
+    plt.scatter(x=grad_index_jitted, y=df_grad, c='yellow', alpha=0.5)
+    plt.scatter(x=mest_index_jitted, y=df_mest, c='green', alpha=0.5)
+    plt.scatter(x=dout_index_jitted, y=df_dout, c='blue', alpha=0.5)
+
+    # plt.xticks([0, 1, 2, 3, 4, 5], df_grad.index)
 
     # Adicione uma legenda ao gráfico
-    legend_elements = [plt.Line2D([0], [0], label='Conceito Médio de Graduação', alpha=0.5),
-                    plt.Line2D([0], [0], label='Conceito Médio de Mestrado', alpha=0.5),
-                    plt.Line2D([0], [0], label='Conceito Médio do doutorado', alpha=0.5)]
+    legend_elements = [plt.Line2D([0], [0], marker='o', color='w', label='Conceito Médio de Graduação',
+                          markerfacecolor='yellow', markersize=10),
+                    plt.Line2D([0], [0], marker='o', color='w', label='Conceito Médio de Mestrado',
+                          markerfacecolor='green', markersize=10),
+                    plt.Line2D([0], [0], marker='o', color='w', label='Conceito Médio do doutorado',
+                          markerfacecolor='blue', markersize=10)]
     plt.legend(handles=legend_elements)
 
     # Exiba o gráfico
     plt.show()
 
-scatter_plot()
+scatter_plot(df_grad, df_mest, df_dout)
