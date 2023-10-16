@@ -16,15 +16,6 @@ class TestRemoveColunasSemDado(unittest.TestCase):
         # Adiciona as asserções apropriadas para verificar o resultado
         self.assertIsInstance(resultado, pd.core.frame.DataFrame) # Resultado é um DataFrame pandas
         
-        # lista_nulos = list()
-        # for coluna in resultado.columns.tolist():
-        #     for indice in range(len(resultado)):
-        #         celula = resultado[coluna].iloc[indice]
-        #         if isinstance(celula, np.NaN):
-        #             lista_nulos.append(resultado[coluna].iloc[indice])
-        #         if len(lista_nulos) > resultado.shape[0] / 2:    
-        #             raise AssertionError("Essa coluna nçao foi tratada!")
-    
     # teste com parâmetro inválido, ou seja, um que não seja DataFrame
     def test_remove_colunas_sem_dado_sem_dataframe(self):
         

@@ -1,27 +1,27 @@
 import sys
 sys.path.append('.')
 import unittest
-from analise_paulo import graf_boxplot_conceito_medio_mestrado, df
+from analise_paulo import graf_hist_alfa_beta_gama, df
 import pandas as pd
 
 class GrafBoxplotConceitoMedioMestrado(unittest.TestCase):
     def teste_com_df_e_colunas(self):
-        resultado = graf_boxplot_conceito_medio_mestrado(df)
+        resultado = graf_hist_alfa_beta_gama(df)
     # A função não possui retorno, apenas gera o gráfico
         self.assertIsNone(resultado)
 
     def teste_sem_df_existente(self):
-        resultado = graf_boxplot_conceito_medio_mestrado("Não sou um df")
+        resultado = graf_hist_alfa_beta_gama("Não sou um df")
     # Checa se o retorno foi nulo (O gráfico foi gerado ou houve um erro tratado)
         self.assertIsNone(resultado)
 
     def teste_df_sem_colunas_necessarias(self):
-        resultado = graf_boxplot_conceito_medio_mestrado(df.drop("Beta (Proporção de Mestrado - Equivalente)", axis=1))
+        resultado = graf_hist_alfa_beta_gama(df.drop("Beta (Proporção de Mestrado - Equivalente)", axis=1))
     # Checa se o retorno foi nulo (O gráfico foi gerado ou houve um erro tratado)
         self.assertIsNone(resultado)
-
+        
     def teste_coluna_nao_esta_no_df(self):
-        resultado = graf_boxplot_conceito_medio_mestrado(pd.DataFrame({"Beta (Proporção de Mestrado - Equivalente)":df["Beta (Proporção de Mestrado - Equivalente)"].astype(str), "Conceito Médio de Mestrado":df["Conceito Médio de Mestrado"].astype(str)}))
+        resultado = graf_hist_alfa_beta_gama(pd.DataFrame({"Alfa (Proporção de Graduação)":df["Alfa (Proporção de Graduação)"].astype(str), "Beta (Proporção de Mestrado - Equivalente)":df["Beta (Proporção de Mestrado - Equivalente)"].astype(str), "Gama (Proporção de Doutorandos – Equivalente)":df["Gama (Proporção de Doutorandos – Equivalente)"].astype(str)}))
     # Checa se o retorno foi nulo (O gráfico foi gerado ou houve um erro tratado)
         self.assertIsNone(resultado)
 
