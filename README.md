@@ -1,6 +1,12 @@
 # Trabalho-A1-LP-2023.2
-Alunos: Ana Júlia Amaro, Guilherme Moreira Castilho, Otávio Bettega e Paulo César
-Gomes Rodrigues
+
+Trabalho referente à disciplina de Linguagens de Programação dos cursos de Ciência de Dados e IA e Matemática Aplicada da FGV-EMAP.
+
+# Integrantes:
+- Ana Júlia Amaro Pereira Rocha
+- Guilherme Moreira Castilho
+- Otávio Bettega
+- Paulo César Gomes Rodrigues
 
 # Objetivo
 Este trabalho visa realizar uma análise de dados do IGC (Índice Geral de Cursos) do 
